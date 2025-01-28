@@ -1,0 +1,1390 @@
+.header {
+	color: #102938;
+	a {
+		color: #102938;
+		@media (any-hover: hover) {
+			&:hover {
+				// color: inherit !important;
+			}
+		}
+	}
+	// .header__top
+
+	&__desktop {
+		@media (max-width: $laptop) {
+			display: none;
+		}
+	}
+
+	// .header__touch
+
+	&__touch {
+		display: none;
+		@media (max-width: $laptop) {
+			display: block;
+		}
+	}
+
+	&__top {
+		background-color: $bgColor;
+	}
+}
+.top-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 9px 0;
+
+	// .top-header__drop-menus
+
+	&__drop-menus {
+		display: flex;
+		align-items: center;
+		column-gap: 36px;
+	}
+
+	// .top-header__drop-menu
+
+	&__drop-menu {
+	}
+
+	// .top-header__contacts
+
+	&__contacts {
+	}
+
+	&__icon {
+	}
+}
+
+.drop-menu {
+	position: relative;
+
+	@media (any-hover: hover) {
+		&:hover .drop-menu__wrapper-list {
+			display: block;
+		}
+		@media (any-hover: hover) {
+			&:hover .drop-menu__btn::after {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	// .drop-menu__btn
+	&__link,
+	&__btn {
+		display: flex;
+		align-items: center;
+		column-gap: 4px;
+		cursor: pointer;
+		&::after {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/arrowMenu.svg") 0 0
+				no-repeat;
+			width: 10px;
+			height: 6px;
+			transition: all 0.3s ease 0s;
+
+			._show & {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	&__link {
+		&::after {
+			content: "";
+			display: none;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: #102938 !important;
+			}
+		}
+	}
+	&__wrapper-list {
+		display: none;
+		padding-top: 8px;
+		position: absolute;
+		top: 18px;
+		left: 0;
+		z-index: 120;
+		._show & {
+			display: block;
+		}
+	}
+	// .drop-menu__list
+
+	&__list {
+		padding: 4px;
+
+		min-width: 115px;
+		background: #ffffff;
+		box-shadow: 0px 3px 30px rgba(0, 61, 95, 0.1);
+		border-radius: 8px;
+	}
+
+	// .drop-menu__item
+
+	&__item {
+		a {
+			display: flex;
+			text-wrap: nowrap;
+			color: inherit;
+			padding: 4px 8px;
+			border-radius: 4px;
+			transition: all 0.4s ease 0s;
+			@media (any-hover: hover) {
+				&:hover {
+					background-color: $bgColor;
+					color: #102938 !important;
+				}
+			}
+		}
+	}
+}
+.contacts-header {
+	display: flex;
+	align-items: center;
+	column-gap: 24px;
+	// .contacts-header__telegram
+	&__whatsapp,
+	&__telegram {
+		line-height: 1;
+	}
+
+	&__whatsapp {
+		transition: all 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover svg path {
+				fill: #0db25a;
+			}
+		}
+	}
+	&__telegram svg path,
+	&__whatsapp svg path {
+		transition: all 0.3s ease 0s;
+	}
+	&__telegram {
+		@media (any-hover: hover) {
+			&:hover svg path {
+				fill: #27a7e7;
+			}
+		}
+	}
+	&__tel {
+		font-size: 16px;
+		line-height: 125%;
+		font-weight: 700;
+		color: #102938;
+		transition: all 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				color: #ff6701 !important;
+			}
+		}
+	}
+}
+.bottom-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24px 0;
+	// .bottom-header__logo
+
+	&__logo {
+		flex: 0 0 187px;
+		margin-right: 3.35%;
+		img {
+			height: 30px;
+			width: 187px;
+		}
+	}
+
+	// .bottom-header__btn-menu
+
+	&__btn-menu {
+		margin-right: 1.65%;
+		display: flex;
+		align-items: center;
+		column-gap: 13px;
+		color: #fff;
+	}
+
+	// .bottom-header__search
+
+	&__search {
+		display: flex;
+		flex: 1 1 100%;
+		border: 2px solid #dbe5f0;
+		border-radius: 8px;
+		padding: 7.5px 16px;
+		margin-right: 1.65%;
+		position: relative;
+		transition: all 0.3s ease 0s;
+		&._active {
+			border: 2px solid #102938;
+		}
+	}
+	// bottom-header__btn-clear-input
+	&__btn-clear-input {
+	}
+	// .bottom-header__input-serarch
+
+	&__input-serarch {
+		flex: 1 1 100%;
+		outline: none !important;
+		border: none;
+		&::placeholder {
+			color: #102938;
+			opacity: 0.5;
+		}
+		&::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+		}
+	}
+
+	// .bottom-header__btn-search
+
+	&__btn-search {
+		cursor: pointer;
+	}
+
+	// .bottom-header__fast-order-btn
+
+	&__fast-order-btn {
+		padding: 12px 20px;
+		background-color: $bgColor;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		column-gap: 10px;
+		cursor: pointer;
+		span {
+			text-wrap: nowrap;
+			font-weight: 700;
+		}
+		&::after {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/arrowbtn.svg") 0 0
+				no-repeat;
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+.btn-claer-input {
+	background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/clse.svg") 50% 50% / cover
+		no-repeat;
+	width: 17px;
+	height: 17px;
+	position: absolute;
+	top: 50%;
+	right: 45px;
+	cursor: pointer;
+	transform: translate(0px, -50%);
+}
+.burger-btn {
+	padding: 12px 13px;
+	border-radius: 4px;
+	font-weight: 600;
+	cursor: pointer;
+	background: #102938;
+	@media (max-width: $laptop) {
+		background-color: transparent;
+	}
+
+	&._active-burger .burger-btn__line_line1 {
+		transform: rotate(-45deg);
+		transform-origin: 15px 2px;
+	}
+
+	@media (max-width: $laptop) {
+		&._active-burger {
+			background-color: $bgColor;
+			border-radius: 50%;
+		}
+	}
+	&._active-burger .burger-btn__line_line2 {
+		display: none;
+	}
+	&._active-burger .burger-btn__line_line3 {
+		transform: rotate(45deg);
+		transform-origin: 15px 0;
+		@media (max-width: $laptop) {
+			width: 100%;
+		}
+	}
+	@media (any-hover: hover) {
+		@media (max-width: $laptop) {
+			&:hover {
+				background-color: $bgColor;
+				border-radius: 50%;
+			}
+		}
+		&:hover .burger-btn__line_line1 {
+			transform: rotate(-45deg);
+			transform-origin: 15px 2px;
+		}
+		&:hover .burger-btn__line_line2 {
+			display: none;
+		}
+		&:hover .burger-btn__line_line3 {
+			transform: rotate(45deg);
+			transform-origin: 15px 0;
+			@media (max-width: $laptop) {
+				width: 100%;
+			}
+		}
+	}
+	// .burger__wrapper
+
+	&__wrapper {
+		width: 17px;
+		height: 12px;
+		transition: 0.3s;
+		position: relative;
+		@media (max-width: $laptop) {
+			transform: translate(-1px, 0px);
+		}
+	}
+
+	// .burger__line
+
+	&__line {
+		position: absolute;
+
+		width: 17px;
+		height: 2px;
+		border: none;
+		background: #fff;
+		border-radius: 2px;
+		transition:
+			transform 0.2s,
+			transform-origin 0.2s;
+		@media (max-width: $laptop) {
+			background: #102938;
+		}
+		// .burger__line_line1
+
+		&_line1 {
+			top: 0;
+			left: 0;
+
+			._active-burger & {
+				transform: rotate(-45deg);
+				transform-origin: 15px 2px;
+			}
+		}
+
+		// .burger__line_line2
+
+		&_line2 {
+			top: 5px;
+			left: 0;
+			._active-burger & {
+				display: none;
+			}
+		}
+
+		// .burger__line_line3
+
+		&_line3 {
+			bottom: 0;
+			left: 0;
+			._active-burger & {
+				transform: rotate(45deg);
+				transform-origin: 15px 0;
+			}
+			@media (max-width: $laptop) {
+				width: 66.666%;
+			}
+		}
+	}
+}
+
+.catalog-menu {
+	position: absolute;
+	z-index: 111;
+	width: 100%;
+	height: 100%;
+	top: 108px;
+	left: 50%;
+	transform: translate(-50%, 0px);
+	line-height: 1.5;
+
+	&__bg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: hsla(203, 56%, 14%, 0.5);
+		z-index: 0;
+	}
+	&__wrapper {
+		padding: 54px 0 20px;
+		background-color: #fff;
+		height: auto;
+
+		position: relative;
+		z-index: 1;
+	}
+
+	& .page-bl {
+		display: flex;
+	}
+
+	// .catalog-menu__wrapper-main-nav
+	&__wrapper-main-nav {
+		padding-right: 40px;
+	}
+	// .catalog-menu__wrapper-sub-nav
+	&__wrapper-sub-nav {
+		flex: 1 1 auto;
+	}
+
+	// .catalog-menu__main-nav
+
+	&__main-nav {
+	}
+	// .catalog-menu__sub-nav
+
+	&__sub-nav {
+	}
+}
+.custom-scrollbar {
+	overflow-y: auto;
+	overflow-x: hidden;
+	&::-webkit-scrollbar {
+		width: 2px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #b1bdc9;
+		height: 24px;
+		border-radius: 8px;
+	}
+	&::-webkit-scrollbar-track {
+		height: 24px;
+	}
+	&::-webkit-scrollbar-track-piece {
+		background-color: hwb(203 6% 78% / 0.1);
+		width: 2px;
+	}
+}
+.main-nav {
+	padding-right: 40px;
+	border-right: 2px solid rgba(4, 42, 57, 0.1);
+
+	// .main-nav__list
+
+	&__list {
+	}
+
+	// .main-nav__item
+
+	&__item {
+		margin-bottom: 0;
+		position: relative;
+
+		border-radius: 4px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right: 8px;
+		&::before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			z-index: 1;
+		}
+		&._active {
+			background-color: $bgColor;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: $bgColor;
+			}
+		}
+		&::after {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/arrowMenu.svg") 50% 50% /
+				12px 5px no-repeat;
+			width: 12px;
+			height: 5px;
+
+			transform: rotate(-90deg);
+
+			display: inline-block;
+		}
+		&._arrow-hidden {
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	// .main-nav__link
+	&__link {
+		display: flex;
+		align-items: center;
+		column-gap: 10px;
+		padding: 8px 8px;
+		// position: relative;
+		z-index: 2;
+		cursor: pointer;
+		span {
+			flex: 1 1 100%;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+
+		img {
+			flex: 0 0 14px;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: #102938 !important;
+			}
+		}
+	}
+}
+
+.sub-nav {
+	// .sub-nav__item
+
+	&__item {
+	}
+}
+
+.header-touch {
+	padding: 8px 0;
+
+	// .header-touch__left-block
+
+	& .page-bl {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__right-block,
+	&__left-block {
+		display: flex;
+		align-items: center;
+		column-gap: 16px;
+	}
+
+	// .header-touch__btn-burger
+	.touch-catalog-menu__btn-burger,
+	&__btn-burger {
+		padding: 11.5px 8px;
+	}
+
+	// .header-touch__logo
+	.touch-catalog-menu__logo,
+	&__logo {
+		img {
+			width: 149.6px;
+			height: 24px;
+		}
+	}
+
+	// .header-touch__right-block
+
+	&__right-block {
+	}
+
+	// .header-touch__btn-search
+	&__link-tel,
+	&__btn-search {
+		padding: 9px;
+		background-color: $bgColor;
+		border-radius: 8px;
+	}
+	// .header-touch__link-tel
+	&__link-tel {
+		display: inline-block;
+		height: 42px;
+
+		&::before {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/phone.svg") 0 0 no-repeat;
+			width: 24px;
+			height: 24px;
+			display: inline-block;
+		}
+	}
+}
+.touch-search-block {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding-top: 4px;
+	background-color: #fff;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease 0s;
+	overflow-y: auto;
+	height: 100%;
+	& .page-bl {
+		display: flex;
+		flex-direction: column;
+	}
+	&._show-touch-search {
+		opacity: 1;
+		visibility: visible;
+		z-index: 200;
+	}
+
+	&__top {
+		width: 100%;
+		display: flex;
+		align-items: center;
+
+		column-gap: 12px;
+	}
+
+	// .touch-search-block__back
+
+	&__back {
+		padding: 14px 0;
+		img {
+			transform: scale(-1, 1);
+		}
+		&::after {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/arrowbtn.svg") 0 0
+				no-repeat;
+			width: 14px;
+			height: 14px;
+			transform: scale(-1, -1);
+		}
+	}
+
+	// .touch-search-block__search
+
+	&__search {
+		width: 100%;
+		justify-content: space-between;
+		background-color: $bgColor;
+		padding: 9px 16px;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		position: relative;
+	}
+
+	// .touch-search-block__input-serarch
+
+	&__input-serarch {
+		background-color: $bgColor;
+		line-height: 1.5;
+		width: 100%;
+		border: none;
+		&::placeholder {
+			color: #102938;
+			opacity: 0.5;
+		}
+		&::-webkit-search-cancel-button {
+			-webkit-appearance: none;
+		}
+	}
+
+	// .touch-search-block__btn-search
+
+	&__btn-search {
+	}
+
+	// .touch-search-block__bottom
+
+	&__bottom {
+	}
+}
+.bottom-header__search-list-block {
+	position: absolute;
+	top: 49px;
+	left: 0;
+	z-index: 10;
+	max-width: 630px;
+	width: auto;
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 0px 3px 30px rgba(0, 61, 95, 0.1);
+	padding: 4px;
+	border-radius: 8px;
+	z-index: -111;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease 0s;
+	&._show-search {
+		visibility: visible;
+		opacity: 1;
+		z-index: 200;
+	}
+}
+.search-list-block {
+	max-height: 304px;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #b1bdc9;
+		height: 24px;
+		border-radius: 8px;
+	}
+	&::-webkit-scrollbar-track {
+		height: 24px;
+	}
+	@media (max-width: $laptop) {
+		visibility: visible;
+		opacity: 1;
+		min-height: auto;
+		border-radius: 0;
+		box-shadow: none;
+		position: static;
+		transform: translate(0px, 0px);
+		padding: 24px 25px;
+		max-width: 100%;
+		max-height: none;
+		overflow-y: auto;
+	}
+	// .search-list-block__list
+
+	&__list {
+		height: 100%;
+	}
+
+	// .search-list-block__item
+
+	&__item {
+		padding: 4px 16px;
+		width: calc(100% - 4px);
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: $bgColor;
+				border-radius: 4px;
+			}
+		}
+		&:not(:last-child) {
+			margin-bottom: 4px;
+		}
+		@media (max-width: $laptop) {
+			padding: 0px;
+			&:not(:last-child) {
+				margin-bottom: 12px;
+			}
+		}
+
+		a {
+			text-align: left;
+			@media (any-hover: hover) {
+				&:hover {
+					color: #102938;
+				}
+			}
+		}
+	}
+
+	// .search-list-block__name
+
+	&__name {
+		@media (max-width: $laptop) {
+			margin-bottom: 4px;
+			line-height: 150%;
+		}
+	}
+
+	// .search-list-block__bc
+
+	&__bc {
+	}
+
+	// .search-list-block__it-bc
+
+	&__it-bc {
+		font-size: 12px;
+		line-height: 125%;
+
+		&:first-child {
+			&::before {
+				display: none;
+			}
+		}
+		&::before {
+			content: "•";
+		}
+	}
+}
+
+.menu-sub {
+	// .menu-sub__name
+
+	&__name {
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 135%;
+		padding-bottom: 10px;
+	}
+
+	// .menu-sub__wrapper
+
+	&__wrapper {
+		display: flex;
+
+		height: 100%;
+		// max-height: 435px;
+		padding-right: 103px;
+		column-gap: 60px;
+	}
+
+	// .menu-sub__list
+
+	&__list {
+		flex: 0 1 226px;
+	}
+
+	// .menu-sub__item
+
+	&__item {
+		line-height: 1.5;
+		&:first-child {
+			font-weight: 700;
+		}
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+		a {
+			@media (any-hover: hover) {
+				&:hover {
+					color: #102938;
+				}
+			}
+		}
+	}
+}
+
+.accordions-menu {
+	background-color: $bgColor;
+	padding: 12px;
+	border-radius: 12px;
+
+	// .accordions-menu__item
+
+	&__item {
+	}
+
+	// .accordions-menu__names
+
+	&__names {
+		padding: 10px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		span {
+			display: flex;
+			align-items: center;
+			font-weight: 700;
+			line-height: 125%;
+			color: #102938 !important;
+		}
+		img {
+			margin-right: 8px;
+		}
+		&::after {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/arrowMenu.svg") 0 0
+				no-repeat;
+			display: inline-block;
+			width: 10px;
+			height: 6px;
+			transition: all 0.3s ease 0s;
+		}
+		&._spoller-active::after {
+			transform: rotate(180deg);
+		}
+	}
+
+	// .accordions-menu__body
+
+	&__body {
+	}
+
+	// .accordions-menu__list
+
+	&__list {
+		padding-left: 28px;
+	}
+
+	&__it-list {
+		padding: 4px 0;
+		text-align-last: left;
+
+		&:not(:last-child) {
+			margin-bottom: 8px;
+		}
+		a {
+			display: flex;
+			align-items: center;
+			align-items: center;
+			column-gap: 10px;
+			line-height: 135%;
+			color: #102938 !important;
+		}
+	}
+}
+.touch-catalog-menu {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 111;
+	top: 0px;
+	left: -200%;
+
+	transition: all 0.2s ease 0s;
+	&._show {
+		left: 0;
+	}
+	&__bg {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #042a39;
+		opacity: 0.5;
+		z-index: 0;
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.3s ease 0s;
+		._show & {
+			visibility: visible;
+			opacity: 0.5;
+		}
+	}
+	&__wrapper {
+		max-width: 430px;
+		height: 100%;
+		background-color: #fff;
+		position: relative;
+		z-index: 1;
+		overflow-y: auto;
+	}
+	// .touch-catalog-menu__top,
+	// .touch-catalog-menu__left-block,
+	// .touch-catalog-menu__right-block,
+	&__top {
+		padding: 8px 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__right-block,
+	&__left-block {
+		display: flex;
+		column-gap: 16px;
+		align-items: center;
+	}
+
+	&__nav {
+		// width: 100%;
+		background-color: #fff;
+		padding: 20px;
+		padding-top: 0;
+		display: flex;
+		flex-direction: column;
+		row-gap: 24px;
+	}
+
+	// .touch-catalog-menu__social-block
+
+	&__social-block {
+	}
+
+	// .touch-catalog-menu__contacts
+
+	&__contacts {
+	} // .touch-catalog-menu__hit-season
+
+	&__hit-season {
+	}
+}
+.social-block-touch {
+	background-color: $bgColor;
+	padding: 12px;
+	border-radius: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+
+	@media (max-width: 429.98px) {
+		justify-content: space-between;
+		gap: 8px;
+	}
+	&__item {
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+		font-weight: 700;
+		line-height: 135%;
+		padding: 7px 0;
+		text-wrap: nowrap;
+		justify-content: flex-start;
+		width: calc(50% - 12px);
+	}
+}
+
+.contacts-touch {
+	margin-top: 24px;
+	border-radius: 24px 24px 0 0;
+	background-color: #f0f4f9;
+	padding: 24px 20px 100px 20px;
+
+	// .contacts-touch__btns
+
+	&__btns {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		margin-bottom: 24px;
+		flex-wrap: wrap;
+	}
+
+	// .contacts-touch__tel
+
+	&__tel,
+	&__telegram,
+	&__whatsApp {
+		text-align: center;
+		padding: 13px 0;
+		border-radius: 8px;
+		@media (any-hover: hover) {
+			&.contacts-touch__tel:hover {
+				color: #fff !important;
+			}
+		}
+	}
+
+	&__tel {
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 1.2;
+		padding: 12px;
+		color: #fff !important;
+		background-color: #00b54f;
+		flex: 1 1 100%;
+	}
+	&__telegram,
+	&__whatsApp {
+		background-color: #fff;
+		line-height: 135%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		column-gap: 10px;
+		flex: 0 1 calc(50% - 12px);
+	}
+	&__telegram {
+	}
+	// .contacts-touch__geo
+
+	&__geo {
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+		justify-content: center;
+	}
+}
+
+.hit-season {
+	// .hit-season__title
+
+	&__title {
+		font-weight: 700;
+		line-height: 125%;
+		margin-bottom: 12px;
+		text-align: left;
+		color: #102938;
+	}
+	// .hit-season__wrapper
+
+	&__wrapper {
+		display: flex;
+		column-gap: 16px;
+	}
+
+	// .hit-season__item
+
+	&__item {
+		flex: 0 1 50%;
+		position: relative;
+		height: 187px;
+	}
+
+	&__img {
+		position: absolute;
+	}
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+}
+._iconRutube,
+._iconTel,
+._iconTelgreamContact,
+._iconWhatsapp,
+._iconMail,
+._iconJornal,
+._iconVk,
+._iconTelegram,
+._iconYotuube {
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+
+	&::before {
+		content: "";
+		flex: 0 0 20px;
+		width: 20px;
+		height: 20px;
+		background-repeat: no-repeat;
+		background-position: 0 0;
+	}
+}
+// ._iconMail
+
+._iconMail {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/emailFooter.svg);
+	}
+}
+
+// ._iconWhatsapp
+
+._iconWhatsapp {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whatsappFooter.svg);
+	}
+}
+
+// ._iconTelgream
+
+._iconTelgreamContact {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/telegramFootre.svg);
+	}
+}
+
+// ._iconTel
+
+._iconTel {
+	cursor: pointer;
+	color: #102938;
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/telFooter.svg);
+	}
+}
+
+._iconJornal {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/ZHurnal.svg");
+	}
+}
+._iconVk {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/vkVideo.svg");
+	}
+}
+._iconTelegram {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/telegramTouch.svg");
+	}
+}
+._iconYotuube {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/youtuveTouch.svg");
+	}
+}
+._iconRutube {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/rutube.svg");
+	}
+}
+.no-scroll {
+	overflow: hidden !important;
+	overflow-y: hidden !important;
+	height: 100%;
+	width: 100%;
+}
+#search-loader {
+	display: flex;
+	justify-content: center;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: transparent !important;
+		}
+	}
+	&::before {
+		content: "";
+		background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/tube-spinner.svg") 0 0
+			no-repeat;
+		width: 30px;
+		height: 30px;
+	}
+}
+._iconSearch,
+._iconStocks,
+._iconMidea,
+._iconCompany {
+	&::before {
+		content: "";
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		display: inline-block;
+	}
+}
+._iconCompany {
+	&::before {
+		width: 17px;
+		height: 20px;
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/company.svg");
+	}
+}
+._iconMidea {
+	&::before {
+		width: 20px;
+		height: 18px;
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/midea.svg");
+	}
+}
+._iconStocks {
+	&::before {
+		width: 24px;
+		height: 24px;
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/stocks.svg");
+	}
+}
+._iconSearch {
+	&::before {
+		width: 24px;
+		height: 24px;
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/searchIcon.svg");
+	}
+}
+._iconSkvazhina {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/skvazhina.svg);
+	}
+}
+._iconOther-service,
+._iconKupeli,
+._iconKolodec,
+._iconSvajnyj-fundament,
+._iconServis,
+._iconVideonablyudenie,
+._iconBlagoustrojstvo,
+._iconCistema-ochistki-vody,
+._iconSkvazhina,
+._iconVodosnabzhenie,
+._iconPogreb,
+._iconSeptik {
+	&::before {
+		content: "";
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		flex: 0 0 16px;
+		width: 16px;
+		height: 16px;
+		display: inline-block;
+	}
+}
+._iconSeptik {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/septik.svg);
+	}
+}
+._iconPogreb {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/pogreb.svg);
+	}
+}
+._iconVodosnabzhenie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/vodosnabzhenie.svg);
+	}
+}
+._iconSkvazhina {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/skvazhina.svg);
+	}
+}
+._iconCistema-ochistki-vody {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/cistema-ochistki-vody.svg);
+	}
+}
+._iconBlagoustrojstvo {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/blagoustrojstvo.svg);
+	}
+}
+._iconVideonablyudenie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/videonablyudenie.svg);
+	}
+}
+._iconServis {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/servis.svg);
+	}
+}
+._iconSvajnyj-fundament {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/svajnyj-fundament.svg);
+	}
+}
+._iconKolodec {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/kolodec.svg);
+	}
+}
+._iconKupeli {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/kupeli.svg);
+	}
+}
+._iconOther-service {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/other-service.svg);
+	}
+}
+
+.wrapper-color-main .header-touch__btn-search,
+.wrapper-color-main .header-touch__link-tel,
+.wrapper-color-main .bottom-header__fast-order-btn,
+.wrapper-color-main .footer,
+.wrapper-color-main .header .header__top {
+	background-color: #f5f5f5;
+}

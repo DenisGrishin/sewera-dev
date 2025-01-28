@@ -1,0 +1,151 @@
+.sewera-septik .type-service-big {
+	// .type-service-big__title
+
+	&__title {
+	}
+
+	// .type-service-big__slider
+
+	&__slider {
+		@media (max-width: $laptop) {
+			padding: 0 40px;
+		}
+		@media (max-width: $tablet) {
+			padding: 0 15px;
+		}
+	}
+
+	// .type-service-big__swiper
+
+	&__swiper {
+	}
+
+	// .type-service-big__slide
+
+	&__slide {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: 15px;
+		padding: 30px;
+		border-radius: 8px;
+		height: auto;
+		@media (max-width: $tablet) {
+			row-gap: 15px;
+			flex-direction: column-reverse;
+			padding: 15px;
+		}
+	}
+
+	// .type-service-big__content
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		row-gap: 10px;
+		max-width: 285px;
+		flex: 0 1 285px;
+		@media (max-width: $tablet) {
+			max-width: 100%;
+			flex: 0 1 75%;
+		}
+	}
+
+	// .type-service-big__name
+	&__price,
+	&__name {
+		text-wrap: nowrap;
+		@media (max-width: $laptop) {
+			text-wrap: wrap;
+		}
+	}
+
+	& ul {
+		margin-bottom: 0 !important;
+		margin-left: 20px;
+	}
+	&__link,
+	&__text,
+	& li {
+		list-style: disc !important;
+		@media (max-width: $laptop) {
+			font-size: 14px;
+		}
+	}
+	// .type-service-big__link
+
+	&__link {
+		text-decoration: underline !important;
+		flex: 1 1 auto;
+	}
+
+	// .type-service-big__service-price
+
+	&__service-price {
+	}
+
+	// .type-service-big__price
+
+	&__price {
+		&:not(:last-child) {
+			margin-bottom: 5px;
+		}
+	}
+
+	// .type-service-big__btn
+
+	&__btn {
+		display: flex;
+		align-items: center;
+		&::after {
+			transform: translateY(-1px) !important;
+		}
+	}
+
+	// .type-service-big__img
+
+	&__img {
+		max-width: 225px;
+		flex: 0 1 225px;
+		position: relative;
+		img {
+			object-fit: cover;
+			position: absolute;
+			width: 100%;
+
+			top: 50%;
+			left: 0;
+			overflow: visible;
+			transform: translateY(-50%);
+			@media (max-width: $tablet) {
+				position: static;
+				overflow: hidden;
+				object-fit: contain;
+				transform: translateY(0%);
+				height: 240px;
+			}
+		}
+		@media (max-width: $tablet) {
+			max-width: 100%;
+			flex: 0 1 25%;
+			height: 240px;
+			width: 100%;
+		}
+	}
+
+	// .type-service-big__nav
+
+	&__nav {
+	}
+
+	// .type-service-big__prev
+
+	&__prev {
+	}
+
+	// .type-service-big__next
+
+	&__next {
+	}
+}

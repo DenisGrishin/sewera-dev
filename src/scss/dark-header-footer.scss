@@ -1,0 +1,295 @@
+:root {
+	--main-bg: #021b2a;
+	--secondary-bg: #042a39;
+	--secondary-two-bg: #385160;
+}
+.dark-thema .touch-search-block {
+	background-color: var(--main-bg);
+}
+.dark-thema .search-list-block__item a,
+.dark-thema .accordions-menu__it-list a,
+.dark-thema .accordions-menu__names span,
+.dark-thema .contacts-header__tel,
+.dark-thema .header,
+.dark-thema .drop-menu a,
+.dark-thema .drop-menu__btn {
+	color: #fff !important;
+}
+.dark-thema .header__bottom {
+	background-color: var(--main-bg);
+}
+.dark-thema ._iconCompany {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteCompany.svg");
+	}
+}
+.dark-thema ._iconMidea {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteMidea.svg");
+	}
+}
+.dark-thema ._iconStocks {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteStocks.svg");
+	}
+}
+.dark-thema .bottom-header__fast-order-btn,
+.dark-thema .burger-btn {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .accordions-menu__names,
+.dark-thema .drop-menu__btn {
+	&::after {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkArrowMenu.svg);
+	}
+}
+.dark-thema .touch-search-block__input-serarch,
+.dark-thema .touch-search-block__search {
+	background-color: var(--secondary-two-bg);
+}
+
+.dark-thema .touch-search-block__input-serarch {
+	color: #fff;
+	&::placeholder {
+		color: #fff;
+	}
+}
+.dark-thema .bottom-header__fast-order-btn {
+	color: #fff;
+	&::after {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteArrrowbtn.svg);
+	}
+}
+
+.dark-thema ._iconSearch {
+	&::before {
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteSearchIcon.svg");
+	}
+}
+.dark-thema .burger-btn__line {
+	background-color: #fff;
+}
+.dark-thema .header-touch {
+	background-color: var(--main-bg);
+}
+.dark-thema .header-touch__link-tel,
+.dark-thema .header-touch__btn-search {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .header-touch__link-tel {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whitePhone.svg);
+	}
+}
+.dark-thema .accordions-menu {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .touch-catalog-menu__nav,
+.dark-thema .touch-catalog-menu__wrapper {
+	background-color: var(--secondary-bg);
+}
+.dark-thema .bottom-header__input-serarch {
+	color: #fff;
+	background-color: var(--main-bg);
+}
+.dark-thema .bottom-header__input-serarch::placeholder {
+	color: #ffffff;
+}
+.dark-thema .drop-menu__list,
+.dark-thema .header__top {
+	background-color: var(--secondary-bg);
+}
+.dark-thema .drop-menu__item a:hover {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .bottom-header__search {
+	border-color: var(--secondary-two-bg);
+}
+.dark-thema .bottom-header__search._active {
+	border-color: #fff;
+}
+.dark-thema .btn-claer-input {
+	background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteClse.svg");
+}
+.dark-thema #search-loader {
+	&::before {
+		background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/white-tube-spinner.svg") 0 0
+			no-repeat;
+	}
+}
+.dark-thema .catalog-menu__wrapper {
+	background-color: var(--main-bg);
+}
+.dark-thema .bottom-header__search-list-block {
+	background-color: var(--secondary-bg);
+	color: #fff;
+}
+.dark-thema .main-nav__item {
+	&::after {
+		background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkArrowMenu.svg") 0 0
+			no-repeat;
+	}
+}
+.dark-thema .hit-season__title,
+.dark-thema .contacts-touch__tel,
+.dark-thema .contacts-touch__telegram,
+.dark-thema .contacts-touch__whatsApp,
+.dark-thema .menu-sub__item a,
+.dark-thema .catalog-menu__wrapper .main-nav__link,
+.dark-thema .bottom-header__search-list-block a {
+	color: #fff !important;
+}
+.dark-thema .main-nav {
+	border-right-color: hsla(0, 0%, 100%, 0.5);
+}
+.dark-thema .main-nav__item:hover {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .main-nav__item._active {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema .bottom-header__search-list-block .search-list-block__item:hover {
+	background-color: var(--secondary-two-bg);
+	color: #fff !important;
+}
+.dark-thema .header__top,
+.dark-thema .footer {
+	background-color: var(--secondary-bg) !important;
+	color: #fff;
+	margin-top: 0;
+}
+.dark-thema .custom-scrollbar {
+	&::-webkit-scrollbar-thumb {
+		background: #fff;
+		height: 24px;
+		border-radius: 8px;
+	}
+	&::-webkit-scrollbar-track-piece {
+		background-color: hwb(0 100% 0% / 0.1);
+		width: 2px;
+	}
+}
+.dark-thema .header .contacts-header__whatsapp svg path,
+.dark-thema .header .contacts-header__telegram svg path {
+	fill: #fff;
+}
+.dark-thema .header .contacts-header__whatsapp:hover svg path {
+	fill: #0db25a;
+}
+.dark-thema .header .contacts-header__telegram:hover svg path {
+	fill: #27a7e7;
+}
+.dark-thema ._iconMail {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkEmailFooter.svg);
+	}
+}
+.dark-thema ._iconWhatsapp {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkWhatsappFooter.svg);
+	}
+}
+.dark-thema ._iconTelgreamContact {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkTelegramFootre.svg);
+	}
+}
+.dark-thema ._iconTel {
+	color: #fff;
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkTelFooter.svg);
+	}
+}
+.dark-thema .info-block-footer__item:last-child {
+	color: #fff;
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/touch-icon/darkGeo.svg);
+	}
+}
+.dark-thema .accordions-footer__name {
+	color: #fff !important;
+	&::after {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/darkArrowMenu.svg);
+	}
+}
+.dark-thema .touch-catalog-menu__social-block {
+	background-color: var(--secondary-two-bg) !important;
+}
+
+.dark-thema .touch-catalog-menu__social-block a,
+.dark-thema .accordions-footer__item a {
+	color: #fff !important;
+}
+.dark-thema .social-block-touch,
+.dark-thema .contacts-touch {
+	background-color: var(--secondary-bg);
+}
+.dark-thema .contacts-touch__whatsApp,
+.dark-thema .contacts-touch__telegram {
+	background-color: var(--secondary-two-bg);
+}
+.dark-thema ._iconSeptik {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteSeptik.svg);
+	}
+}
+.dark-thema ._iconPogreb {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whitePogreb.svg);
+	}
+}
+.dark-thema ._iconVodosnabzhenie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteVodosnabzhenie.svg);
+	}
+}
+.dark-thema ._iconSkvazhina {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteSkvazhina.svg);
+	}
+}
+.dark-thema ._iconCistema-ochistki-vody {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteCistema-ochistki-vody.svg);
+	}
+}
+.dark-thema ._iconBlagoustrojstvo {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteBlagoustrojstvo.svg);
+	}
+}
+.dark-thema ._iconVideonablyudenie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteVideonablyudenie.svg);
+	}
+}
+.dark-thema ._iconServis {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteServis.svg);
+	}
+}
+.dark-thema ._iconSvajnyj-fundament {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteSvajnyj-fundament.svg);
+	}
+}
+.dark-thema ._iconKolodec {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteKolodec.svg);
+	}
+}
+.dark-thema ._iconKupeli {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteKupeli.svg);
+	}
+}
+.dark-thema ._iconOther-service {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/whiteOther-service.svg);
+	}
+}
+.dark-thema .touch-search-block__back {
+	&::after {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/whiteArrrowbtn.svg);
+	}
+}
