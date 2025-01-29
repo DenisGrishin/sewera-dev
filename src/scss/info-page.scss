@@ -2,9 +2,14 @@
 	margin-bottom: 0;
 	margin-left: 0;
 }
+.sewera-info p {
+	padding: 0;
+}
 
 .sewera-info .page-bl {
 	padding: 0 20px;
+	max-width: 1200px;
+	box-sizing: content-box;
 }
 .sewera-info .all-link-page {
 	margin-top: 24px;
@@ -113,7 +118,7 @@
 		padding: 20px 0;
 		@media (max-width: $laptop) {
 			flex-direction: column;
-			background-color: var(--c-gray-100);
+			background-color: var(--bgMain);
 			border-radius: 12px;
 			padding: 24px;
 		}
@@ -140,19 +145,8 @@
 		display: flex;
 		align-items: center;
 		column-gap: 12px;
-		@include middleFS;
-		font-family: var(--f-onest);
-		font-weight: 700;
+
 		margin-bottom: 18px;
-		@media (max-width: $laptop_L) {
-			@include middleFS-LLD;
-		}
-		@media (max-width: $laptop) {
-			@include middleFS-LD;
-		}
-		@media (max-width: $tablet) {
-			@include mainBigFS;
-		}
 	}
 
 	// .card-about__text
@@ -210,6 +204,167 @@
 	&__text {
 		@media (max-width: $tablet) {
 			flex: 1 1 auto;
+		}
+	}
+}
+.sewera-info .our-way {
+	// .our-way__header
+
+	&__header {
+		margin-bottom: 72px;
+		text-align: center;
+		@media (max-width: $laptop_L) {
+			margin-bottom: 64px;
+		}
+		@media (max-width: $laptop) {
+			margin-bottom: 32px;
+		}
+	}
+
+	// .our-way__title
+
+	&__title {
+		margin-bottom: 8px;
+	}
+
+	// .our-way__sub-title
+
+	&__sub-title {
+		font-size: 20px;
+		line-height: 1.4;
+		@media (max-width: $laptop_L) {
+			@include mainBigFS-LLD;
+		}
+		@media (max-width: $laptop) {
+			@include mainFS;
+			br {
+				display: none;
+			}
+		}
+	}
+	// .our-way__body
+
+	&__body {
+	}
+}
+
+.body-our-way {
+	display: flex;
+
+	@media (max-width: $laptop) {
+		flex-direction: column-reverse;
+	}
+	// .body-our-way__contetn
+
+	&__contetn {
+		background-color: var(--bgMain);
+		padding: 40px;
+		border-radius: 12px;
+
+		@media (max-width: $laptop_L) {
+			padding: 24px;
+		}
+		@media (max-width: $laptop) {
+			padding: 32px 20px;
+		}
+	}
+	&__img,
+	&__contetn {
+		flex: 0 0 618px;
+
+		@media (max-width: $laptop_L) {
+			flex: 0 1 618px;
+		}
+		@media (max-width: $laptop) {
+			flex: none;
+		}
+	}
+	// .body-our-way__title
+
+	&__title {
+		margin-bottom: 24px;
+		@media (max-width: $laptop) {
+			margin-bottom: 20px;
+		}
+	}
+
+	// .body-our-way__text
+
+	&__text {
+		max-width: 453px;
+		&:not(:last-child) {
+			margin-bottom: 40px;
+		}
+		@media (max-width: $laptop_L) {
+			max-width: 389px;
+			&:not(:last-child) {
+				margin-bottom: 34px;
+			}
+		}
+		@media (max-width: $laptop) {
+			max-width: 100%;
+			&:not(:last-child) {
+				margin-bottom: 30px;
+			}
+		}
+		@media (max-width: $tablet) {
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+	}
+
+	// .body-our-way__img
+
+	&__img {
+		position: relative;
+		top: -26px;
+		right: 36px;
+		@media (max-width: $laptop) {
+			top: 0;
+			right: 0;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 12px;
+			@media (max-width: $laptop) {
+				height: 387px;
+			}
+			@media (max-width: $tablet) {
+				height: 240px;
+			}
+		}
+	}
+	&__img-text {
+		background-color: #fff;
+		padding: 4px 8px;
+		position: absolute;
+		border-radius: 8px;
+		top: 20px;
+		right: 20px;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+		@include smallFS;
+		line-height: 1;
+		@media (max-width: $laptop) {
+			font-size: 12px;
+		}
+		&::after {
+			content: "";
+
+			background: url("../img/info-page/page-about-company/icons/star-orange.svg") 0 0 no-repeat;
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			@media (max-width: $laptop) {
+				width: 16px;
+				height: 16px;
+				background-size: contain;
+			}
 		}
 	}
 }

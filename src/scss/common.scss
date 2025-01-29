@@ -1,3 +1,47 @@
-.section-mb {
+.sewera-info .section-mb {
 	margin-bottom: 78px;
+}
+
+.sewera-info .title-info-m {
+	font-size: 34px;
+	line-height: 1.14;
+	font-weight: 700;
+	font-family: var(--f-onest);
+	@media (max-width: $laptop_L) {
+		font-size: 32px;
+		line-height: 1.25;
+	}
+	@media (max-width: $laptop) {
+		@include middleFS;
+	}
+	@media (max-width: $tablet) {
+		@include middleFS-LD;
+	}
+}
+.sewera-info .middel-title-info {
+	@include middleFS;
+	font-weight: 700;
+	font-family: var(--f-onest);
+	@media (max-width: $laptop_L) {
+		@include middleFS-LLD;
+	}
+	@media (max-width: $laptop) {
+		@include middleFS-LD;
+	}
+	@media (max-width: $tablet) {
+		@include mainBigFS;
+	}
+}
+.sewera-info .text-info {
+	@include mainBigFS;
+
+	@media (max-width: $laptop_L) {
+		@include mainBigFS-LLD;
+	}
+	@media (max-width: $laptop) {
+		@include mainFS;
+	}
+	@media (max-width: $tablet) {
+		@include smallFS;
+	}
 }
