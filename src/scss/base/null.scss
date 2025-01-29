@@ -23,10 +23,10 @@ body {
 }
 body {
 	color: $mainColor;
-	line-height: 1;
+	line-height: 1.5;
 	font-family: $fontFamily;
 	font-size: $fontSize;
-	//text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
