@@ -248,7 +248,7 @@
 	}
 }
 
-.body-our-way {
+.sewera-info .body-our-way {
 	display: flex;
 
 	@media (max-width: $laptop) {
@@ -365,6 +365,41 @@
 				height: 16px;
 				background-size: contain;
 			}
+		}
+	}
+}
+
+.sewera-info .our-advantages {
+	@media (max-width: $laptop) {
+		display: none;
+	}
+	// .our-advantages__items
+
+	&__items {
+		display: flex;
+		column-gap: 24px;
+	}
+
+	// .our-advantages__item
+
+	&__item {
+		flex: 0 1 25%;
+		padding: 20px;
+		border-radius: 12px;
+		&:nth-child(1) {
+			background-color: var(--c-light-green);
+		}
+		&:nth-child(2) {
+			background-color: #c8ebff4d;
+		}
+		&:nth-child(3) {
+			background-color: #ffe8de66;
+		}
+		&:nth-child(4) {
+			background-color: #fff5c7b2;
+		}
+		img {
+			margin-bottom: 20px;
 		}
 	}
 }
