@@ -381,7 +381,6 @@
 	}
 
 	// .our-advantages__item
-
 	&__item {
 		flex: 0 1 25%;
 		padding: 20px;
@@ -400,6 +399,79 @@
 		}
 		img {
 			margin-bottom: 20px;
+		}
+	}
+}
+
+.sewera-info .sewera-number {
+	& .page-bl {
+		@media (max-width: $tablet) {
+			padding: 0;
+			// padding-left: 20px;
+		}
+	}
+	// .sewera-number__slider
+
+	&__slider {
+		padding: 0 20px;
+	}
+
+	// .sewera-number__swiper
+
+	&__swiper {
+		@media (max-width: $tablet) {
+			padding-right: 20px;
+		}
+	}
+
+	// .sewera-number__slide
+
+	&__slide {
+		background-color: var(--bgMain);
+		border-radius: 12px;
+		padding: 24px;
+		height: auto;
+		@media (max-width: $laptop_L) {
+			padding: 20px;
+		}
+	}
+
+	// .sewera-number__number
+
+	&__number {
+		font-size: 48px;
+		line-height: 1.1;
+		@media (max-width: $laptop_L) {
+			font-size: 44px;
+		}
+		@media (max-width: $laptop) {
+			font-size: 36px;
+		}
+		@media (max-width: $tablet) {
+			font-size: 32px;
+		}
+	}
+	&__number,
+	&__name {
+		color: var(--c-orange);
+		font-weight: 700;
+	}
+	&__name {
+		@include mainBigFS;
+		margin-bottom: 24px;
+		@media (max-width: $laptop_L) {
+			margin-bottom: 20px;
+		}
+		@media (max-width: $laptop) {
+			font-size: 16px;
+			margin-bottom: 16px;
+		}
+	}
+	// .sewera-number__text
+
+	&__text {
+		@media (max-width: $tablet) {
+			@include smallFS;
 		}
 	}
 }
