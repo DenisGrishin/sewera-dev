@@ -5259,8 +5259,9 @@ data-spollers="768,min" - спойлеры будут работать толь�
       priceSlider.noUiSlider.on("change", function () {
         const valueRange = document.querySelector(".noUi-handle");
         const inputRange = document.querySelector(".form-qwiz__input-number");
-        if (valueRange.ariaValueText === "10+") {
+        if (valueRange.ariaValueText === "10 +") {
           inputRange.classList.add("_show");
+
           document
             .querySelector(".qwiz-section__next-btn")
             .classList.add("_disabled");
@@ -5276,7 +5277,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         const range_input = document.getElementById("range_input");
         if (range_input) {
           range_input.value = this.get();
-          if (range_input.value == "10+") range_input.value = "";
+          if (range_input.value == "10 +") range_input.value = "";
         }
       });
     }
@@ -6334,7 +6335,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
     function getQuantityUser() {
       const valueRange = document.querySelector(".noUi-handle");
 
-      return valueRange.ariaValueText === "10+"
+      return valueRange.ariaValueText === "10 +"
         ? inputRange.value
         : valueRange.ariaValueText;
     }
@@ -8008,23 +8009,4 @@ data-spollers="768,min" - спойлеры будут работать толь�
         });
     }
   }
-  // editLogoFooter();
-  // function editLogoFooter() {
-  //   const bgBlock = document.querySelector(".sewera-osveshhenie");
-  //   if (bgBlock) {
-  //     if (
-  //       bgBlock.parentElement.parentElement.classList.contains(
-  //         "page-width",
-  //         "bg-black"
-  //       )
-  //     ) {
-  //       const foooterLogoImg = document.querySelector(
-  //         ".footer__logo  .logo__img"
-  //       );
-
-  //       foooterLogoImg.src =
-  //         "/srv/assets/images/ykrashenie-doma/icon/logo-dark.svg";
-  //     }
-  //   }
-  // }
 })();

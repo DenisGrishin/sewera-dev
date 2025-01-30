@@ -294,11 +294,13 @@ data-showmore-button="скорость"
 
     if (showMoreBlocks.length) {
       // Получение обычных объектов
-      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(
-        function (item, index, self) {
-          return !item.dataset.showmoreMedia;
-        }
-      );
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.showmoreMedia;
+      });
 
       // Инициализация обычных объектов
       showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
@@ -553,13 +555,13 @@ data-showmore-button="скорость"
     var x = supportPageOffset
       ? window.pageXOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollLeft
-        : doc.body.scrollLeft;
+      ? doc.documentElement.scrollLeft
+      : doc.body.scrollLeft;
     var y = supportPageOffset
       ? window.pageYOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollTop
-        : doc.body.scrollTop;
+      ? doc.documentElement.scrollTop
+      : doc.body.scrollTop;
     return {
       x: x,
       y: y,
@@ -578,16 +580,16 @@ data-showmore-button="скорость"
           end: "pointerup",
         }
       : window.navigator.msPointerEnabled
-        ? {
-            start: "MSPointerDown",
-            move: "MSPointerMove",
-            end: "MSPointerUp",
-          }
-        : {
-            start: "mousedown touchstart",
-            move: "mousemove touchmove",
-            end: "mouseup touchend",
-          };
+      ? {
+          start: "MSPointerDown",
+          move: "MSPointerMove",
+          end: "MSPointerUp",
+        }
+      : {
+          start: "mousedown touchstart",
+          move: "mousemove touchmove",
+          end: "mouseup touchend",
+        };
   }
   // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
   // Issue #785
@@ -1380,8 +1382,8 @@ data-showmore-button="скорость"
     parsed.transformRule = noPrefix
       ? "transform"
       : msPrefix
-        ? "msTransform"
-        : "webkitTransform";
+      ? "msTransform"
+      : "webkitTransform";
     // Pips don't move, so we can place them using left/top.
     var styles = [
       ["left", "top"],
@@ -1753,8 +1755,8 @@ data-showmore-button="скорость"
             group.indexOf(i) > -1
               ? PipsType.LargeValue
               : isSteps
-                ? PipsType.SmallValue
-                : PipsType.NoValue;
+              ? PipsType.SmallValue
+              : PipsType.NoValue;
           // Enforce the 'ignoreFirst' option by overwriting the type for 0.
           if (!index && ignoreFirst && i !== high) {
             type = 0;
@@ -3013,11 +3015,13 @@ data-spollers="768,min" - спойлеры будут работать толь�
     const spollersArray = document.querySelectorAll("[data-spollers]");
     if (spollersArray.length > 0) {
       // Получение обычных слойлеров
-      const spollersRegular = Array.from(spollersArray).filter(
-        function (item, index, self) {
-          return !item.dataset.spollers.split(",")[0];
-        }
-      );
+      const spollersRegular = Array.from(spollersArray).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.spollers.split(",")[0];
+      });
       // Инициализация обычных слойлеров
       if (spollersRegular.length) {
         initSpollers(spollersRegular);
@@ -3114,12 +3118,14 @@ data-spollers="768,min" - спойлеры будут работать толь�
       });
     }
   }
+
   function toggleNavigation(swiper) {
     const totalSlides = swiper.slides.length;
     const slidesPerView = swiper.params.slidesPerView;
 
     if (totalSlides <= slidesPerView) {
       swiper.navigation.disable();
+
       swiper.navigation.nextEl.hidden = true;
       swiper.navigation.prevEl.hidden = true;
     } else {
@@ -3130,9 +3136,76 @@ data-spollers="768,min" - спойлеры будут работать толь�
   }
   function initSliders() {
     bildSliders();
-    //  новый блок
-    if (document.querySelector(".type-service-big__slider")) {
-      new Swiper(".type-service-big__slider", {
+    // отзавы
+    if (document.querySelector(".sw-review ")) {
+      new Swiper(".sw-review ", {
+        slidesPerView: 2,
+        spaceBetween: 32,
+        centeredSlides: 0,
+        loop: 1,
+        allowTouchMove:
+          "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.msMaxTouchPoints > 0,
+        navigation: { nextEl: ".sw-review-next", prevEl: ".sw-review-prev" },
+        pagination: {
+          el: "#sw-review .swiper-pagination",
+          clickable: true,
+          type: "fraction",
+          renderFraction: function (currentClass, totalClass) {
+            return (
+              '<span class="' +
+              currentClass +
+              '"></span>' +
+              " из " +
+              '<span class="' +
+              totalClass +
+              '"></span>'
+            );
+          },
+        },
+        breakpoints: {
+          1300: { slidesPerView: 2, spaceBetween: 32 },
+          1024: { slidesPerView: 2, spaceBetween: 20 },
+          600: { slidesPerView: 2.5, spaceBetween: 20 },
+          100: { slidesPerView: 1.5, spaceBetween: 0 },
+        },
+        on: {
+          slideChange: function (swiper) {
+            $(".moreBtn").each(function (k, elt) {
+              $(elt)
+                .parent()
+                .find(".reviewBody")
+                .removeClass("active")
+                .attr("style", "");
+              $(elt).html("Показать полностью");
+            });
+          },
+        },
+      });
+
+      $(".review-box").each(function (k, elt) {
+        let rvb = $(elt).find(".reviewBody")[0];
+        if (rvb.scrollHeight - rvb.clientHeight > 0)
+          $(elt).find(".moreBtn").addClass("active");
+      });
+
+      $(".moreBtn").on("click", function () {
+        let $rvb = $(this).parent().find(".reviewBody");
+        if ($rvb.hasClass("active")) {
+          $rvb.removeClass("active").attr("style", "");
+          $(this).html("Показать полностью");
+        } else {
+          $rvb
+            .addClass("active")
+            .attr("style", "max-height:" + $rvb[0].scrollHeight + "px");
+          $(this).html("Свернуть отзыв");
+        }
+      });
+    }
+    // слайдер 'Виды скважин на воду' два слайда
+    if (document.querySelector("#type-service-big__slider")) {
+      const swiper = new Swiper("#type-service-big__slider", {
         slidesPerView: 2,
         spaceBetween: 20,
         speed: 300,
@@ -3166,88 +3239,123 @@ data-spollers="768,min" - спойлеры будут работать толь�
             autoplay: false,
           },
         },
+        on: {
+          init: function () {
+            toggleNavigation(this);
+          },
+          resize: function () {
+            toggleNavigation(this);
+          },
+        },
+      });
+    }
+    if (document.querySelector("#type-service-big__slider_other")) {
+      const swiper = new Swiper("#type-service-big__slider_other", {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        speed: 300,
+        autoHeight: false,
+        observer: true,
+        watchSlidesProgress: true,
+        observeParents: true,
+        navigation: {
+          nextEl: ".type-service-big__nav #type-service-big__next_other",
+          prevEl: ".type-service-big__nav #type-service-big__prev_other",
+        },
+        breakpoints: {
+          319.98: {
+            slidesPerView: 1.3,
+            spaceBetween: 15,
+          },
+          429.98: {
+            slidesPerView: 1.3,
+            spaceBetween: 15,
+          },
+
+          767.98: {
+            autoplay: false,
+            spaceBetween: 15,
+
+            slidesPerView: 1.4,
+          },
+          1023.98: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            autoplay: false,
+          },
+        },
+        on: {
+          init: function () {
+            toggleNavigation(this);
+          },
+          resize: function () {
+            toggleNavigation(this);
+          },
+        },
+      });
+    }
+    // каток "Индивидуальный ледяной каток у вашего дома"
+    if (document.querySelector(".advantages-katok__slider")) {
+      new Swiper(".advantages-katok__slider", {
+        breakpoints: {
+          320: {
+            slidesPerView: 1.28,
+            spaceBetween: 16,
+          },
+          768: {
+            spaceBetween: 16,
+          },
+          1023.98: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
+        },
+
         on: {},
       });
-      // освещение квиз на первом шаге
-      if (document.querySelector(".form-qwiz__slider")) {
-        new Swiper(".form-qwiz__slider", {
-          watchSlidesProgress: true,
-          observer: true,
-          observeParents: true,
+    }
+    // каток "Дополнительные услуги  для вашего катка"
+    if (document.querySelector(".slider-services-katok__slider")) {
+      new Swiper(".slider-services-katok__slider", {
+        breakpoints: {
+          320: {
+            slidesPerView: 1.28,
+            spaceBetween: 16,
+          },
+          768: {
+            spaceBetween: 16,
+            slidesPerView: 2.5,
+          },
+          1023.98: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
+          1279.98: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+        },
 
-          breakpoints: {
-            320: {
-              slidesPerView: 2.2,
-              spaceBetween: 16,
-            },
-            768: {
-              spaceBetween: 0,
-              slidesPerView: 0,
-            },
-          },
+        on: {},
+      });
+    }
 
-          on: {},
-        });
-      }
-      // освещение примеры
-      if (document.querySelector(".slider-type__slider")) {
-        new Swiper(".slider-type__slider", {
-          navigation: {
-            nextEl: ".slider-type__nav .slider-type__next",
-            prevEl: ".slider-type__nav .slider-type__prev",
+    // За что нас ценят "партнеры"
+    if (document.querySelector(".our-advantages__slider")) {
+      new Swiper(".our-advantages__slider", {
+        breakpoints: {
+          320: {
+            slidesPerView: 1.5,
+            spaceBetween: 20,
           },
-          breakpoints: {
-            320: {
-              slidesPerView: 1.2,
-              spaceBetween: 16,
-            },
-            768: {
-              spaceBetween: 16,
-              slidesPerView: 1.2,
-            },
-            1023.98: {
-              slidesPerView: 1,
-              spaceBetween: 24,
-            },
-            1279.98: {
-              slidesPerView: 1,
-              spaceBetween: 40,
-            },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
           },
+        },
 
-          on: {},
-        });
-      }
-      // освещение виды
-      if (document.querySelector(".slider-services-katok__slider")) {
-        new Swiper(".slider-services-katok__slider", {
-          // Arrows
-          navigation: {
-            nextEl: ".slider-services-katok__nav .slider-services-katok__next",
-            prevEl: ".slider-services-katok__nav .slider-services-katok__prev",
-          },
-          breakpoints: {
-            320: {
-              slidesPerView: 1.28,
-              spaceBetween: 16,
-            },
-            768: {
-              spaceBetween: 16,
-              slidesPerView: 2.5,
-            },
-            1023.98: {
-              slidesPerView: 3,
-              spaceBetween: 24,
-            },
-            1279.98: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-          },
-
-          on: {},
-        });
-      }
+        on: {},
+      });
     }
     // освещение квиз на первом шаге
     if (document.querySelector(".form-qwiz__slider")) {
@@ -3329,68 +3437,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
         on: {},
       });
     }
-    // каток "Индивидуальный ледяной каток у вашего дома"
-    if (document.querySelector(".advantages-katok__slider")) {
-      new Swiper(".advantages-katok__slider", {
-        breakpoints: {
-          320: {
-            slidesPerView: 1.28,
-            spaceBetween: 16,
-          },
-          768: {
-            spaceBetween: 16,
-          },
-          1023.98: {
-            slidesPerView: 3,
-            spaceBetween: 24,
-          },
-        },
-
-        on: {},
-      });
-    }
-    // каток "Дополнительные услуги  для вашего катка"
-    if (document.querySelector(".slider-services-katok__slider")) {
-      new Swiper(".slider-services-katok__slider", {
-        breakpoints: {
-          320: {
-            slidesPerView: 1.28,
-            spaceBetween: 16,
-          },
-          768: {
-            spaceBetween: 16,
-            slidesPerView: 2.5,
-          },
-          1023.98: {
-            slidesPerView: 3,
-            spaceBetween: 24,
-          },
-          1279.98: {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          },
-        },
-
-        on: {},
-      });
-    }
-    // За что нас ценят "партнеры"
-    if (document.querySelector(".our-advantages__slider")) {
-      new Swiper(".our-advantages__slider", {
-        breakpoints: {
-          320: {
-            slidesPerView: 1.5,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-        },
-
-        on: {},
-      });
-    }
     // Как выглядит сотрудничество с нами "партнеры"
     if (document.querySelector(".cooperation__slider")) {
       new Swiper(".cooperation__slider", {
@@ -3463,31 +3509,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
         isShowOneCard(190, ".slider-type-service__sm-content ");
       });
     }
-
-    // слайдер 'Септики, с которыми мы работаем' сервис
-    if (window.innerWidth < 767.98) {
-      if (document.querySelector(".slider-septic__slider")) {
-        new Swiper(".slider-septic__slider", {
-          slidesPerView: 3,
-          spaceBetween: 30,
-          speed: 300,
-          autoHeight: false,
-          observer: true,
-          watchSlidesProgress: true,
-          observeParents: true,
-
-          breakpoints: {
-            319.98: {
-              slidesPerView: 1.3,
-              spaceBetween: 15,
-            },
-
-            767.98: {},
-          },
-          on: {},
-        });
-      }
-    }
     // слайдер 'Галерея наших работ'
     if (document.querySelector(".carousel-gallery__slider")) {
       new Swiper(".carousel-gallery__slider", {
@@ -3532,34 +3553,94 @@ data-spollers="768,min" - спойлеры будут работать толь�
         on: {},
       });
     }
+    // слайдер внутри карточек полулярные услгуи или виды услуг, галлерея
+    // const insideSliderAll = document.querySelectorAll(".inside-slider__slider");
+
+    // if (insideSliderAll) {
+    //   insideSliderAll.forEach((element) => {
+    //     element.classList.forEach((elClass) => {
+    //       if (elClass.startsWith("inside-slider__slider_")) {
+    //         element.classList.remove(elClass);
+    //       }
+    //     });
+    //   });
+
+    //   insideSliderAll.forEach((slider, indx) => {
+    //     slider.classList.add(`inside-slider__slider_${indx + 1}`);
+
+    //     if (document.querySelector(`.inside-slider__slider_${indx + 1}`)) {
+    //       const swiper = new Swiper(`.inside-slider__slider_${indx + 1}`, {
+    //         slidesPerView: 1,
+    //         spaceBetween: 20,
+    //         speed: 300,
+    //         autoHeight: false,
+
+    //         effect: "fade",
+    //         observer: true,
+    //         observeParents: true,
+    //         pagination: {
+    //           el: ".inside-slider__pagination ",
+    //           clickable: true,
+    //         },
+    //         breakpoints: {
+    //           319.98: { loop: true },
+    //           429.98: {
+    //             spaceBetween: 0,
+    //           },
+    //           1023.98: {
+    //             loop: false,
+    //           },
+    //         },
+    //         on: {},
+    //       });
+
+    //       const paginationSelector = slider.querySelector(
+    //         ".inside-slider__pagination"
+    //       );
+
+    //       paginationSelector.classList.add(`inside-slider__pagination_${indx}`);
+
+    //       const bullets = slider.querySelectorAll(
+    //         `.inside-slider__pagination_${indx} span`
+    //       );
+
+    //       bullets.forEach((pagination, i) => {
+    //         pagination.addEventListener("mouseover", (event) => {
+    //           swiper.slideTo(i, 300, true);
+    //         });
+    //       });
+    //     }
+    //   });
+    // }
+
+    // ========================================================================================================================================================================================================================
     const insideSliderAll = document.querySelectorAll(".inside-slider__slider");
 
     if (insideSliderAll) {
       insideSliderAll.forEach((element, indx) => {
         const navSlider = element.querySelector(".inside-slider__nav");
         if (navSlider) {
-          navSlider.classList.add(`inside-slider__nav_${indx + 1}`);
+          navSlider.classList.add(`inside-slider__nav_${indx}`);
         }
-
         element.classList.forEach((elClass) => {
-          if (elClass.startsWith(".inside-slider__slider_")) {
+          if (elClass.startsWith("inside-slider__slider_")) {
             element.classList.remove(elClass);
           }
         });
       });
       insideSliderAll.forEach((slider, indx) => {
-        slider.classList.add(`inside-slider__slider_${indx + 1}`);
+        slider.classList.add(`inside-slider__slider_${indx}`);
 
-        if (document.querySelector(`.inside-slider__slider_${indx + 1}`)) {
-          const swiper = new Swiper(`.inside-slider__slider_${indx + 1}`, {
+        if (document.querySelector(`.inside-slider__slider_${indx}`)) {
+          const swiper = new Swiper(`.inside-slider__slider_${indx}`, {
             slidesPerView: 1,
             spaceBetween: 20,
             speed: 300,
             autoHeight: false,
 
             navigation: {
-              nextEl: `.inside-slider__nav_${indx + 1} .inside-slider__next`,
-              prevEl: `.inside-slider__nav_${indx + 1} .inside-slider__prev`,
+              nextEl: `.inside-slider__nav_${indx} .inside-slider__next`,
+              prevEl: `.inside-slider__nav_${indx} .inside-slider__prev`,
             },
             effect: "fade",
             observer: true,
@@ -3628,8 +3709,39 @@ data-spollers="768,min" - спойлеры будут работать толь�
             spaceBetween: 30,
           },
         },
-        on: {},
+        on: {
+          init: function () {
+            toggleNavigation(this);
+          },
+          resize: function () {
+            toggleNavigation(this);
+          },
+        },
       });
+    }
+    // слайдер 'Септики, с которыми мы работаем' сервис
+    if (window.innerWidth < 767.98) {
+      if (document.querySelector(".slider-septic__slider")) {
+        new Swiper(".slider-septic__slider", {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          speed: 300,
+          autoHeight: false,
+          observer: true,
+          watchSlidesProgress: true,
+          observeParents: true,
+
+          breakpoints: {
+            319.98: {
+              slidesPerView: 1.3,
+              spaceBetween: 15,
+            },
+
+            767.98: {},
+          },
+          on: {},
+        });
+      }
     }
     // слайдер со сторис попап
     if (document.querySelector(".stories__wrapper")) {
@@ -3915,45 +4027,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         isShowOneCard(0, ".types-wells__content");
       });
     }
-    // слайдер 'Виды скважин на воду' два слайда
-    if (document.querySelector("#types-wells__slider")) {
-      new Swiper("#types-wells__slider", {
-        slidesPerView: 2,
-        spaceBetween: 20,
-        speed: 300,
-        autoHeight: false,
-        observer: true,
-        watchSlidesProgress: true,
-        observeParents: true,
-        navigation: {
-          nextEl: ".types-wells__nav .types-wells__next",
-          prevEl: ".types-wells__nav .types-wells__prev",
-        },
-        breakpoints: {
-          319.98: {
-            slidesPerView: 1.3,
-            spaceBetween: 15,
-          },
-          429.98: {
-            slidesPerView: 1.3,
-            spaceBetween: 15,
-          },
 
-          767.98: {
-            autoplay: false,
-            spaceBetween: 15,
-
-            slidesPerView: 1.4,
-          },
-          1023.98: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-            autoplay: false,
-          },
-        },
-        on: {},
-      });
-    }
     // слайдер 'Популярные модели скважины '
 
     if (document.querySelector(".popular-models-obsrtv__slider")) {
@@ -4100,7 +4174,14 @@ data-spollers="768,min" - спойлеры будут работать толь�
             autoplay: false,
           },
         },
-        on: {},
+        on: {
+          init: function () {
+            toggleNavigation(this);
+          },
+          resize: function () {
+            toggleNavigation(this);
+          },
+        },
       });
 
       swiper.on("slideChange", function () {
@@ -4827,12 +4908,14 @@ data-spollers="768,min" - спойлеры будут работать толь�
     }
   }
 
-  ymaps.ready(initMap);
+  if (typeof ymaps !== "undefined") {
+    ymaps.ready(initMap);
+  }
 
   // ===================================================================
   /* кнопка инфо  Модификации */
   function tabModificationModel() {
-    const infoModelBtn = document.querySelectorAll(".card-model__info-btn");
+    const infoModelBtn = document.querySelectorAll(".card-product__info-btn");
     if (infoModelBtn) {
       //  кнопка "Модификации:" подсказка
       infoModelBtn.forEach((element) => {
@@ -4855,36 +4938,37 @@ data-spollers="768,min" - спойлеры будут работать толь�
     if (slidesModel) {
       slidesModel.addEventListener("click", function (e) {
         let target = e.target;
-        selectTab(target, ".card-model__top-btn");
-        selectTab(target, ".card-model__bottom-btn");
+        selectTab(target, ".card-product__top-btn");
+        selectTab(target, ".card-product__bottom-btn");
 
         const slideModel = document.querySelectorAll(".popular-models__slide");
 
         if (target.closest("[data-slide-id]")) {
           let actvSlide = target.closest("[data-slide-id]").dataset.slideId;
 
-          const nameModel =
-            slideModel[actvSlide].querySelector(".card-model__name");
+          const nameModel = slideModel[actvSlide].querySelector(
+            ".card-product__name"
+          );
           const listModel = slideModel[actvSlide].querySelectorAll(
-            ".card-model__list li"
+            ".card-product__list li"
           );
           const priceModel = slideModel[actvSlide].querySelector(
-            ".card-model__current-price"
+            ".card-product__current-price"
           );
           const discModel = slideModel[actvSlide].querySelector(
-            ".card-model__discount-price"
+            ".card-product__discount-price"
           );
           const butBtnModel =
-            slideModel[actvSlide].querySelector(".card-model__btn");
+            slideModel[actvSlide].querySelector(".card-product__btn");
 
           const imgModel = slideModel[actvSlide].querySelector(
-            ".card-model__img img"
+            ".card-product__img img"
           );
           const topBtn = slideModel[actvSlide].querySelector(
-            ".card-model__top-btns"
+            ".card-product__top-btns"
           );
           const bottomBtn = slideModel[actvSlide].querySelector(
-            ".card-model__bottom-btns"
+            ".card-product__bottom-btns"
           );
           // Верхняя кнопка модифкаций "превая"
           if (target.closest("[data-top-sm]")) {
@@ -4979,7 +5063,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
             );
             // меняем ссылку на блок с картинкой link
             slideModel[actvSlide]
-              .querySelector(".card-model__top")
+              .querySelector(".card-product__top")
               .setAttribute(
                 "href",
                 `https://sewera.ru/products/${objPropModif.link}`
@@ -5022,12 +5106,12 @@ data-spollers="768,min" - спойлеры будут работать толь�
               if (!objPropModif.priceDisc) {
                 discModel.style.display = "none";
                 slideModel[actvSlide].querySelector(
-                  ".card-model__dicount"
+                  ".card-product__dicount"
                 ).style.display = "none";
               } else {
                 discModel.style.display = "inline";
                 slideModel[actvSlide].querySelector(
-                  ".card-model__dicount"
+                  ".card-product__dicount"
                 ).style.display = "inline";
               }
               discModel.firstElementChild.innerHTML = "";
@@ -5061,147 +5145,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
     }
   }
   tabModificationModel();
-  // ================================================================================================
-  // ================================================================================================
-  // =============================================================
-  // function rangeInit() {
-  //   const arbitraryValuesForSlider = [
-  //     "1",
-  //     "2",
-  //     "3",
-  //     "4",
-  //     "5",
-  //     "6",
-  //     "7",
-  //     "8",
-  //     "9",
-  //     "10",
-  //     "10 +",
-  //   ];
-  //   const zaborValuesForSlider = [
-  //     "10 м",
-  //     "20 м",
-  //     "30 м",
-  //     "40 м",
-  //     "50 м",
-  //     "60 м",
-  //     "70 м",
-  //     "80 м",
-  //     "90 м",
-  //     "100 м",
-  //     "100 +",
-  //   ];
-  //   const kalitkaValuesForSlider = ["1", "2", "3", "4", "5", "5 +"];
-  //   var format = {
-  //     to: function (value) {
-  //       return arbitraryValuesForSlider[Math.round(value)];
-  //     },
-  //     from: function (value) {
-  //       return arbitraryValuesForSlider.indexOf(value);
-  //     },
-  //   };
-  //   var zaborFormat = {
-  //     to: function (value) {
-  //       return zaborValuesForSlider[Math.round(value)];
-  //     },
-  //     from: function (value) {
-  //       return zaborValuesForSlider.indexOf(value);
-  //     },
-  //   };
-  //   var kalitkaFormat = {
-  //     to: function (value) {
-  //       return kalitkaValuesForSlider[Math.round(value)];
-  //     },
-  //     from: function (value) {
-  //       return kalitkaValuesForSlider.indexOf(value);
-  //     },
-  //   };
-  //   const priceSlider = document.querySelector("#range");
-  //   const zborSlider = document.querySelector("#zaborRange");
-  //   const kalitkaSlider = document.querySelector("#kalitkaZaborRange");
-
-  //   if (kalitkaSlider) {
-  //     initialize(kalitkaSlider, {
-  //       start: 1,
-  //       step: 1,
-  //       range: {
-  //         min: [0],
-  //         max: [kalitkaValuesForSlider.length - 1],
-  //       },
-  //       tooltips: true,
-  //       format: kalitkaFormat,
-  //       connect: [true, false],
-  //       pips: {
-  //         mode: "count",
-  //         stepped: true,
-  //         values: 6,
-  //         format: kalitkaFormat,
-  //       },
-  //     });
-  //   }
-  //   if (zborSlider) {
-  //     initialize(zborSlider, {
-  //       start: "30 м",
-  //       step: 1,
-  //       range: {
-  //         min: [0],
-  //         max: [zaborValuesForSlider.length - 1],
-  //       },
-  //       tooltips: true,
-  //       format: zaborFormat,
-  //       connect: [true, false],
-  //       pips: {
-  //         mode: "count",
-  //         stepped: true,
-  //         values: 11,
-  //         format: zaborFormat,
-  //       },
-  //     });
-  //   }
-  //   if (priceSlider) {
-  //     initialize(priceSlider, {
-  //       start: 3,
-  //       step: 1,
-  //       range: {
-  //         min: [0],
-  //         max: [arbitraryValuesForSlider.length - 1],
-  //       },
-  //       tooltips: true,
-  //       format: format,
-  //       connect: [true, false],
-  //       pips: {
-  //         mode: "count",
-  //         stepped: true,
-  //         values: 11,
-  //         format: format,
-  //       },
-  //     });
-  //     priceSlider.noUiSlider.on("change", function () {
-  //       const valueRange = document.querySelector(".noUi-handle");
-  //       const inputRange = document.querySelector(".form-qwiz__input-number");
-  //       if (valueRange.ariaValueText === "10+") {
-  //         inputRange.classList.add("_show");
-  //         document
-  //           .querySelector(".qwiz-section__next-btn")
-  //           .classList.add("_disabled");
-  //         document.querySelector(".qwiz-section__next-btn").disabled = true;
-  //       } else {
-  //         inputRange.classList.remove("_show");
-  //         document
-  //           .querySelector(".qwiz-section__next-btn")
-  //           .classList.remove("_disabled");
-  //         document.querySelector(".qwiz-section__next-btn").disabled = false;
-  //       }
-
-  //       const range_input = document.getElementById("range_input");
-  //       if (range_input) {
-  //         range_input.value = this.get();
-  //         if (range_input.value == "10+") range_input.value = "";
-  //       }
-  //     });
-  //   }
-  // }
-  // rangeInit();
   // ================================================================================================
   // ================================================================================================
   // =============================================================
@@ -5320,8 +5263,9 @@ data-spollers="768,min" - спойлеры будут работать толь�
       priceSlider.noUiSlider.on("change", function () {
         const valueRange = document.querySelector(".noUi-handle");
         const inputRange = document.querySelector(".form-qwiz__input-number");
-        if (valueRange.ariaValueText === "10+") {
+        if (valueRange.ariaValueText === "10 +") {
           inputRange.classList.add("_show");
+
           document
             .querySelector(".qwiz-section__next-btn")
             .classList.add("_disabled");
@@ -5337,12 +5281,13 @@ data-spollers="768,min" - спойлеры будут работать толь�
         const range_input = document.getElementById("range_input");
         if (range_input) {
           range_input.value = this.get();
-          if (range_input.value == "10+") range_input.value = "";
+          if (range_input.value == "10 +") range_input.value = "";
         }
       });
     }
   }
   rangeInit();
+
   // ================================================================================================
   // для освещенния, для установки пл дефолту чек
   function showSliderMobile() {
@@ -5458,8 +5403,8 @@ data-spollers="768,min" - спойлеры будут работать толь�
           document.getElementById("filter-septik")
             ? steps.length - 3
             : document.querySelector("._additional-question")
-              ? steps.length - 2
-              : steps.length - 1
+            ? steps.length - 2
+            : steps.length - 1
         }`;
       }
 
@@ -6394,7 +6339,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
     function getQuantityUser() {
       const valueRange = document.querySelector(".noUi-handle");
 
-      return valueRange.ariaValueText === "10+"
+      return valueRange.ariaValueText === "10 +"
         ? inputRange.value
         : valueRange.ariaValueText;
     }
@@ -7389,7 +7334,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
     function sumPriceKolodec(valueRings, valueObustroystva) {
       let priceRings = getPriceRings(valueRings);
       let krykiPrice = (valueRings - 1) * 4000;
-      let sum = priceRings + valueObustroystva + krykiPrice + 10000;
+      let sum = priceRings + valueObustroystva + krykiPrice;
 
       return String(new Intl.NumberFormat("ru", {}).format(sum)) + " руб.";
     }
@@ -7624,7 +7569,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
           : 0;
         const vidObustroistva = findValueOption(oneSelect).dataset.obustroystva;
         const areaWellsValue = findValueOption(threeSelect).dataset.valueDepth;
-
         if (vidObustroistva === "Скважина") {
           let priceMeter = 3650;
           let meterWellsValue = Number(valueInput)
@@ -7700,7 +7644,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
 
     window.addEventListener("resize", windowSizeUser);
   }
-
   initCalcWells();
   function pageNavigation() {
     // data-goto - указать ID блока
@@ -7808,16 +7751,16 @@ data-spollers="768,min" - спойлеры будут работать толь�
   // }
 
   // скрипт котрый отвечает за то что убирает margin в футаре
-  function hiddenFooterMargin() {
-    const footer = document.querySelector(".footer");
-    const wrapperSite = document.querySelector("#wrapper-page");
-    if (!document.querySelector(".banner-bottom")) return;
-    if (wrapperSite.lastElementChild.classList.contains("banner-bottom")) {
-      document.querySelector(".banner-bottom").classList.remove("section");
-      footer.style.marginTop = 0;
-    }
-  }
-  hiddenFooterMargin();
+  // function hiddenFooterMargin() {
+  //   const footer = document.querySelector(".footer");
+  //   const wrapperSite = document.querySelector("#wrapper-page");
+  //   if (!document.querySelector(".banner-bottom")) return;
+  //   if (wrapperSite.lastElementChild.classList.contains("banner-bottom")) {
+  //     document.querySelector(".banner-bottom").classList.remove("section");
+  //     footer.style.marginTop = 0;
+  //   }
+  // }
+  // // hiddenFooterMargin();
   // Подключение основного файла стилей
 
   // Основные модули ========================================================================================================================================================================================================================================================
@@ -8068,24 +8011,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
           alert(err.message);
           $(".load__preloader").fadeOut("slow");
         });
-    }
-  }
-  editLogoFooter();
-  function editLogoFooter() {
-    const bgBlock = document.querySelector(".sewera-osveshhenie");
-    if (bgBlock) {
-      if (
-        bgBlock.parentElement.parentElement.classList.contains(
-          "page-width",
-          "bg-black"
-        )
-      ) {
-        const foooterLogoImg = document.querySelector(
-          ".footer__logo  .logo__img"
-        );
-
-        foooterLogoImg.src = "assets/images/ykrashenie-doma/icon/logo-dark.svg";
-      }
     }
   }
 })();
