@@ -53,3 +53,32 @@
 		@include smallFS;
 	}
 }
+.sewera-info .butt_arrow-r,
+.sewera-info .butt {
+	padding: 12px 20px;
+	border-radius: 8px;
+	background-color: var(--mainColor);
+	color: #fff;
+	font-weight: 600;
+	@include mainFS;
+	display: inline-block;
+	@media (max-width: $laptop) {
+		@include smallFS;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+.sewera-info .butt_arrow-r {
+	&::after {
+		content: "";
+		transform: translate(0px, -1px);
+		display: inline-block;
+		margin-left: 8px;
+		background: url("https://sewera.ru/srv/assets/images/septik/icons/arrow-table.svg") 0 0 / 14px 14px no-repeat;
+		width: 14px;
+		height: 14px;
+	}
+}
