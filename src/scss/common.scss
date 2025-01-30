@@ -1,5 +1,11 @@
 .sewera-info .section-mb {
-	margin-bottom: 78px;
+	margin-bottom: 80px;
+	@media (max-width: $laptop) {
+		margin-bottom: 60px;
+	}
+	@media (max-width: $tablet) {
+		margin-bottom: 48px;
+	}
 }
 .sewera-info .title-info_mb,
 .sewera-info .title-info-m {
@@ -61,7 +67,7 @@
 	color: #fff;
 	font-weight: 600;
 	@include mainFS;
-	display: inline-block;
+
 	@media (max-width: $laptop) {
 		@include smallFS;
 	}
@@ -72,13 +78,22 @@
 	}
 }
 .sewera-info .butt_arrow-r {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	&::after {
 		content: "";
-		transform: translate(0px, -1px);
-		display: inline-block;
 		margin-left: 8px;
 		background: url("https://sewera.ru/srv/assets/images/septik/icons/arrow-table.svg") 0 0 / 14px 14px no-repeat;
 		width: 14px;
 		height: 14px;
+	}
+}
+.sewera-info .agreements-data {
+	font-size: 14px;
+	line-height: 125%;
+	opacity: 0.5;
+	& a {
+		text-decoration: underline;
 	}
 }
