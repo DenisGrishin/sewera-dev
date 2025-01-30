@@ -475,3 +475,142 @@
 		}
 	}
 }
+
+.sewera-info .what-we-do {
+	// .what-we-do__list
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 40px;
+		@media (max-width: $laptop_L) {
+			gap: 24px;
+		}
+		@media (max-width: $laptop) {
+			gap: 20px;
+		}
+	}
+	&__row {
+		gap: 40px;
+		display: flex;
+		@media (max-width: $laptop_L) {
+			gap: 24px;
+		}
+		@media (max-width: $laptop) {
+			gap: 20px;
+		}
+	}
+	// .what-we-do__item
+
+	&__item {
+		@include mainBigFS;
+
+		background-color: var(--bgMain);
+		border-radius: 30px 30px 30px 2px;
+		padding: 14px 24px;
+		font-weight: 700;
+		@media (max-width: $laptop_L) {
+			padding: 13px 20px;
+			@include mainBigFS-LLD;
+		}
+		@media (max-width: $laptop) {
+			@include mainFS;
+		}
+		@media (max-width: $tablet) {
+			@include smallFS;
+		}
+		&_orange {
+			background-color: #fff6f2;
+			color: var(--c-orange);
+		}
+	}
+}
+.sewera-info .our-partners {
+	// .our-partners__header
+
+	&__header {
+		margin-bottom: 40px;
+		@media (max-width: $laptop_L) {
+			margin-bottom: 32px;
+		}
+	}
+
+	// .our-partners__title
+
+	&__title {
+		margin-bottom: 20px;
+		@media (max-width: $tablet) {
+			margin-bottom: 12px;
+		}
+	}
+
+	// .our-partners__sub-title
+
+	&__sub-title {
+		@media (max-width: $laptop_L) {
+			br {
+				display: none;
+			}
+		}
+		@media (max-width: $laptop) {
+			@include mainBigFS-LLD;
+		}
+		@media (max-width: $tablet) {
+			@include mainFS;
+			br {
+				display: block;
+			}
+		}
+	}
+
+	// .our-partners__slider
+
+	&__slider {
+		background-color: var(--bgMain);
+		padding: 24px 0;
+		user-select: none;
+	}
+
+	// .our-partners__swiper
+
+	&__swiper {
+	}
+
+	// .our-partners__slide
+
+	&__slide {
+		height: auto;
+	}
+}
+
+.sewera-info .slide-partner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 24px;
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 24px;
+	@media (max-width: $laptop_L) {
+		padding: 24px 0;
+	}
+	// .slide-partner__img
+
+	&__img {
+		width: 129px;
+		height: 129px;
+		@media (max-width: $laptop_L) {
+			width: 96px;
+			height: 96px;
+		}
+	}
+
+	// .slide-partner__name
+
+	&__name {
+		@include mainBigFS;
+		font-weight: 700;
+		text-wrap: nowrap;
+	}
+}

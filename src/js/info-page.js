@@ -55,5 +55,36 @@ function initSliders() {
       on: {},
     });
   }
+  if (document.querySelector(".our-partners__slider ")) {
+    new Swiper(".our-partners__slider ", {
+      slidesPerView: 9.5,
+      spaceBetween: 24,
+      speed: 300,
+      autoHeight: false,
+      observer: true,
+      watchSlidesProgress: true,
+      observeParents: true,
+      loop: true,
+      centeredSlides: true,
+      breakpoints: {
+        319.98: { spaceBetween: 20, slidesPerView: 1.5 },
+        429.98: { spaceBetween: 20, slidesPerView: 2.5 },
+
+        767.98: {
+          spaceBetween: 20,
+          slidesPerView: 4.5,
+        },
+        1023.98: {
+          slidesPerView: 5.5,
+          spaceBetween: 20,
+        },
+        1279.98: {
+          slidesPerView: 9.5,
+          spaceBetween: 24,
+        },
+      },
+      on: {},
+    });
+  }
 }
 initSliders();
