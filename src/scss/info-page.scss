@@ -13,6 +13,7 @@
 		}
 	}
 }
+
 .sewera-info .page-bl {
 	padding: 0 20px;
 	max-width: 1200px;
@@ -28,9 +29,15 @@
 		}
 	}
 	&__wrapper {
+		overflow-x: scroll;
+		display: flex;
+		@media (max-width: $laptop) {
+		}
 	}
 
 	&__list {
+		padding: 20px;
+		margin-right: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -38,11 +45,6 @@
 		background-color: var(--bgMain);
 		padding: 8px 16px;
 		border-radius: 8px;
-		overflow-x: visible;
-
-		@media (max-width: $laptop) {
-			overflow-x: scroll;
-		}
 	}
 	&__item {
 		flex: 0 1 11.111%;

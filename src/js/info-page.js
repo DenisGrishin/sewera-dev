@@ -116,32 +116,6 @@ function initSliders() {
       on: {},
     });
   }
-  if (document.querySelector(".slider-item__slider")) {
-    new Swiper(".slider-item__slider ", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-
-      slidesPerView: "auto",
-      loop: true,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: -30,
-        depth: 100,
-        modifier: 2.5,
-        slideShadows: false,
-      },
-      breakpoints: {
-        319.98: {},
-        429.98: {},
-
-        767.98: {},
-        1023.98: {},
-        1279.98: {},
-      },
-      on: {},
-    });
-  }
 }
 initSliders();
 function switchTabClass() {
@@ -199,7 +173,7 @@ function initMap() {
       })
       .then(function (geojson) {
         var regions = ymaps.geoQuery(geojson);
-        console.log(regions.search('properties.iso3166 = "RU"'));
+
         regions.setOptions({
           fillColor: "#ff670100", // Цвет заливки
           strokeColor: "#ff670100", // Цвет обводки
