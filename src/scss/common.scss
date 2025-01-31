@@ -1,5 +1,5 @@
 .sewera-info .section-mb {
-	margin-bottom: 80px;
+	margin-bottom: 90px;
 	@media (max-width: $laptop) {
 		margin-bottom: 60px;
 	}
@@ -12,7 +12,7 @@
 	font-size: 34px;
 	line-height: 1.14;
 	font-weight: 700;
-	font-family: var(--f-onest);
+	font-family: Onest, sans-serif, Arial !important;
 	text-align: center;
 	@media (max-width: $laptop_L) {
 		font-size: 32px;
@@ -29,7 +29,7 @@
 .sewera-info .middel-title-info {
 	@include middleFS;
 	font-weight: 700;
-	font-family: var(--f-onest);
+	font-family: Onest, sans-serif, Arial !important;
 	@media (max-width: $laptop_L) {
 		@include middleFS-LLD;
 	}

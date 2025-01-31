@@ -1,9 +1,10 @@
 @use "sass:math";
-@import url(https://fonts.googleapis.com/css?family=Onest:100,200,300,regular,500,600,700,800,900);
-@import url(https://fonts.googleapis.com/css?family=Roboto+Flex:regular);
+
+// @import url(https://fonts.googleapis.com/css?family=Onest:100,200,300,regular,500,600,700,800,900);
+// @import url(https://fonts.googleapis.com/css?family=Roboto+Flex:regular);
 :root {
 	--f-RF: "Roboto Flex";
-	--f-onest: "Onest";
+
 	--mainColor: #102938;
 	--textColorGray: #405460;
 	--titleOpacityColor: hsla(203, 56%, 14%, 0.8);
@@ -104,9 +105,8 @@ $mobileSmall: 429.98px; // Телефоны S
 // Оболочка ============================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 // Подключение стилей отдельных страниц
-@import "home";
+// @import "home";
 @import "./base/null.scss";
-
 @import "common.scss";
 // @import "type-service-big";
 @import "header";
