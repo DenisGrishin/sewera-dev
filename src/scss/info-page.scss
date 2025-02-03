@@ -5,7 +5,9 @@
 .sewera-info p {
 	padding: 0;
 }
-
+.sewera-info .swiper-grid > .swiper-wrapper {
+	flex-wrap: wrap;
+}
 .sewera-info a {
 	@media (any-hover: hover) {
 		&:hover {
@@ -31,16 +33,19 @@
 	}
 
 	&__list {
+		width: 100%;
 		padding: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		column-gap: 35px;
+		column-gap: 5px;
 		background-color: var(--bgMain);
-		padding: 8px 16px;
+		padding: 8px;
 		border-radius: 8px;
+		transition:
+			background-color 0.3s ease 0s,
+			border-radius 0.3s ease 0s;
 		@media (max-width: $laptop_L) {
-			column-gap: 30px;
 		}
 		@media (max-width: $laptop) {
 			margin: 0 40px;
@@ -48,20 +53,21 @@
 		@media (max-width: $tablet) {
 			margin: 0 15px;
 		}
+		@media (any-hover: hover) {
+			&:hover ._active-page .all-link-page__link {
+				background-color: var(--bgMain);
+				color: $mainColor;
+				font-weight: 400;
+			}
+		}
 	}
 	&__item {
 		flex: 0 1 11.111%;
 		text-align: center;
-		// &._active-page {
-		// 	padding: 5px 19px;
-		// 	background-color: var(--mainColor);
-		// 	font-weight: 700;
-		// 	color: #fff;
-		// 	border-radius: 8px;
-		// 	a {
-		// 		display: inline-block;
-		// 	}
-		// }
+		&:nth-child(8) {
+			width: 141px;
+			flex: 0 0 141px;
+		}
 	}
 
 	// .all-link-page__link
@@ -69,22 +75,39 @@
 	&__link {
 		text-wrap: nowrap;
 		@include smallFS;
-		padding: 8px 0px;
+		padding: 8px 15px;
 		width: 100%;
 		height: 100%;
 		display: inline-block;
+
+		transition:
+			background-color 0.3s ease 0s,
+			border-radius 0.3s ease 0s;
+
+		@media (max-width: $laptop_L) {
+			padding: 8px 10px;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--mainColor) !important;
+				color: #fff !important;
+				border-radius: 8px !important;
+				font-weight: 700 !important;
+				padding: 8px 15px !important;
+			}
+		}
 	}
 }
 
 .sewera-info .all-link-page ._active-page .all-link-page__link {
-	padding: 8px 19px;
+	padding: 8px 15px;
 	background-color: var(--mainColor);
 	font-weight: 700;
 	color: #fff;
 	border-radius: 8px;
 	display: inline-block;
 }
-.about-us {
+.sewera-info .about-us {
 	// .about-us__title
 
 	& .page-bl {
@@ -158,7 +181,7 @@
 	}
 }
 
-.card-about {
+.sewera-info .card-about {
 	// .card-about__item
 
 	&__item {
@@ -188,7 +211,7 @@
 	}
 }
 
-.footer-about {
+.sewera-info .footer-about {
 	display: flex;
 	gap: 24px;
 	@media (max-width: $laptop) {
@@ -563,7 +586,13 @@
 .sewera-info .our-partners {
 	// .our-partners__header
 
+	& .page-bl {
+		@media (max-width: $laptop_L) {
+			padding: 0;
+		}
+	}
 	&__header {
+		text-align: center;
 		margin-bottom: 40px;
 		@media (max-width: $laptop_L) {
 			margin-bottom: 32px;
@@ -578,7 +607,9 @@
 			margin-bottom: 12px;
 		}
 	}
-
+	& .swiper-wrapper {
+		transition-timing-function: linear !important; /* Делаем движение ровным */
+	}
 	// .our-partners__sub-title
 
 	&__sub-title {
@@ -613,6 +644,7 @@
 	// .our-partners__swiper
 
 	&__swiper {
+		pointer-events: none;
 	}
 
 	// .our-partners__slide
@@ -661,7 +693,7 @@
 		text-wrap: nowrap;
 	}
 }
-.contact-info {
+.sewera-info .contact-info {
 	& .page-bl {
 		@media (max-width: $laptop) {
 			padding: 0 0;
@@ -866,6 +898,9 @@
 		flex: 0 1 33.333%;
 		padding: 14.5px 14px;
 		position: relative;
+		&::after {
+			transform: translateY(-0.5px);
+		}
 		&::before {
 			content: "";
 			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/info-page/form-img.png") 0 0 / 212px 127px
@@ -1013,6 +1048,113 @@
 		}
 		@media (max-width: $tablet) {
 			margin-bottom: 48px;
+		}
+	}
+}
+.sewera-info .block-title-page {
+	margin-bottom: 60px;
+	@media (max-width: $tablet) {
+		margin-bottom: 48px;
+	}
+	// .block-title-page__title
+
+	&__title {
+		text-align: left;
+		margin-bottom: 24px;
+		@media (max-width: $laptop) {
+			margin-bottom: 20px;
+		}
+	}
+
+	// .block-title-page__text
+
+	&__text {
+		font-weight: 700;
+		line-height: 1.25;
+		@media (max-width: $tablet) {
+			@include smallFS;
+		}
+		@media (max-width: $laptop) {
+			br {
+				display: none;
+			}
+		}
+	}
+}
+.sewera-info .options-our {
+	// .options-our__items
+
+	&__items {
+		display: flex;
+		column-gap: 36px;
+		@media (max-width: $laptop_L) {
+			column-gap: 24px;
+		}
+		@media (max-width: $laptop) {
+			flex-direction: column;
+			row-gap: 36px;
+		}
+	}
+}
+.sewera-info .card-option-our {
+	padding: 24px;
+	border-radius: 12px;
+	&:nth-child(1) {
+		background-color: var(--c-card-option-beige);
+	}
+	&:nth-child(2) {
+		background-color: var(--c-card-option-orange);
+	}
+	&:nth-child(3) {
+		background-color: var(--c-card-option-green);
+	}
+	// .card-option-our__item
+
+	&__item {
+		& img {
+			margin-bottom: 36px;
+		}
+	}
+
+	// .card-option-our__name
+
+	&__name {
+		font-weight: 700;
+		margin-bottom: 12px;
+		@media (max-width: $tablet) {
+			@include mainFS;
+		}
+	}
+
+	// .card-option-our__text
+
+	&__text {
+		@media (max-width: $tablet) {
+			font-size: 14px;
+			line-height: 1.35;
+		}
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+		@media (max-width: $tablet) {
+			&:not(:last-child) {
+				margin-bottom: 24px;
+			}
+		}
+	}
+
+	&__link {
+		&::after {
+			content: "";
+			display: inline-block;
+			background: url("https://sewera.ru/srv/assets/images/main/header/icons/arrowMenu.svg") 0 0 no-repeat;
+			width: 10px;
+			height: 6px;
+			transform: translate(4px, -2px) rotate(270deg);
+		}
+		@media (max-width: $tablet) {
+			font-size: 14px;
+			line-height: 1.35;
 		}
 	}
 }

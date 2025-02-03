@@ -20,7 +20,7 @@
 		<!-- </div> -->
 		<div class="site-content ">
 			<div class="sewera-info">
-				<section class="section-mb all-link-page">
+				<section class="section-mb all-link-page" hidden>
 					<div class="page-bl">
 						<div class="all-link-page__wrapper">
 							<ul class="all-link-page__list">
@@ -80,7 +80,7 @@
 							<div class="card-about__item">
 								<div class="card-about__title middel-title-info"><img
 										src="srv/assets/images/info-page/icons/about-us-2.svg" alt="Наша
-										миссия"><span>Наши принципы</span></div>
+										принципы"><span>Наши принципы</span></div>
 								<div class="card-about__text">Мы стремимся обеспечить высокий уровень сервиса, прозрачность на
 									каждом этапе и комфорт благодаря вниманию к деталям и заботе о клиентах
 								</div>
@@ -88,7 +88,7 @@
 							<div class="card-about__item">
 								<div class="card-about__title middel-title-info"><img
 										src="srv/assets/images/info-page/icons/about-us-3.svg" alt="Наша
-										миссия"><span>Наш приоритет</span></div>
+										приоритет"><span>Наш приоритет</span></div>
 								<div class="card-about__text">Наш приоритет — ваше спокойствие и уверенность на каждом этапе
 									создания комфортной загородной жизни
 								</div>
@@ -219,81 +219,84 @@
 					<div class="page-bl">
 						<h2 class="map-info__title title-info-m">География наших работ</h2>
 						<nav data-tabs-titles class="map-info__navigation nav-block ">
-							<button type="submit" class="nav-block__btn-nav ya-map__tab _active-tab-map "
-								data-city-map="москва">Москва</button>
-							<button data-city-map="питер" type="submit"
+							<button data-text-map=" &nbsp;" type="submit"
+								class="nav-block__btn-nav ya-map__tab _active-tab-map " data-city-map="москва">Москва</button>
+							<button data-text-map="В Санкт-Петербурге мы предлагаем частичные услуги: установку септиков,<br>
+							организацию водоснабжения (без бурения) и прокладку кабелей" data-city-map="питер" type="submit"
 								class="nav-block__btn-nav ya-map__tab">Санкт-Петербург</button>
-							<button data-city-map="рф" type="submit" class="nav-block__btn-nav ya-map__tab">Регионы
+							<button
+								data-text-map="Регионы России — только продажа и доставка товаров (септики, кессоны, погреба)"
+								data-city-map="рф" type="submit" class="nav-block__btn-nav ya-map__tab">Регионы
 								РФ</button>
 						</nav>
-						<p class="map-info__text">В Санкт-Петербурге мы предлагаем частичные услуги: установку септиков,<br>
-							организацию водоснабжения
-							(без бурения) и прокладку кабелей</p>
+						<p class="map-info__text">&nbsp; </p>
 						<div>
 							<div class="map-info__block-map" id="map-info"></div>
 						</div>
 					</div>
 				</section>
 				<section class="our-partners section-mb">
+					<div class="page-bl">
 
-					<div class="our-partners__header">
-						<h2 class="our-partners__title title-info-m">С нами уже работают</h2>
-						<p class="our-partners__sub-title text-info ">Мы рады сотрудничеству с новыми партнёрами.<br>
-							Присоединяйтесь!</p>
-					</div>
+						<div class="our-partners__header">
+							<h2 class="our-partners__title title-info-m">С нами уже работают</h2>
+							<p class="our-partners__sub-title text-info ">Мы не строим дома, но это делают наши партнеры<br>
+								Присоединяйтесь!</p>
+						</div>
 
-					<div class="our-partners__slider">
-						<div class="our-partners__swiper">
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/1.svg" alt="scouthouse"
-									class="slide-partner__img">
-								<span class="slide-partner__name">scouthouse</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/2.png" alt="dubldom"
-									class="slide-partner__img">
-								<span class="slide-partner__name">dubldom</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/3.svg" alt="dubldom"
-									class="slide-partner__img">
-								<span class="slide-partner__name">unitdom</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/4.svg" alt="holtsovhouse"
-									class="slide-partner__img">
-								<span class="slide-partner__name">holtsovhouse</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/5.svg" alt="fl-house
-								" class="slide-partner__img">
-								<span class="slide-partner__name">fl-house
-								</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/6.svg" alt="okprefab
-								" class="slide-partner__img">
-								<span class="slide-partner__name">okprefab
-								</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/7.svg" alt="microxa
-								" class="slide-partner__img">
-								<span class="slide-partner__name">microxa
-								</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/8.png" alt="bazilikdom
-								" class="slide-partner__img">
-								<span class="slide-partner__name">bazilikdom
-								</span>
-							</div>
-							<div class="our-partners__slide slide-partner">
-								<img src="https://sewera.ru/srv/assets/images/partner/our-partners/99.svg" alt="shkirev gardens
-								" class="slide-partner__img">
-								<span class="slide-partner__name">shkirev gardens
+						<div class="our-partners__slider">
+							<div class="our-partners__swiper">
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/1.svg" alt="scouthouse"
+										class="slide-partner__img">
+									<span class="slide-partner__name">scouthouse</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/2.png" alt="dubldom"
+										class="slide-partner__img">
+									<span class="slide-partner__name">dubldom</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/3.svg" alt="dubldom"
+										class="slide-partner__img">
+									<span class="slide-partner__name">unitdom</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/4.svg" alt="holtsovhouse"
+										class="slide-partner__img">
+									<span class="slide-partner__name">holtsovhouse</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/5.svg" alt="fl-house
+									" class="slide-partner__img">
+									<span class="slide-partner__name">fl-house
+									</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/6.svg" alt="okprefab
+									" class="slide-partner__img">
+									<span class="slide-partner__name">okprefab
+									</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/7.svg" alt="microxa
+									" class="slide-partner__img">
+									<span class="slide-partner__name">microxa
+									</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/8.png" alt="bazilikdom
+									" class="slide-partner__img">
+									<span class="slide-partner__name">bazilikdom
+									</span>
+								</div>
+								<div class="our-partners__slide slide-partner">
+									<img src="https://sewera.ru/srv/assets/images/partner/our-partners/99.svg" alt="shkirev gardens
+									" class="slide-partner__img">
+									<span class="slide-partner__name">shkirev gardens
 
-								</span>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -334,7 +337,7 @@
 										" class="slide-contact-info__link">go@sewera.ru
 										</a>
 										<a href="https://t.me/seweraru?roistat_visit=318233
-										" class="slide-contact-info__link"><img
+										" class="slide-contact-info__link" target="_blank"><img
 												src="https://sewera.ru/srv/assets/images/main/header/icons/telegramFootre.svg"
 												alt="telegram" target="_blank"> telegram
 										</a>
@@ -383,7 +386,7 @@
 								<input type="hidden" name="Ссылка источник" value="https://sewera.ru/o-nas-sewera">
 								<input type="tel" class="phone_mask " placeholder="Номер телефона" name="Телефон">
 								<input type="tel" placeholder="Ваше имя" name="Имя">
-								<button type="submit" class="form-back-info__btn butt_arrow-r">Отправить заявку</button>
+								<button type="submit" class="form-back-info__btn butt_arrow-r">Отправить</button>
 							</form>
 							<div class=" agreements-data">
 								Отправляя заказ, вы соглашаетесь

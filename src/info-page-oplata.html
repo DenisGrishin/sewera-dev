@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include('html/_head.htm',{
+"title":"Главная"
+})
+
+<body class="blog-article">
+	<div class="load__preloader">
+		<div class="load__preloader__row">
+			<div class="load__preloader__item"></div>
+			<div class="load__preloader__item"></div>
+		</div>
+	</div>
+
+
+
+	<div class="page-width">
+		<!-- <div class="dark-thema"> -->
+		@@include('html/_header.htm',{})
+		<!-- </div> -->
+		<div class="site-content ">
+			<div class="sewera-info">
+				<section class="section-mb all-link-page" hidden>
+					<div class="page-bl">
+						<div class="all-link-page__wrapper">
+							<ul class="all-link-page__list">
+								<li class="all-link-page__item">
+									<a href="oplata/" class="all-link-page__link">Оплата</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="dostavka/" class="all-link-page__link">Доставка</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="" class="all-link-page__link">Возврат</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="garantija/" class="all-link-page__link">Гарантия</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="partnership/" class="all-link-page__link">Партнерам</a>
+								</li>
+								<li class="all-link-page__item _active-page">
+									<a href="o-nas-sewera/" class="all-link-page__link">О компании</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="contacts/" class="all-link-page__link">Контакты</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="dogovor-oferta/" class="all-link-page__link">Договор-оферта</a>
+								</li>
+								<li class="all-link-page__item">
+									<a href="" class="all-link-page__link">Вопрос-ответ</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="block-title-page">
+					<div class="page-bl">
+						<h1 class="block-title-page__title title-info-m">Удобные способы оплаты для комфортного сотрудничества
+						</h1>
+						<p class="block-title-page__text">Мы стремимся к тому, чтобы каждый клиент мог выбрать оптимальный
+							способ оплаты, который
+							сделает<br>
+							сотрудничество с Sewera удобным и безопасным</p>
+					</div>
+				</section>
+				<section class="options-our">
+					<div class="page-bl">
+						<div class="options-our__items ">
+							<div class="card-option-our__item card-option-our">
+								<img src="img/info-page/page-about-company/icons/option-our-oplata-1.svg"
+									alt="Безналичным расчетом">
+								<div class="card-option-our__name text-info">Безналичным расчетом</div>
+								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
+									способом</p>
+							</div>
+							<div class="card-option-our__item card-option-our">
+								<img src="img/info-page/page-about-company/icons/option-our-oplata-2.svg"
+									alt="Рассрочка и кредит">
+								<div class="card-option-our__name text-info">Рассрочка и кредит</div>
+								<p class="card-option-our__text">Воспользуйтесь выгодными условиями рассрочки и кредитования от
+									наших банков-партнеров</p>
+								<a href="#" class="card-option-our__link">Подробнее</a>
+							</div>
+							<div class="card-option-our__item card-option-our">
+								<img src="img/info-page/page-about-company/icons/option-our-oplata-3.svg"
+									alt="Безналичным расчетом">
+								<div class="card-option-our__name text-info">Безналичным расчетом</div>
+								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
+									способом</p>
+								<a href="dogovor-oferta/" class="card-option-our__link">Условия оферты</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class=" form-back-info">
+					<div class="page-bl">
+						<div class="form-back-info__wrapper">
+							<h2 class="form-back-info__title title-info-m">Не нашли подходящий способ оплаты? </h2>
+							<div class="form-back-info__sub-title text-info">Свяжитесь с нашим менеджером и он ответит на них
+							</div>
+
+							<form class="form-back-info__block-form feedback_form__form"
+								onsubmit="ym(38077235,'reachGoal','submitted');return true;">
+								<input type="hidden" name="subject" value="Не нашли подходящий способ оплаты?? Оплата">
+								<input type="hidden" name="Ссылка источник" value="https://sewera.ru/oplata">
+								<input type="tel" class="phone_mask " placeholder="Номер телефона" name="Телефон">
+								<input type="tel" placeholder="Ваше имя" name="Имя">
+								<button type="submit" class="form-back-info__btn butt_arrow-r">Отправить</button>
+							</form>
+							<div class=" agreements-data">
+								Отправляя заказ, вы соглашаетесь
+								<a href="/politika-konfidencialnosti/" target="_blank">с политикой обработки
+									персональных
+									данных</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- <div class="dark-thema"> -->
+			@@include('html/_footer.htm',{})
+
+			<!-- </div> -->
+
+
+
+			@@include('html/_js.htm',{})
+</body>
+
+</html>
