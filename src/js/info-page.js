@@ -451,6 +451,107 @@ function initMap() {
     myMap.controls.remove("rulerControl"); // удаляем контрол правил
     myMap.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
   }
+
+  if (document.getElementById("map-info-contact")) {
+    var myMap = new ymaps.Map(
+      "map-info-contact",
+      {
+        center: [55.570398, 37.47549],
+        zoom: 11,
+      },
+      {
+        searchControlProvider: "yandex#search",
+      }
+    );
+
+    let address1 = new ymaps.Placemark(
+      [55.492202, 37.325189], // Координаты метки
+      {
+        hintContent:
+          "Основной офис, где можно выпить кофе/чай и пообщаться с вашим менеджером или инженером", // Подсказка при наведении
+      },
+      {
+        iconLayout: "default#image", // Тип иконки
+        iconImageHref:
+          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
+        iconImageSize: [46, 46], // Размер иконки
+        iconImageOffset: [-16, -32], // Смещение иконки
+      }
+    );
+    let address2 = new ymaps.Placemark(
+      [55.65015, 37.539626], // Координаты метки
+      {
+        hintContent: "Бэк-офис", // Подсказка при наведении
+      },
+      {
+        iconLayout: "default#image", // Тип иконки
+        iconImageHref:
+          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
+        iconImageSize: [46, 46], // Размер иконки
+        iconImageOffset: [-16, -32], // Смещение иконки
+      }
+    );
+    myMap.geoObjects.add(address1);
+    myMap.geoObjects.add(address2);
+    // myMap.controls.remove("zoomControl"); // удаляем контрол зуммирования
+    myMap.controls.remove("geolocationControl"); // удаляем геолокацию
+    myMap.controls.remove("searchControl"); // удаляем поиск
+    myMap.controls.remove("trafficControl"); // удаляем контроль трафика
+    myMap.controls.remove("typeSelector"); // удаляем тип
+    myMap.controls.remove("fullscreenControl"); // удаляем кнопку перехода в полноэкранный режим
+    myMap.controls.remove("rulerControl"); // удаляем контрол правил
+    myMap.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
+  }
+  if (document.getElementById("map-info-delivery")) {
+    var myMap = new ymaps.Map(
+      "map-info-delivery",
+      {
+        center: [55.570398, 37.47549],
+        zoom: 11,
+      },
+      {
+        searchControlProvider: "yandex#search",
+      }
+    );
+
+    let address1 = new ymaps.Placemark(
+      [55.492202, 37.325189], // Координаты метки
+      {
+        hintContent:
+          "Основной офис, где можно выпить кофе/чай и пообщаться с вашим менеджером или инженером", // Подсказка при наведении
+      },
+      {
+        iconLayout: "default#image", // Тип иконки
+        iconImageHref:
+          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
+        iconImageSize: [46, 46], // Размер иконки
+        iconImageOffset: [-16, -32], // Смещение иконки
+      }
+    );
+    let address2 = new ymaps.Placemark(
+      [55.65015, 37.539626], // Координаты метки
+      {
+        hintContent: "Бэк-офис", // Подсказка при наведении
+      },
+      {
+        iconLayout: "default#image", // Тип иконки
+        iconImageHref:
+          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
+        iconImageSize: [46, 46], // Размер иконки
+        iconImageOffset: [-16, -32], // Смещение иконки
+      }
+    );
+    myMap.geoObjects.add(address1);
+    myMap.geoObjects.add(address2);
+    // myMap.controls.remove("zoomControl"); // удаляем контрол зуммирования
+    myMap.controls.remove("geolocationControl"); // удаляем геолокацию
+    myMap.controls.remove("searchControl"); // удаляем поиск
+    myMap.controls.remove("trafficControl"); // удаляем контроль трафика
+    myMap.controls.remove("typeSelector"); // удаляем тип
+    myMap.controls.remove("fullscreenControl"); // удаляем кнопку перехода в полноэкранный режим
+    myMap.controls.remove("rulerControl"); // удаляем контрол правил
+    myMap.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
+  }
 }
 if (typeof ymaps !== "undefined") {
   ymaps.ready(initMap);
