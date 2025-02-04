@@ -20,18 +20,18 @@
 		<!-- </div> -->
 		<div class="site-content ">
 			<div class="sewera-info">
-				<section class="all-link-page" hidden>
+				<section class="all-link-page">
 					<div class="page-bl">
 						<div class="all-link-page__wrapper">
 							<ul class="all-link-page__list">
-								<li class="all-link-page__item">
+								<li class="all-link-page__item _active-page">
 									<a href="oplata/" class="all-link-page__link">Оплата</a>
 								</li>
 								<li class="all-link-page__item">
 									<a href="dostavka/" class="all-link-page__link">Доставка</a>
 								</li>
 								<li class="all-link-page__item">
-									<a href="" class="all-link-page__link">Возврат</a>
+									<a href="vozvrat-i-obmen" class="all-link-page__link">Возврат</a>
 								</li>
 								<li class="all-link-page__item">
 									<a href="garantija/" class="all-link-page__link">Гарантия</a>
@@ -39,7 +39,7 @@
 								<li class="all-link-page__item">
 									<a href="partnership/" class="all-link-page__link">Партнерам</a>
 								</li>
-								<li class="all-link-page__item _active-page">
+								<li class="all-link-page__item ">
 									<a href="o-nas-sewera/" class="all-link-page__link">О компании</a>
 								</li>
 								<li class="all-link-page__item">
@@ -68,7 +68,7 @@
 				<section class="options-our">
 					<div class="page-bl">
 						<div class="options-our__items ">
-							<button type="button" data-popup="#popup_oplata-1"
+							<div data-popup="#popup_oplata-1"
 								class="card-option-our__item card-option-our card-option-our_beige ">
 								<img
 									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-1.svg"
@@ -77,27 +77,27 @@
 								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
 									способом</p>
 
-							</button>
-							<button type="button" data-popup="#popup_oplata-2"
-								class="card-option-our__item card-option-our card-option-our_orange">
+							</div>
+							<div class="card-option-our__item card-option-our card-option-our_orange">
 								<img
 									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-2.svg"
 									alt="Рассрочка и кредит">
 								<div class="card-option-our__name text-info">Рассрочка и кредит</div>
 								<p class="card-option-our__text">Воспользуйтесь выгодными условиями рассрочки и кредитования от
 									наших банков-партнеров</p>
-								<a href="#" class="card-option-our__link">Подробнее</a>
-							</button>
-							<button type="button" data-popup="#popup_oplata-3"
-								class="card-option-our__item card-option-our card-option-our_green">
+								<button type="button" data-popup="#popup_oplata-2"
+									class="card-option-our__btn">Подробнее</button>
+							</div>
+							<div class="card-option-our__item card-option-our card-option-our_green">
 								<img
 									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-3.svg"
 									alt="Безналичным расчетом">
 								<div class="card-option-our__name text-info">Безналичным расчетом</div>
 								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
 									способом</p>
-								<a href="dogovor-oferta/" class="card-option-our__link">Условия оферты</a>
-							</button>
+								<button type="button" data-popup="#popup_oplata-3" class="card-option-our__btn">Условия
+									оферты</button>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -125,24 +125,7 @@
 						</div>
 					</div>
 				</section>
-				<div id="popup_oplata-1" aria-hidden="true" class="popup">
-					<div class="popup__warapper oplata-popup">
-						<button type="button" data-close class="oplata-popup__close-btn"></button>
-						<div class="oplata-popup__title middel-title-info">Безналичный</div>
-						<div class="oplata-popup__contetn">
-							<div class="oplata-popup__name-contetn">Подзаголовок</div>
-							<div class="oplata-popup__text-contetn">
-								Тут разный текст на тему. аявка направляется в 11 разных банков, которые подбирают лучшие
-								условия. Фреш Кредит для чеков от 500 000 рублей и выше
-							</div>
 
-							<img
-								src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-1.svg"
-								alt="Безналичный">
-						</div>
-
-					</div>
-				</div>
 				<div id="popup_oplata-2" aria-hidden="true" class="popup ">
 					<div class="popup__warapper oplata-popup">
 						<button type="button" data-close class="oplata-popup__close-btn"></button>
@@ -169,7 +152,7 @@
 
 					</div>
 				</div>
-				<div id="popup_oplata-3" aria-hidden="true" class="popup popup_show">
+				<div id="popup_oplata-3" aria-hidden="true" class="popup ">
 					<div class="popup__warapper oplata-popup">
 						<button type="button" data-close class="oplata-popup__close-btn"></button>
 						<div class="oplata-popup__title middel-title-info">Яндекс.Сплит</div>
