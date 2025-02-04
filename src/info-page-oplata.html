@@ -20,7 +20,7 @@
 		<!-- </div> -->
 		<div class="site-content ">
 			<div class="sewera-info">
-				<section class="section-mb all-link-page" hidden>
+				<section class="all-link-page" hidden>
 					<div class="page-bl">
 						<div class="all-link-page__wrapper">
 							<ul class="all-link-page__list">
@@ -69,14 +69,17 @@
 					<div class="page-bl">
 						<div class="options-our__items ">
 							<div class="card-option-our__item card-option-our card-option-our_beige ">
-								<img src="img/info-page/page-about-company/icons/option-our-oplata-1.svg"
+								<img
+									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-1.svg"
 									alt="Безналичным расчетом">
 								<div class="card-option-our__name text-info">Безналичным расчетом</div>
 								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
 									способом</p>
+								<button data-popup="#popup_oplata" class="card-option-our__link">Подробнее</button>
 							</div>
 							<div class="card-option-our__item card-option-our card-option-our_orange">
-								<img src="img/info-page/page-about-company/icons/option-our-oplata-2.svg"
+								<img
+									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-2.svg"
 									alt="Рассрочка и кредит">
 								<div class="card-option-our__name text-info">Рассрочка и кредит</div>
 								<p class="card-option-our__text">Воспользуйтесь выгодными условиями рассрочки и кредитования от
@@ -84,7 +87,8 @@
 								<a href="#" class="card-option-our__link">Подробнее</a>
 							</div>
 							<div class="card-option-our__item card-option-our card-option-our_green">
-								<img src="img/info-page/page-about-company/icons/option-our-oplata-3.svg"
+								<img
+									src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-3.svg"
 									alt="Безналичным расчетом">
 								<div class="card-option-our__name text-info">Безналичным расчетом</div>
 								<p class="card-option-our__text">Оплата переводом на наш расчётный счёт любым удобным для вас
@@ -118,6 +122,24 @@
 						</div>
 					</div>
 				</section>
+				<div id="popup_oplata" aria-hidden="true" class="popup">
+					<div class="popup__warapper oplata-popup">
+						<button type="button" data-close class="oplata-popup__close-btn"></button>
+						<div class="oplata-popup__title middel-title-info">Безналичный</div>
+						<div class="oplata-popup__contetn">
+							<div class="oplata-popup__name-contetn">Подзаголовок</div>
+							<div class="oplata-popup__text-contetn">
+								Тут разный текст на тему. аявка направляется в 11 разных банков, которые подбирают лучшие
+								условия. Фреш Кредит для чеков от 500 000 рублей и выше
+							</div>
+
+							<img
+								src="https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/option-our-oplata-1.svg"
+								alt="Безналичный">
+						</div>
+
+					</div>
+				</div>
 			</div>
 			<!-- <div class="dark-thema"> -->
 			@@include('html/_footer.htm',{})

@@ -17,7 +17,12 @@
 }
 
 .sewera-info .all-link-page {
+	margin-bottom: 60px;
 	margin-top: 24px;
+	@media (max-width: $laptop) {
+		margin-bottom: 40px;
+	}
+
 	// .all-link-page__item
 
 	& .page-bl {
@@ -42,9 +47,7 @@
 		background-color: var(--bgMain);
 		padding: 8px;
 		border-radius: 8px;
-		transition:
-			background-color 0.3s ease 0s,
-			border-radius 0.3s ease 0s;
+		transition: background-color 0.3s ease 0s;
 		@media (max-width: $laptop_L) {
 		}
 		@media (max-width: $laptop) {
@@ -79,10 +82,8 @@
 		width: 100%;
 		height: 100%;
 		display: inline-block;
-
-		transition:
-			background-color 0.3s ease 0s,
-			border-radius 0.3s ease 0s;
+		border-radius: 8px;
+		transition: background-color 0.3s ease 0s;
 
 		@media (max-width: $laptop_L) {
 			padding: 8px 10px;
@@ -791,7 +792,7 @@
 
 .sewera-info .form-back-info {
 	padding-top: 90px;
-	padding-bottom: 90px;
+	padding-bottom: 60px;
 	&_pt-small {
 		padding-top: 60px;
 	}
@@ -1156,7 +1157,9 @@
 			}
 		}
 	}
-
+	&__link-text {
+		text-decoration: underline;
+	}
 	&__link {
 		&::after {
 			content: "";
@@ -1289,7 +1292,8 @@
 
 		&::after {
 			content: "";
-			background: url("../img/icons/arrowOrange.svg") 0 0 no-repeat;
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/info-page/icons/arrow-orange.svg") 0 0
+				no-repeat;
 			width: 12px;
 			height: 12px;
 		}
@@ -1386,6 +1390,9 @@
 		@media (max-width: $laptop_L) {
 			padding: 20px;
 		}
+		@media (max-width: $laptop) {
+			align-items: flex-start;
+		}
 	}
 
 	// .delivery-method__icon
@@ -1425,6 +1432,7 @@
 	}
 }
 .map-delivery {
+	margin-bottom: 40px;
 	// .map-delivery__title
 
 	&__title {
@@ -1450,5 +1458,103 @@
 	&__map {
 		width: 100%;
 		height: 500px;
+	}
+}
+
+.sewera-info .popup {
+	visibility: visible;
+	opacity: 1;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease 0s;
+	&.popup_show {
+		visibility: visible;
+		opacity: 1;
+	}
+	&::before {
+		content: "";
+		position: fixed;
+		background-color: var(--mainColor);
+		opacity: 0.5;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+	&__warapper {
+		background-color: var(--bgMain);
+		padding: 24px;
+		border-radius: 12px;
+		position: relative;
+		z-index: 3;
+		max-width: 540px;
+		width: 100%;
+		text-align: left;
+	}
+}
+
+.oplata-popup {
+	&__close-btn {
+		position: absolute;
+		right: -19px;
+		background-color: transparent;
+		z-index: 1111;
+		top: -10px;
+		width: 17px;
+		height: 17px;
+		&::after,
+		&::before {
+			content: "";
+			width: 17px;
+			height: 3px;
+			background-color: #fff;
+			position: absolute;
+			border-radius: 12px;
+			top: 0;
+			right: 0;
+		}
+		&::before {
+			transform: rotate(-45deg);
+		}
+		&::after {
+			transform: rotate(45deg);
+		}
+	}
+	// .popup__title
+
+	&__title {
+		margin-bottom: 24px;
+	}
+
+	// .popup__contetn
+
+	&__contetn {
+		&:not(:last-child) {
+			margin-bottom: 24px;
+		}
+	}
+
+	// .popup__name-contetn
+
+	&__name-contetn {
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 1.3;
+		margin-bottom: 8px;
+	}
+
+	// .popup__text-contetn
+
+	&__text-contetn {
+	}
+	img {
+		margin-top: 80px;
 	}
 }

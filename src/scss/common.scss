@@ -111,3 +111,21 @@
 		text-decoration: underline;
 	}
 }
+.sewera-info .wrapper-social-contct-garantija {
+	.title-section {
+		@include middleFS;
+		text-align-last: left !important;
+		font-weight: 700;
+		margin-bottom: 24px !important;
+		font-family: Onest, sans-serif, Arial !important;
+		@media (max-width: $laptop_L) {
+			@include middleFS-LLD;
+		}
+		@media (max-width: $laptop) {
+			@include middleFS-LD;
+		}
+		@media (max-width: $tablet) {
+			@include mainBigFS;
+		}
+	}
+}

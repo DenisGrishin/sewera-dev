@@ -18,6 +18,7 @@
     });
   }
 }
+
 function initSliders() {
   bildSliders();
   //  новый блок
@@ -502,6 +503,7 @@ function initMap() {
     myMap.controls.remove("rulerControl"); // удаляем контрол правил
     myMap.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
   }
+
   if (document.getElementById("map-info-delivery")) {
     var centerMoscow = [55.751574, 37.573856]; // Центр Москвы
     var myMap = new ymaps.Map("map-info-delivery", {
@@ -529,20 +531,37 @@ function initMap() {
           lastRoute.options.set("visible", false);
           myMap.geoObjects.add(lastRoute); // Добавляем маршрут на карту
           var distance = lastRoute.getLength() / 1000;
-          var price = calculateDeliveryCost(distance);
+          var price = calculateDeliveryPrice(distance);
 
           lastRoute.getPaths().options.set({
             strokeColor: "#3ea2f0", // Красный цвет
             strokeWidth: 3, // Толщина линии
             opacity: 0, // Прозрачность
           });
+          let contentPlacemark;
+
+          if (distance.toFixed(0) > 70 && distance.toFixed(0) < 209) {
+            contentPlacemark = `Расстояние от МКАД: ${distance.toFixed(0) - 20} км<br>
+            Стоимость доставки: ${new Intl.NumberFormat("ru").format(
+              Math.round(price)
+            )} руб.
+              `;
+          } else if (distance.toFixed(0) > 210) {
+            contentPlacemark = `Свыше 200 км от МКАД<br>
+            Доставка осуществляется с помощью транспортных компаний
+            `;
+          } else {
+            contentPlacemark = `<br>
+            Стоимость доставки: ${new Intl.NumberFormat("ru").format(
+              Math.round(price)
+            )} руб.
+              `;
+          }
+
           lastPlacemark = new ymaps.Placemark(
             coords, // Координаты метки
             {
-              balloonContent: `
-              Расстояние: ${distance.toFixed(0)} км<br>
-              Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(price))} руб.
-              `, // Всплывающая подсказка
+              balloonContent: contentPlacemark, // Всплывающая подсказка
             },
             {
               preset: "islands#redIcon", // Красная иконка
@@ -600,11 +619,11 @@ function initMap() {
     // }
 
     // Функция расчета стоимости доставки
-    function calculateDeliveryCost(distance) {
-      if (distance < 70) return 9900; // В пределах 10 км - 300 руб.
+    function calculateDeliveryPrice(distance) {
+      if (distance < 70) return 9900; // В пределах 70 км  9900 руб.
       let newDistance = distance.toFixed(0) - 50;
 
-      return 9900 + newDistance * 71; // Дальше 100 км - +10 руб. за каждый км
+      return 9900 + newDistance * 71; // 9900 руб + Дальше 70 км  +71 руб. за каждый км
     }
     // myMap.controls.remove("zoomControl"); // удаляем контрол зуммирования
     myMap.controls.remove("geolocationControl"); // удаляем геолокацию
