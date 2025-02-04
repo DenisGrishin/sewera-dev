@@ -503,46 +503,109 @@ function initMap() {
     myMap.behaviors.disable(["scrollZoom"]); // отключаем скролл карты (опционально)
   }
   if (document.getElementById("map-info-delivery")) {
-    var myMap = new ymaps.Map(
-      "map-info-delivery",
-      {
-        center: [55.570398, 37.47549],
-        zoom: 11,
-      },
-      {
-        searchControlProvider: "yandex#search",
-      }
-    );
+    var centerMoscow = [55.751574, 37.573856]; // Центр Москвы
+    var myMap = new ymaps.Map("map-info-delivery", {
+      center: centerMoscow,
+      zoom: 10,
+    });
 
-    let address1 = new ymaps.Placemark(
-      [55.492202, 37.325189], // Координаты метки
-      {
-        hintContent:
-          "Основной офис, где можно выпить кофе/чай и пообщаться с вашим менеджером или инженером", // Подсказка при наведении
-      },
-      {
-        iconLayout: "default#image", // Тип иконки
-        iconImageHref:
-          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
-        iconImageSize: [46, 46], // Размер иконки
-        iconImageOffset: [-16, -32], // Смещение иконки
+    // Строим маршрут
+
+    var lastPlacemark = null;
+    var lastRoute = null;
+
+    myMap.events.add("click", function (e) {
+      var coords = e.get("coords");
+
+      if (lastPlacemark) {
+        myMap.geoObjects.remove(lastPlacemark);
       }
-    );
-    let address2 = new ymaps.Placemark(
-      [55.65015, 37.539626], // Координаты метки
-      {
-        hintContent: "Бэк-офис", // Подсказка при наведении
-      },
-      {
-        iconLayout: "default#image", // Тип иконки
-        iconImageHref:
-          "https://sewera.manager3.fvds.ru//srv/assets/images/info-page/icons/sewera-marker.svg", // Путь к изображению иконки
-        iconImageSize: [46, 46], // Размер иконки
-        iconImageOffset: [-16, -32], // Смещение иконки
+      if (lastRoute) {
+        myMap.geoObjects.remove(lastRoute);
       }
-    );
-    myMap.geoObjects.add(address1);
-    myMap.geoObjects.add(address2);
+      ymaps.route([centerMoscow, coords]).then(
+        function (route) {
+          lastRoute = route;
+          lastRoute.options.set("visible", false);
+          myMap.geoObjects.add(lastRoute); // Добавляем маршрут на карту
+          var distance = lastRoute.getLength() / 1000;
+          var price = calculateDeliveryCost(distance);
+
+          lastRoute.getPaths().options.set({
+            strokeColor: "#3ea2f0", // Красный цвет
+            strokeWidth: 3, // Толщина линии
+            opacity: 0, // Прозрачность
+          });
+          lastPlacemark = new ymaps.Placemark(
+            coords, // Координаты метки
+            {
+              balloonContent: `
+              Расстояние: ${distance.toFixed(0)} км<br>
+              Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(price))} руб.
+              `, // Всплывающая подсказка
+            },
+            {
+              preset: "islands#redIcon", // Красная иконка
+            }
+          );
+          myMap.geoObjects.add(lastPlacemark);
+          lastPlacemark.balloon.open();
+          lastRoute.getWayPoints().remove(0);
+        },
+        function (error) {
+          alert("Ошибка построения маршрута: " + error.message);
+        }
+      );
+
+      // Обратное геокодирование для определения населенного пункта
+      // ymaps.geocode(coords).then(function (res) {
+      // var firstGeoObject = res.geoObjects.get(0);
+      // // покзать город
+      // var city =
+      //   firstGeoObject.getLocalities()[0] ||
+      //   firstGeoObject.getAdministrativeAreas()[0];
+      // Вычисляем расстояние от центра Москвы
+      // var distance = getDistance(centerMoscow, coords);
+      // var cost = calculateDeliveryCost(distance);
+      // lastPlacemark = new ymaps.Placemark(
+      //   coords, // Координаты метки
+      //   {
+      //     balloonContent: `
+      //     Расстояние: ${distance.toFixed(0)} км<br>
+      //     Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(cost))} руб.
+      //     `, // Всплывающая подсказка
+      //   },
+      //   {
+      //     preset: "islands#redIcon", // Красная иконка
+      //   }
+      // );
+      // myMap.geoObjects.add(lastPlacemark);
+      // lastPlacemark.balloon.open();
+      // document.querySelector(".map-delivery__hint").innerText =
+      //   `Расстояние: ${distance.toFixed(0)} км
+      //       Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(cost))} руб.`;
+      // });
+    });
+    // Функция для вычисления расстояния между двумя точками (в км)
+    // function getDistance(coord1, coord2) {
+    //   var rad = Math.PI / 180;
+    //   var lat1 = coord1[0] * rad,
+    //     lon1 = coord1[1] * rad;
+    //   var lat2 = coord2[0] * rad,
+    //     lon2 = coord2[1] * rad;
+    //   var a =
+    //     Math.sin((lat2 - lat1) / 2) ** 2 +
+    //     Math.cos(lat1) * Math.cos(lat2) * Math.sin((lon2 - lon1) / 2) ** 2;
+    //   return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); // Радиус Земли ≈ 6371 км
+    // }
+
+    // Функция расчета стоимости доставки
+    function calculateDeliveryCost(distance) {
+      if (distance < 70) return 9900; // В пределах 10 км - 300 руб.
+      let newDistance = distance.toFixed(0) - 50;
+
+      return 9900 + newDistance * 71; // Дальше 100 км - +10 руб. за каждый км
+    }
     // myMap.controls.remove("zoomControl"); // удаляем контрол зуммирования
     myMap.controls.remove("geolocationControl"); // удаляем геолокацию
     myMap.controls.remove("searchControl"); // удаляем поиск
