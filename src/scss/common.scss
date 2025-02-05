@@ -114,7 +114,7 @@
 .sewera-info .wrapper-social-contct-garantija {
 	.title-section {
 		@include middleFS;
-		text-align-last: left !important;
+		text-align: left !important;
 		font-weight: 700;
 		margin-bottom: 24px !important;
 		font-family: Onest, sans-serif, Arial !important;
@@ -126,6 +126,13 @@
 		}
 		@media (max-width: $tablet) {
 			@include mainBigFS;
+		}
+	}
+	.submitted__wrapper-btn-link {
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fff;
+			}
 		}
 	}
 }

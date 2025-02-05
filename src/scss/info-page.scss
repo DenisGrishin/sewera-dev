@@ -33,6 +33,9 @@
 	&__wrapper {
 		@media (max-width: $laptop) {
 			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-behavior: smooth;
+			scrollbar-width: none;
 			display: flex;
 		}
 	}
