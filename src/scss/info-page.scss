@@ -50,7 +50,7 @@
 		background-color: var(--bgMain);
 		padding: 8px;
 		border-radius: 8px;
-		transition: background-color 0.3s ease 0s;
+		// transition: background-color 0.3s ease 0s;
 		@media (max-width: $laptop_L) {
 		}
 		@media (max-width: $laptop) {
@@ -88,7 +88,7 @@
 		height: 100%;
 		display: inline-block;
 		border-radius: 8px;
-		transition: background-color 0.3s ease 0s;
+		// transition: all 0.4s ease 0s;
 
 		@media (max-width: $laptop_L) {
 			padding: 8px 10px;
@@ -593,6 +593,7 @@
 	// .our-partners__header
 
 	& .page-bl {
+		text-align: center;
 		@media (max-width: $laptop_L) {
 			padding: 0;
 		}

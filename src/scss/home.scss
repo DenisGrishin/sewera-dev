@@ -9083,6 +9083,9 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-grid-columns: 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px;
 		grid-template-columns: repeat(12, 80px);
 		overflow-x: scroll;
+
+		scroll-behavior: smooth;
+		scrollbar-width: none;
 		margin-bottom: 20px !important;
 	}
 	.sewera-septik .fill-time__bottom {
