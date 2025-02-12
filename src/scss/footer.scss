@@ -26,6 +26,8 @@
 	}
 
 	&__desktop {
+		// max-width: 1100px;
+		// width: 100%;
 		@media (max-width: 1279.98px) {
 			max-width: 940px;
 			width: 100%;
@@ -39,13 +41,13 @@
 
 	&__top {
 		display: flex;
-		// max-width: 1131px;
+		max-width: 1051px;
 		width: 100%;
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 52px;
 		@media (max-width: 1279.98px) {
-			// max-width: 886px;
+			max-width: 886px;
 		}
 	}
 
@@ -134,7 +136,7 @@
 	// .info-block__item
 
 	&__item {
-		flex: 0 1 297px;
+		flex: 0 1 294px;
 		@media (max-width: 1279.98px) {
 			flex: 0 1 238px;
 		}
