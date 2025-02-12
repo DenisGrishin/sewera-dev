@@ -83,16 +83,13 @@
 		border-radius: 8px;
 		font-weight: 400;
 
-		// transition-property: background-color;
-		transition-duration: 0s;
-		// transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
 		@media (max-width: $laptop_L) {
 			padding: 8px 10px;
 		}
 	}
 }
 
-.sewera-info .all-link-page ._active .all-link-page__link {
+.sewera-info .all-link-page ._active-page .all-link-page__link {
 	padding: 8px 15px;
 	background-color: var(--mainColor);
 	font-weight: 700;
@@ -956,10 +953,8 @@
 		text-wrap: nowrap;
 		border-radius: 8px;
 		font-weight: 700;
-		// transition-property: background-color;
-		transition-duration: 0s;
-		// transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
-		&._active {
+
+		&._active-tab-map {
 			background-color: var(--mainColor);
 			color: #fff;
 			border-radius: 8px;

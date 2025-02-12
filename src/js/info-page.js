@@ -600,51 +600,51 @@ if (typeof ymaps !== "undefined") {
   ymaps.ready(initMap);
 }
 
-hoverElemntNav();
-function hoverElemntNav() {
-  const lists = document.querySelectorAll("[data-hover-list]");
-  if (lists !== 0) {
-    lists.forEach((element) => {
-      let currentElem = null;
-      let activeIndx = null;
-      const items = element.querySelectorAll("[data-hover-item]");
+// hoverElemntNav();
+// function hoverElemntNav() {
+//   const lists = document.querySelectorAll("[data-hover-list]");
+//   if (lists !== 0) {
+//     lists.forEach((element) => {
+//       let currentElem = null;
+//       let activeIndx = null;
+//       const items = element.querySelectorAll("[data-hover-item]");
 
-      element.addEventListener("mouseover", (event) => {
-        if (currentElem) return;
+//       element.addEventListener("mouseover", (event) => {
+//         if (currentElem) return;
 
-        let target = event.target.closest("[data-hover-item]");
+//         let target = event.target.closest("[data-hover-item]");
 
-        if (!target) return;
+//         if (!target) return;
 
-        currentElem = target;
-        items.forEach((item, indx) => {
-          if (item.matches("._active")) {
-            activeIndx = indx;
-          }
-          item.classList.remove("_active");
-        });
-        target.classList.add("_active");
-      });
+//         currentElem = target;
+//         items.forEach((item, indx) => {
+//           if (item.matches("._active")) {
+//             activeIndx = indx;
+//           }
+//           item.classList.remove("_active");
+//         });
+//         target.classList.add("_active");
+//       });
 
-      element.addEventListener("mouseout", (event) => {
-        if (!currentElem) return;
+//       element.addEventListener("mouseout", (event) => {
+//         if (!currentElem) return;
 
-        let relatedTarget = event.relatedTarget;
+//         let relatedTarget = event.relatedTarget;
 
-        while (relatedTarget) {
-          if (relatedTarget == currentElem) return;
+//         while (relatedTarget) {
+//           if (relatedTarget == currentElem) return;
 
-          relatedTarget = relatedTarget.parentNode;
-        }
+//           relatedTarget = relatedTarget.parentNode;
+//         }
 
-        currentElem.classList.remove("_active");
-        setTimeout(() => {
-          if (!currentElem) {
-            items[activeIndx].classList.add("_active");
-          }
-        }, 300);
-        currentElem = null;
-      });
-    });
-  }
-}
+//         currentElem.classList.remove("_active");
+//         setTimeout(() => {
+//           if (!currentElem) {
+//             items[activeIndx].classList.add("_active");
+//           }
+//         }, 300);
+//         currentElem = null;
+//       });
+//     });
+//   }
+// }
