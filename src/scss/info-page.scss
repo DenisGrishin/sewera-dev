@@ -84,7 +84,7 @@
 		font-weight: 400;
 
 		// transition-property: background-color;
-		// transition-duration: 0.3s;
+		transition-duration: 0s;
 		// transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
 		@media (max-width: $laptop_L) {
 			padding: 8px 10px;
@@ -957,7 +957,7 @@
 		border-radius: 8px;
 		font-weight: 700;
 		// transition-property: background-color;
-		// transition-duration: 0.3s;
+		transition-duration: 0s;
 		// transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
 		&._active {
 			background-color: var(--mainColor);
