@@ -141,14 +141,14 @@ function switchTabClass() {
   if (slectorBtn) {
     slectorBtn.forEach((element) => {
       element.addEventListener("click", (e) => {
-        if (element.closest("._active-tab-map")) {
+        if (element.closest("._active")) {
           return;
         }
 
-        slectorBtn.forEach((el) => el.classList.remove("_active-tab-map"));
+        slectorBtn.forEach((el) => el.classList.remove("_active"));
 
         textInfo.innerHTML = element.dataset.textMap;
-        element.classList.add("_active-tab-map");
+        element.classList.add("_active");
       });
     });
   }
@@ -541,7 +541,9 @@ function initMap() {
           let contentPlacemark;
 
           if (distance.toFixed(0) > 70 && distance.toFixed(0) < 209) {
-            contentPlacemark = `Расстояние от МКАД: ${distance.toFixed(0) - 20} км<br>
+            contentPlacemark = `Расстояние от МКАД: ${
+              distance.toFixed(0) - 20
+            } км<br>
             Стоимость доставки: ${new Intl.NumberFormat("ru").format(
               Math.round(price)
             )} руб.
@@ -575,48 +577,7 @@ function initMap() {
           alert("Ошибка построения маршрута: " + error.message);
         }
       );
-
-      // Обратное геокодирование для определения населенного пункта
-      // ymaps.geocode(coords).then(function (res) {
-      // var firstGeoObject = res.geoObjects.get(0);
-      // // покзать город
-      // var city =
-      //   firstGeoObject.getLocalities()[0] ||
-      //   firstGeoObject.getAdministrativeAreas()[0];
-      // Вычисляем расстояние от центра Москвы
-      // var distance = getDistance(centerMoscow, coords);
-      // var cost = calculateDeliveryCost(distance);
-      // lastPlacemark = new ymaps.Placemark(
-      //   coords, // Координаты метки
-      //   {
-      //     balloonContent: `
-      //     Расстояние: ${distance.toFixed(0)} км<br>
-      //     Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(cost))} руб.
-      //     `, // Всплывающая подсказка
-      //   },
-      //   {
-      //     preset: "islands#redIcon", // Красная иконка
-      //   }
-      // );
-      // myMap.geoObjects.add(lastPlacemark);
-      // lastPlacemark.balloon.open();
-      // document.querySelector(".map-delivery__hint").innerText =
-      //   `Расстояние: ${distance.toFixed(0)} км
-      //       Стоимость доставки: ${new Intl.NumberFormat("ru").format(Math.round(cost))} руб.`;
-      // });
     });
-    // Функция для вычисления расстояния между двумя точками (в км)
-    // function getDistance(coord1, coord2) {
-    //   var rad = Math.PI / 180;
-    //   var lat1 = coord1[0] * rad,
-    //     lon1 = coord1[1] * rad;
-    //   var lat2 = coord2[0] * rad,
-    //     lon2 = coord2[1] * rad;
-    //   var a =
-    //     Math.sin((lat2 - lat1) / 2) ** 2 +
-    //     Math.cos(lat1) * Math.cos(lat2) * Math.sin((lon2 - lon1) / 2) ** 2;
-    //   return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); // Радиус Земли ≈ 6371 км
-    // }
 
     // Функция расчета стоимости доставки
     function calculateDeliveryPrice(distance) {
@@ -637,4 +598,53 @@ function initMap() {
 }
 if (typeof ymaps !== "undefined") {
   ymaps.ready(initMap);
+}
+
+hoverElemntNav();
+function hoverElemntNav() {
+  const lists = document.querySelectorAll("[data-hover-list]");
+  if (lists !== 0) {
+    lists.forEach((element) => {
+      let currentElem = null;
+      let activeIndx = null;
+      const items = element.querySelectorAll("[data-hover-item]");
+
+      element.addEventListener("mouseover", (event) => {
+        if (currentElem) return;
+
+        let target = event.target.closest("[data-hover-item]");
+
+        if (!target) return;
+
+        currentElem = target;
+        items.forEach((item, indx) => {
+          if (item.matches("._active")) {
+            activeIndx = indx;
+          }
+          item.classList.remove("_active");
+        });
+        target.classList.add("_active");
+      });
+
+      element.addEventListener("mouseout", (event) => {
+        if (!currentElem) return;
+
+        let relatedTarget = event.relatedTarget;
+
+        while (relatedTarget) {
+          if (relatedTarget == currentElem) return;
+
+          relatedTarget = relatedTarget.parentNode;
+        }
+
+        currentElem.classList.remove("_active");
+        setTimeout(() => {
+          if (!currentElem) {
+            items[activeIndx].classList.add("_active");
+          }
+        }, 300);
+        currentElem = null;
+      });
+    });
+  }
 }

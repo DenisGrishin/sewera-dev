@@ -61,13 +61,6 @@
 		@media (max-width: $tablet) {
 			margin: 0 15px;
 		}
-		@media (any-hover: hover) {
-			&:hover ._active-page .all-link-page__link {
-				background-color: var(--bgMain);
-				color: $mainColor;
-				font-weight: 400;
-			}
-		}
 	}
 	&__item {
 		flex: 0 1 11.111%;
@@ -88,24 +81,18 @@
 		height: 100%;
 		display: inline-block;
 		border-radius: 8px;
-		// transition: all 0.4s ease 0s;
+		font-weight: 400;
 
+		transition-property: background-color;
+		transition-duration: 0.3s;
+		transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
 		@media (max-width: $laptop_L) {
 			padding: 8px 10px;
-		}
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--mainColor) !important;
-				color: #fff !important;
-				border-radius: 8px !important;
-				font-weight: 700 !important;
-				padding: 8px 15px !important;
-			}
 		}
 	}
 }
 
-.sewera-info .all-link-page ._active-page .all-link-page__link {
+.sewera-info .all-link-page ._active .all-link-page__link {
 	padding: 8px 15px;
 	background-color: var(--mainColor);
 	font-weight: 700;
@@ -948,14 +935,7 @@
 	border-radius: 12px;
 	transition: all 0.3s ease 0s;
 	margin-bottom: 40px;
-	@media (any-hover: hover) {
-		&:hover .nav-block__btn-nav {
-			background-color: var(--bgMain);
-			color: var(--mainColor);
 
-			border-radius: 8px;
-		}
-	}
 	@media (max-width: $laptop_L) {
 		margin-bottom: 32px;
 	}
@@ -974,9 +954,12 @@
 		padding: 6px 23px;
 		width: 100%;
 		text-wrap: nowrap;
-		transition: all 0.3s ease 0s;
+		border-radius: 8px;
 		font-weight: 700;
-		&._active-tab-map {
+		transition-property: background-color;
+		transition-duration: 0.3s;
+		transition-timing-function: cubic-bezier(0.14, 0.76, 0.74, 0.93);
+		&._active {
 			background-color: var(--mainColor);
 			color: #fff;
 			border-radius: 8px;
@@ -984,16 +967,6 @@
 		@media (max-width: $tablet) {
 			@include smallFS;
 			padding: 6px 12px;
-		}
-
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: var(--mainColor) !important;
-				background-color: var(--mainColor);
-				color: #fff !important;
-				border-radius: 8px;
-				font-weight: 700 !important;
-			}
 		}
 	}
 }
