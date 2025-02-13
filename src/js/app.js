@@ -1,7 +1,7 @@
 // Подключение основного файла стилей
 import "../scss/style.scss";
 import "./header.js";
-import "./storis.js";
+import "./stores.js";
 
 /* Подключаем файлы со своим кодом */
 import "./files/script.js";
