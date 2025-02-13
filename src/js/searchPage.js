@@ -121,3 +121,11 @@ function initializePagination() {
     }
   }
 }
+
+function disabledBtnTab() {
+  const btns = document.querySelectorAll(".serarch-tabs__title");
+
+  btns.forEach((btn) => {
+    const numItem = btn.querySelector("span");
+  });
+}
