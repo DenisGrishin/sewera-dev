@@ -1030,3 +1030,72 @@
 		background-position: 200% 0;
 	}
 }
+.simplesearch-paging {
+	padding: 10px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	row-gap: 10px;
+	column-gap: 20px;
+}
+
+.simplesearch-result-pages {
+	display: none;
+}
+.simplesearch-page {
+	font-size: 18px;
+	opacity: 0.7;
+	border: 1px solid #e8eaec;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 5px;
+}
+.pag-ellipsis {
+	opacity: 0.7;
+}
+.simplesearch-current-page {
+	border-radius: 4px;
+	background-color: var(--bgMain);
+
+	font-weight: 600;
+	opacity: 1;
+	color: #102938;
+}
+.simplesearch-result-pages__prev,
+.simplesearch-result-pages__next {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&::before {
+		content: "";
+		width: 20px;
+		height: 20px;
+		flex: 0 1 20px;
+		transform: rotate(270deg);
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE1IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggaWQ9IlZlY3RvciA5NCIgZD0iTTEuNSAxTDcuNSA3TDEzLjUgMSIgc3Ryb2tlPSIjMTAyOTM4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zdmc+");
+	}
+}
+.simplesearch-result-pages__prev {
+	&::before {
+		transform: rotate(90deg);
+	}
+}
+@media (max-width: 767.98px) {
+	.simplesearch-page {
+		font-size: 16px;
+		width: 25px;
+		height: 25px;
+	}
+	.simplesearch-paging {
+		column-gap: 10px;
+		padding: 0px;
+	}
+}
