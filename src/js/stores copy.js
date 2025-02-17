@@ -42,7 +42,6 @@ if (!window.require_once_stories_js) {
     };
 
     sliderBack = (event) => {
-      debugger;
       if (event && event.target.tagName === "A") {
         this.onSliderEnd();
         return;
@@ -96,8 +95,74 @@ if (!window.require_once_stories_js) {
       this.index = index;
       this.slideElement = slideElement;
       this.fullGallery = fullGallery;
+      this.soundButton = instaVideo.querySelector(".insta-gallery-full__sound");
 
       this.error.style.display = "none";
+
+      this.player.muted = true;
+
+      //initialize metadata
+      // при загрущки видео берем длину видео // отнисться к vidoe
+      // this.player.addEventListener(
+      //   "loadedmetadata",
+      //   () => {
+      //     this.length = this.player.duration;
+      //   },
+      //   { passive: true }
+      // );
+      // отнисться к vidoe
+      // this.player.addEventListener(
+      //   "error",
+      //   (event) => {
+      //     this.isErrored = true;
+      //     this.setErrorView(true);
+      //     this.setPlay(false);
+      //     this.onError();
+      //   },
+      //   { passive: true }
+      // );
+      // отнисться к vidoe
+      // this.player.addEventListener(
+      //   "abort",
+      //   (event) => {
+      //     this.isErrored = true;
+      //     this.setErrorView(true);
+      //     this.setPlay(false);
+      //     this.onError();
+      //   },
+      //   { passive: true }
+      // );
+
+      //progress event initialize
+      // this.player.addEventListener(
+      //   "playing",
+      //   () => {
+      //     this.setLoadingView(false);
+      //   },
+      //   { passive: true }
+      // );
+      // this.player.addEventListener(
+      //   "waiting",
+      //   () => {
+      //     this.setLoadingView(true);
+      //   },
+      //   { passive: true }
+      // );
+      // совыбте отвечет за
+      this.player.addEventListener(
+        "timeupdate",
+        (event) => {
+          this.onProgress(this.player.currentTime);
+        },
+        { passive: true }
+      );
+      this.player.addEventListener(
+        "ended",
+        () => {
+          this.sliderNext();
+        },
+        { passive: true }
+      );
 
       //Pause action
       let isPause = false;
@@ -112,6 +177,8 @@ if (!window.require_once_stories_js) {
 
         this.x = event.clientX;
 
+        this.player.pause();
+
         clearTimeout(pauseTimer);
         pauseTimer = setTimeout(() => {
           isPause = true;
@@ -123,6 +190,8 @@ if (!window.require_once_stories_js) {
 
         if (event.touches.length === 0) return;
         this.x = event.changedTouches[0].clientX;
+
+        this.player.pause();
 
         clearTimeout(pauseTimer);
         pauseTimer = setTimeout(() => {
@@ -143,10 +212,11 @@ if (!window.require_once_stories_js) {
 
         clearTimeout(pauseTimer);
         if (isPause) {
+          this.player.play();
           isPause = false;
         }
       };
-      // на слайдды внутри
+
       let click = (event) => {
         if (!this.isPlayed) {
           this.fullGallery.fullGallerySlideTo(this.index);
@@ -154,6 +224,7 @@ if (!window.require_once_stories_js) {
         }
 
         if (isPause) {
+          this.player.play();
           isPause = false;
           return;
         }
@@ -173,21 +244,104 @@ if (!window.require_once_stories_js) {
       this.button.oncontextmenu = (event) => {
         return false;
       };
+
+      //Volume button
+      this.soundButton.addEventListener(
+        "click",
+        () => {
+          this.fullGallery.fullGallerySetVolume(!fullGallery.fullGalleryVolume);
+        },
+        { passive: true }
+      );
+      this.updateViewSoundButton();
     }
     // end constructor
-    // сраьботвает когда открвыае стоис
-    LoadAndPlay = () => {};
+    LoadAndPlay = () => {
+      if (this.isLoading) return;
+      if (this.isPlayed === true) {
+        this.player.play();
+        if (this.isErrored) {
+          this.playError();
+          return;
+        }
+        this.setLoadingView(false);
+      } else {
+        this.player.pause();
+        clearInterval(this.errorProgressInterval);
+      }
+    };
 
     setPlay(play) {
-      setTimeout(() => {
-        this.onProgress(10);
-        this.updateStyle();
-      }, 100);
+      document.querySelectorAll(".insta-gallery video").forEach((elem) => {
+        console.log(elem);
+        elem.preload = true;
+      });
+      if (play === this.isPlayed || this.isLoading) return;
+      if (play) {
+        clearInterval(this.errorProgressInterval);
+        this.isPlayed = true;
+        this.LoadAndPlay();
+      } else {
+        clearInterval(this.errorProgressInterval);
+        this.player.pause();
+        this.isPlayed = false;
+
+        this.updateViewSoundButton();
+      }
+      this.updateStyle();
     }
 
     setProgress(time) {
-      // debugger;
-      // this.onProgress(time);
+      this.player.currentTime = time;
+    }
+
+    updateViewSoundButton() {
+      let icons = this.soundButton.querySelectorAll("svg");
+
+      if (!this.fullGallery.fullGalleryVolume) {
+        icons[1].style.display = "none";
+        icons[0].style.display = "";
+      } else {
+        icons[0].style.display = "none";
+        icons[1].style.display = "";
+      }
+    }
+    // отвечает за прелодер
+    setLoadingView(state) {
+      if (state === this.viewLoading) return;
+      if (state) {
+        this.preloader.style.display = "";
+        this.viewLoading = true;
+      } else {
+        this.preloader.style.display = "none";
+        this.viewLoading = false;
+      }
+    }
+
+    playError() {
+      this.errorTimeEnd = 0;
+      this.length = 50;
+      this.errorProgressInterval = setInterval(() => {
+        if (this.errorTimeEnd > 50) {
+          clearInterval(this.errorProgressInterval);
+          this.sliderNext();
+          return;
+        }
+
+        this.errorTimeEnd += 1;
+        this.onProgress(this.errorTimeEnd);
+      }, 20);
+    }
+
+    setErrorView(state) {
+      if (state === this.viewError) return;
+      if (state) {
+        this.error.style.display = "";
+        this.viewError = true;
+      } else {
+        this.error.style.display = "none";
+        this.viewError = false;
+      }
     }
   }
 
@@ -211,6 +365,18 @@ if (!window.require_once_stories_js) {
       );
       this.swiperRight = this.instaGallery.querySelector(
         ".insta-gallery__right-arrow"
+      );
+
+      //sound button
+      this.soundButton = this.instaGallery.querySelector(
+        ".insta-gallery-full__volume-button"
+      );
+      this.soundButton.addEventListener(
+        "click",
+        () => {
+          this.fullGallerySetVolume(!this.fullGalleryVolume);
+        },
+        { passive: true }
       );
 
       //gallery
@@ -277,11 +443,23 @@ if (!window.require_once_stories_js) {
 
         newInstaVideo.innerHTML = `
                     <div class="insta-video__button"></div>
-                    <img class="insta-video__player" src="${videoSrc}">
-                  
+                    <video preload="none" class="insta-video__player" data-is src="${videoSrc}" playsinline preload="metadata" webkit-playsinline muted></video>
                     <div class="insta-video__error" style="display: none">Ошибка<br>Не удалось загрузить ролик.</div>
                     <div class="insta-video__preloader" style="display: none"></div>
                     `;
+
+        //initialize sound button
+        let soundButton = document.createElement("div");
+        soundButton.classList.add("insta-gallery-full__sound");
+        soundButton.innerHTML = `
+                    <svg width="31" height="18" viewBox="0 0 31 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0L7 4H0V14H7L12 18V0ZM29.2929 2.29289L24.5 7.08579L19.7071 2.29289L18.2929 3.70711L23.0858 8.5L18.2929 13.2929L19.7071 14.7071L24.5 9.91421L29.2929 14.7071L30.7071 13.2929L25.9142 8.5L30.7071 3.70711L29.2929 2.29289Z" fill="white"/>
+                    </svg>
+                    <svg width="31" height="18" viewBox="0 0 31 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0L7 4H0V14H7L12 18V0ZM22 2C25.866 2 29 5.13401 29 9C29 12.866 25.866 16 22 16H18V18H22C26.9706 18 31 13.9706 31 9C31 4.02944 26.9706 0 22 0H18V2H22ZM25 9C25 7.34315 23.6569 6 22 6H18V4H22C24.7614 4 27 6.23858 27 9C27 11.7614 24.7614 14 22 14H18V12H22C23.6569 12 25 10.6569 25 9Z" fill="white"/>
+                    </svg>
+                `;
+        newInstaVideo.appendChild(soundButton);
 
         let newSlide = document.createElement("div");
         newSlide.setAttribute("class", "swiper-slide");
@@ -367,17 +545,11 @@ if (!window.require_once_stories_js) {
 
       //Progress action
       this.instaVideoList.forEach((elem, index) => {
-        console.log(elem);
         elem.onProgress = (progress) => {
           let line = this.fullGalleryNavidation.children[index].querySelector(
             ".insta-gallery-full__navigation-line-progress"
           );
-
-          line.classList.add("_progressev-actv");
-
-          setTimeout(() => {
-            line.classList.remove("_progressev-actv");
-          }, 100000);
+          line.style.width = (progress / elem.length) * 100 + "%";
         };
 
         elem.onEnd = () => {
@@ -408,6 +580,7 @@ if (!window.require_once_stories_js) {
               return;
             }
             this.fullGallerySlideTo(this.fullSwiper.activeIndex - 1);
+            this.instaVideoList.forEach((elem) => elem.updateViewSoundButton());
           } else if (event.key === "ArrowRight") {
             if (
               this.fullSwiper.slides.length <
@@ -417,6 +590,7 @@ if (!window.require_once_stories_js) {
               return;
             }
             this.fullGallerySlideTo(this.fullSwiper.activeIndex + 1);
+            this.instaVideoList.forEach((elem) => elem.updateViewSoundButton());
           }
         },
         { passive: true }
@@ -426,7 +600,6 @@ if (!window.require_once_stories_js) {
       this.fullGallery.addEventListener(
         "click",
         (event) => {
-          debugger;
           let isTarget = event.target === this.fullGallery;
           if (isTarget) this.fullGallerySetOpen(false);
         },
@@ -450,7 +623,7 @@ if (!window.require_once_stories_js) {
         this.instaVideoList.forEach((video) => video.setPlay(false));
       }
     }
-    // перключает по слйадом в стрис
+
     fullGallerySlideTo(index) {
       this.fullSwiper.slideTo(index);
       this.updatePlay();
@@ -493,6 +666,19 @@ if (!window.require_once_stories_js) {
             let video = elem.querySelector("video");
             video.muted = false;
           });
+      }
+      this.fullGalleryVolume = !this.fullGalleryVolume;
+      this.instaVideoList.forEach((elem) => elem.updateViewSoundButton());
+
+      //button icon update
+      let buttonIcons = this.soundButton.querySelectorAll("svg");
+
+      if (this.fullGalleryVolume) {
+        buttonIcons[0].style.display = "none";
+        buttonIcons[1].style.display = "";
+      } else {
+        buttonIcons[0].style.display = "";
+        buttonIcons[1].style.display = "none";
       }
     }
   }
