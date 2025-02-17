@@ -1,7 +1,8 @@
 // Подключение основного файла стилей
 import "../scss/style.scss";
 import "./header.js";
-import "./stores.js";
+// import "./stores.js";
+import "./insta-stories.js";
 
 /* Подключаем файлы со своим кодом */
 import "./files/script.js";
