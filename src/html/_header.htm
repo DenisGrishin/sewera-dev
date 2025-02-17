@@ -19,6 +19,7 @@
               <div class="drop-menu__wrapper-list" itemscope itemtype="http://schema.org/SiteNavigationElement">
                 <ul class="drop-menu__list">
                   <li class="drop-menu__item"><a href="o-nas-sewera/" itemprop="url">О нас</a></li>
+                  <li class="drop-menu__item"><a href="contacts/" itemprop="url">Контакты</a></li>
                   <li class="drop-menu__item"><a href="reviews/" itemprop="url">Отзывы</a></li>
                   <li class="drop-menu__item"><a href="dostavka/" itemprop="url">Доставка</a></li>
                   <li class="drop-menu__item"><a href="oplata/" itemprop="url">Оплата</a></li>
@@ -94,7 +95,7 @@
 
           <form role="search" class="bottom-header__search" action="/search">
             <input type="search" autocomplete="off" placeholder="Поиск" name="search"
-              class="bottom-header__input-serarch " data-target="desktop-search-list-content">
+              class="bottom-header__input-serarch " data-target="desktop-search-list-content" value="[[#GET.search]]">
 
             <button type="button" class="bottom-header__btn-clear-input btn-claer-input" hidden></button>
             <button type="submit" class="bottom-header__btn-search _iconSearch"></button>
@@ -176,7 +177,7 @@
 
           <div class="catalog-menu__wrapper-sub-nav">
             <nav class="catalog-menu__sub-nav sub-nav">
-              <div class="sub-nav__item menu-sub" data-category="septik">
+              <div class="sub-nav__item menu-sub" data-category="septik" hidden>
                 <div class="menu-sub__name">
                   Септик
                 </div>
@@ -368,14 +369,14 @@
 
                 </div>
               </div>
-              <div class="sub-nav__item" data-category="blagoustrojstvo" hidden>
+              <div class="sub-nav__item" data-category="blagoustrojstvo">
                 <div class="menu-sub__name">
                   Благоустройство
                 </div>
                 <div class="menu-sub__wrapper custom-scrollbar">
                   <ul class="menu-sub__list">
                     <li class="menu-sub__item">Каталог услуг</li>
-
+                    <li class="menu-sub__item"><a href="blagoustrojstvo/">Комплексное благоустройство участка </a></li>
                     <li class="menu-sub__item"><a href="blagoustrojstvo/ykladka-dorozhek/">Укладка
                         дорожек </a></li>
 
@@ -489,8 +490,6 @@
                       </a></li>
                     <li class="menu-sub__item"><a href="katok/">Каток прямо на вашем участке
                       </a></li>
-                    <li class="menu-sub__item"><a href="ykrashenie-doma/">Украшение загородного дома
-                      </a></li>
 
 
                   </ul>
@@ -536,7 +535,7 @@
         <div class="touch-search-block__top"><button class="touch-search-block__back"></button>
           <form role="search" class="touch-search-block__search" action="/search">
             <input type="search" autocomplete="off" placeholder="Поиск" name="search"
-              class="touch-search-block__input-serarch" data-target="touch-search-list-content">
+              class="touch-search-block__input-serarch" data-target="touch-search-list-content" value="[[#GET.search]]">
             <button type="button" class="touch-search-block__btn-clear-input btn-claer-input" hidden></button>
             <button type="submit" class="touch-search-block__btn-search _iconSearch"></button>
           </form>
@@ -675,14 +674,11 @@
               <div class="accordions-menu__body">
                 <ul class="accordions-menu__list">
                   <li class="accordions-menu__it-list"><a href="o-nas-sewera/">О нас</a></li>
+                  <li class="accordions-menu__it-list"><a href="contacts/">Контакты</a></li>
                   <li class="accordions-menu__it-list"><a href="reviews/">Отзывы</a></li>
-                  <li class="accordions-menu__it-list"><a href="our-video/">Наши видео</a></li>
-                  <li class="accordions-menu__it-list"><a href="dostavka/">Доставка</a></li>
-                  <li class="accordions-menu__it-list"><a href="oplata/">Оплата</a></li>
-                  <li class="accordions-menu__it-list"><a href="garantija/">Гарантии</a></li>
-                  <li class="accordions-menu__it-list"><a href="blog/">Полезное</a></li>
+                  <li class="accordions-menu__it-list"><a href="promotion/">Пригласи друга</a></li>
                   <li class="accordions-menu__it-list"><a href="vacancy/">Вакансии</a></li>
-                  <li class="accordions-menu__it-list"><a href="journal/">Журнал Sewera</a></li>
+
                 </ul>
               </div>
             </div>
@@ -722,12 +718,12 @@
             <div class="hit-season__wrapper">
               <a href="katok/" class="hit-season__item">
                 <img class="hit-season__img" src="/srv/assets/images/main/header/hit-season/katok.png" alt="Каток на вашем
-                участке">
+              участке">
 
               </a>
               <a href="ykrashenie-doma/" class="hit-season__item">
                 <img class="hit-season__img" src="/srv/assets/images/main/header/hit-season/ykrashenie-doma.png" alt="Украшение 
-                загородного дома">
+              загородного дома">
 
               </a>
             </div>

@@ -2136,6 +2136,7 @@ html {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	text-align: left;
 }
 .sewera-septik .submitted__posts-content__info {
 	display: -webkit-box;
@@ -9082,6 +9083,9 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-grid-columns: 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px;
 		grid-template-columns: repeat(12, 80px);
 		overflow-x: scroll;
+
+		scroll-behavior: smooth;
+		scrollbar-width: none;
 		margin-bottom: 20px !important;
 	}
 	.sewera-septik .fill-time__bottom {
@@ -12405,6 +12409,16 @@ sewera-septik .form-qwiz__user-contact {
 		top: auto;
 		bottom: 320px;
 	}
+	.sewera-septik .banner-main__bottom_no-wrap {
+		-ms-flex-wrap: wrap !important;
+		flex-wrap: wrap !important;
+		width: -webkit-min-content;
+		width: -moz-min-content;
+		width: min-content;
+		-webkit-box-pack: start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	}
 }
 @media (max-width: 410.98px) {
 	.sewera-septik .artz-wells-page-bg-img {
@@ -12443,16 +12457,7 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 	}
-	.sewera-septik .banner-main__bottom_no-wrap {
-		-ms-flex-wrap: wrap !important;
-		flex-wrap: wrap !important;
-		width: -webkit-min-content;
-		width: -moz-min-content;
-		width: min-content;
-		-webkit-box-pack: start;
-		-ms-flex-pack: start;
-		justify-content: flex-start;
-	}
+
 	.sewera-septik .banner__price-bottom:not(:last-child) {
 		margin-right: 60px;
 	}
