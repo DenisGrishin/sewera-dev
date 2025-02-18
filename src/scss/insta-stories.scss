@@ -448,3 +448,14 @@
 	width: 100% !important ;
 	transition: all 10s linear 0s !important;
 }
+.insta-story__button {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	display: block;
+	cursor: inherit;
+	transform-style: preserve-3d;
+	transform: translateZ(100px);
+}

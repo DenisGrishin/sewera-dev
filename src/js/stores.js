@@ -253,7 +253,6 @@ if (!window.require_once_stories_js) {
         this.fullGalleryNavidation.innerHTML += `
                 <div class="insta-gallery-full__navigation-line">
                     <div class="insta-gallery-full__navigation-line-progress" style="width: 0"></div>
-                 
                 </div>
             `;
       });
