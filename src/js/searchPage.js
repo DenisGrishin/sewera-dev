@@ -124,8 +124,19 @@ function initializePagination() {
 
 function disabledBtnTab() {
   const btns = document.querySelectorAll(".serarch-tabs__title");
+  if (btns.length !== 0) {
+    btns.forEach((btn) => {
+      const numItem = btn.textContent;
+      const number = Number(numItem.match(/\d+/g).pop());
 
-  btns.forEach((btn) => {
-    const numItem = btn.querySelector("span");
-  });
+      if (!number) {
+        btn.disabled = true;
+        btn.style.cursor = "not-allowed";
+      } else {
+        btn.disabled = false;
+        btn.style.cursor = "pointer";
+      }
+    });
+  }
 }
+disabledBtnTab();
