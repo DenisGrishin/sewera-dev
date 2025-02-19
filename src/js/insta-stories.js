@@ -4,7 +4,7 @@ class InstaGallery {
   instaVideoList = new Array(0);
 
   interval = null;
-  duration = 30000;
+  duration = 5000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
@@ -51,14 +51,17 @@ class InstaGallery {
         spaceBetween: 48,
         slidesPerView: "5",
         breakpoints: {
-          1201: {},
-          1200: {
+          1023: {
             spaceBetween: 48,
-            slidesPerView: "auto",
           },
 
+          767: {
+            spaceBetween: 7.46,
+            slidesPerView: "auto",
+          },
           320: {
             spaceBetween: 7.46,
+            slidesPerView: "auto",
           },
         },
         watchSlidesProgress: true,
@@ -73,14 +76,19 @@ class InstaGallery {
       const slide = e.target.closest(".inst-gallery__slide");
       if (!slide) return;
 
+      // StorageHelper.setItem(
+      //   `stories-${slide.dataset.index}`,
+      //   `viewedStories-${slide.dataset.index}`
+      // );
+
       StorageHelper.setItem(
-        `stories-${slide.dataset.index}`,
-        `viewedStories-${slide.dataset.index}`
+        `date-stories-${slide.dataset.index}`,
+        slide.dataset.dateStories
       );
 
       this.createStory(slide);
 
-      slide.classList.add("_viewed");
+      slide.querySelector(".inst-gallery__img").classList.add("_viewed");
       this.fullGallerySetOpen(true);
       this.play(0);
     });
@@ -112,7 +120,7 @@ class InstaGallery {
           },
           320: {
             spaceBetween: 0,
-            allowTouchMove: true,
+            // allowTouchMove: true,
           },
         },
       }
@@ -143,7 +151,7 @@ class InstaGallery {
             ".inst-gallery-full__navigation-line-progress"
           ).style.width = "0";
         });
-
+      this.reset();
       this.play(this.fullSwiper.activeIndex);
       this.instaVideoList.forEach((elem) => elem.updateStyle());
     });
@@ -166,18 +174,19 @@ class InstaGallery {
     if (state) {
       this.fullGallery.style.display = "";
       this.fullGalleryIsOpen = true;
-      this.fullSwiper.activeIndex = 0;
+
+      this.fullGallerySlideTo(0);
       this.instaVideoList.forEach((elem) => elem.updateStyle());
       document.body.style.overflow = "hidden";
-      // this.instaVideoList.forEach((video) => video.setProgress(0));
+      this.reset();
     } else {
       this.stop();
       this.fullGallery.style.display = "none";
       this.fullGalleryIsOpen = false;
-      this.fullSwiper.activeIndex = 0;
+
       this.fullGalleryWrapper.innerHTML = "";
       this.fullGalleryNavidation.innerHTML = "";
-      document.body.style.overflow = ""; // Включаем скролл обратно
+      document.body.style.overflow = "";
     }
   };
 
@@ -206,7 +215,7 @@ class InstaGallery {
         <img class="inst-story__icon-logo" src="img/stories/logo.svg">
         
 
-        <img class="inst-story__player" src="${listContent[0]}">
+        <img class="inst-story__img" src="${listContent[0]}">
        <div class="inst-story__button"></div>
        <a href='${listContent[1]}' class="inst-story__link"></a>
        <div></div>
@@ -233,28 +242,10 @@ class InstaGallery {
     });
   };
 
-  play = (indx, currentProgress = 6.66) => {
+  play = (indx) => {
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
     );
-
-    // let progreess = currentProgress; // 3.33
-    // // let progreess = 10; // 10
-
-    // let progreessStart = 3.33;
-    // // let progreessStart = 10;
-
-    // this.isPlayed = true;
-
-    // setTimeout(() => {
-    //   lines[indx]
-    //     .querySelector(".inst-gallery-full__navigation-line-progress")
-    //     .classList.add("_start");
-
-    //   lines[indx].querySelector(
-    //     ".inst-gallery-full__navigation-line-progress"
-    //   ).style.width = progreessStart + "%";
-    // }, 10);
 
     if (this.interval) return; // Уже идет
 
@@ -265,8 +256,7 @@ class InstaGallery {
       this.progress = (this.elapsedTime / this.duration) * 100;
 
       if (this.progress >= 100) {
-        this.stop();
-
+        this.reset();
         if (indx === lines.length - 1) {
           // this.fullGallerySetOpen(false);
         } else {
@@ -280,52 +270,19 @@ class InstaGallery {
         ".inst-gallery-full__navigation-line-progress"
       ).style.width = this.progress + "%";
     }, 100);
-
-    // this.interval = setInterval(() => {
-    //   this.currentProgreess = progreess;
-    //   if (progreess >= 100) {
-    //     this.stop();
-    //
-
-    //     if (indx === lines.length - 1) {
-    //       // this.fullGallerySetOpen(false);
-    //     } else {
-    //       this.nextSlide();
-    //     }
-
-    //     return;
-    //   }
-    //   if (
-    //     lines[indx].querySelector(
-    //       ".inst-gallery-full__navigation-line-progress"
-    //     )
-    //   ) {
-    //     lines[indx].querySelector(
-    //       ".inst-gallery-full__navigation-line-progress"
-    //     ).style.width = progreess + "%";
-
-    //     progreess = progreess + progreessStart;
-    //   }
-    // }, 1000);
   };
   stop = () => {
     this.pause();
-    console.log("Прогресс завершен!");
   };
   pause = () => {
     clearInterval(this.interval);
     this.interval = null;
   };
-  setPuase = (indx) => {
-    const lines = this.fullGalleryNavidation.querySelectorAll(
-      ".inst-gallery-full__navigation-line"
-    );
-    lines[indx]
-      .querySelector(".inst-gallery-full__navigation-line-progress")
-      .classList.remove("_start");
-
-    this.stop();
-  };
+  reset() {
+    this.pause();
+    this.width = 0;
+    this.elapsedTime = 0;
+  }
 
   setPlay = (indx) => {};
   nextSlide = () => {
@@ -336,11 +293,20 @@ class InstaGallery {
 
   checkViewedStories = () => {
     this.slideGallery.forEach((slide) => {
+      // if (
+      //   StorageHelper.getItem(`stories-${slide.dataset.index}`) ===
+      //   `viewedStories-${slide.dataset.index}`
+      // ) {
+      //   slide.querySelector(".inst-gallery__img").classList.add("_viewed");
+      // }
+
       if (
-        StorageHelper.getItem(`stories-${slide.dataset.index}`) ===
-        `viewedStories-${slide.dataset.index}`
+        StorageHelper.getItem(`date-stories-${slide.dataset.index}`) !==
+        slide.dataset.dateStories
       ) {
-        slide.classList.add("_viewed");
+        slide.querySelector(".inst-gallery__img").classList.remove("_viewed");
+      } else {
+        slide.querySelector(".inst-gallery__img").classList.add("_viewed");
       }
     });
   };
@@ -357,28 +323,28 @@ class InstaStory {
     this.swiper = fullGallery.fullSwiper;
     this.button = instaStory.querySelector(".inst-story__button");
     let mouseDown = (event) => {
-      this.fullGallery.pause(this.index);
+      this.fullGallery.pause();
     };
 
-    let touchDown = (event) => {};
+    let touchDown = (event) => {
+      this.fullGallery.pause();
+    };
 
     let mouseUp = (event) => {
       this.fullGallery.play(this.index);
     };
 
-    let touchUp = (event) => {};
+    let touchUp = (event) => {
+      this.fullGallery.play(this.index);
+    };
 
     let click = (event) => {
-      this.fullGallery.fullGallerySlideTo(this.index);
-      // this.fullGallery.startProgress(this.index);
-
+      if (event.clientX > innerWidth / 2) {
+        this.sliderNext(event);
+      } else {
+        this.sliderBack(event);
+      }
       return;
-
-      // if (event.clientX > innerWidth / 2) {
-      //   this.sliderNext(event);
-      // } else {
-      //   this.sliderBack(event);
-      // }
     };
 
     this.button.addEventListener("click", click, { passive: true });
@@ -390,6 +356,28 @@ class InstaStory {
       return false;
     };
   }
+
+  sliderNext = (event) => {
+    if (event && event.target.tagName === "A") {
+      return;
+    }
+    if (!this.fullGallery.instaVideoList[this.swiper.activeIndex + 1]) {
+      return;
+    }
+    this.fullGallery.fullSwiper.slideNext();
+    this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
+  };
+
+  sliderBack = (event) => {
+    if (event && event.target.tagName === "A") {
+      return;
+    }
+    if (!this.fullGallery.instaVideoList[this.swiper.activeIndex - 1]) {
+      return;
+    }
+    this.fullGallery.fullSwiper.slidePrev();
+    this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
+  };
   updateStyle() {
     let activeIndex = this.swiper.activeIndex;
 
