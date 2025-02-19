@@ -37,6 +37,10 @@
  ==============================================================================================================================================
  ==============================================================================================================================================
 */
+.inst-gallery * {
+	box-sizing: border-box;
+	text-align: left;
+}
 .inst-gallery-full {
 	position: fixed;
 	width: 100%;
@@ -84,10 +88,20 @@
 	height: 100%;
 	width: 32px;
 }
+.inst-gallery-full__slider {
+	position: relative;
+}
 .inst-gallery-full__navigation {
 	display: flex;
 	margin-bottom: 20px;
 	gap: 3px;
+	position: absolute;
+	width: 89%;
+
+	z-index: 10;
+	left: 50%;
+	transform: translate(-50%, 0px);
+	top: 13px;
 }
 .inst-gallery-full__navigation-line {
 	width: 100%;
@@ -114,7 +128,7 @@
 .inst-gallery-full__volume svg {
 	fill: white;
 }
-.insta-story {
+.inst-story {
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -123,13 +137,13 @@
 	justify-content: center;
 	position: relative;
 }
-.insta-story:after,
-.insta-story__player {
+.inst-story:after,
+.inst-story__player {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 }
-.insta-story:after {
+.inst-story:after {
 	content: "";
 	display: block;
 	z-index: 5;
@@ -138,20 +152,20 @@
 	transform-style: preserve-3d;
 	transform: translateZ(100px);
 }
-.insta-story__error,
-.insta-story__player {
+.inst-story__error,
+.inst-story__player {
 	top: 0;
 	-webkit-transform-style: preserve-3d;
 }
-.insta-story__player {
+.inst-story__player {
 	object-fit: cover;
 	z-index: 0;
 	left: 0;
 	transform-style: preserve-3d;
 	transform: translateZ(-100px);
 }
-.insta-story__error,
-.insta-story__preloader {
+.inst-story__error,
+.inst-story__preloader {
 	position: relative;
 	z-index: 2;
 	width: 100%;
@@ -164,7 +178,7 @@
 	user-select: none;
 	left: 0;
 }
-.insta-story__error {
+.inst-story__error {
 	background-color: #000;
 	align-items: center;
 	justify-content: center;
@@ -172,18 +186,18 @@
 	transform: translateZ(100px);
 }
 .inst-gallery-full__sound,
-.insta-story__preloader {
+.inst-story__preloader {
 	top: 0;
 	align-items: center;
 	-webkit-transform-style: preserve-3d;
 }
-.insta-story__preloader {
+.inst-story__preloader {
 	background-color: rgba(0, 0, 80, 0.2);
 	justify-content: center;
 	transform-style: preserve-3d;
 	transform: translateZ(100px);
 }
-.insta-story__preloader:before {
+.inst-story__preloader:before {
 	content: "";
 	display: block;
 	width: 48px;
@@ -202,14 +216,13 @@
 		transform: rotate(360deg);
 	}
 }
-.insta-story__link {
-	position: fixed;
-	background-color: #fff;
-	padding: 16px 32px;
-	bottom: 70px;
-	border-radius: 999px;
-	text-decoration: none;
-	color: #1e1e1e;
+.inst-story__link {
+	position: absolute;
+	bottom: 25px;
+
+	z-index: 111111111111111;
+	width: 87%;
+	height: 55px;
 }
 .inst-gallery-full__sound {
 	position: absolute;
@@ -260,7 +273,7 @@
 .swiper-slide-active .inst-gallery-full__sound {
 	display: flex;
 }
-@media screen and (min-width: 512px) {
+@media screen and (min-width: 430px) {
 	.swiper-slide_left-step-1,
 	.swiper-slide_left-step-2,
 	.swiper-slide_not-visible,
@@ -368,7 +381,39 @@
 		height: 18px;
 	}
 }
-@media screen and (max-width: 512px) {
+
+.inst-story__button {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	display: block;
+	cursor: inherit;
+	transform-style: preserve-3d;
+	transform: translateZ(100px);
+}
+.inst-gallery-full__navigation-line-progress._start {
+	// width: 100%;
+	transition: width 1s linear 0s;
+}
+
+.inst-story__icon-logo {
+	width: 105px;
+	position: absolute;
+	top: 25px;
+	left: 25px;
+	z-index: 10;
+
+	height: auto;
+}
+
+@media screen and (max-width: 430px) {
+	.inst-story__link {
+		bottom: 28px;
+
+		width: 100%;
+	}
 	.insta-gallery__title {
 		margin-bottom: calc(30px / 2);
 		font-weight: 700;
@@ -410,6 +455,7 @@
 		width: 100%;
 		margin-bottom: 0;
 		padding: 10px 15px;
+		transform: translate(0px, 0px);
 	}
 	.inst-gallery-full__swiper {
 		width: 100vw;
@@ -440,23 +486,11 @@
 		fill: white;
 	}
 	.inst-gallery-full__swiper .swiper-slide,
-	.insta-story {
+	.inst-story {
 		border-radius: 0;
 	}
-}
-
-.insta-story__button {
-	position: absolute;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	display: block;
-	cursor: inherit;
-	transform-style: preserve-3d;
-	transform: translateZ(100px);
-}
-.inst-gallery-full__navigation-line-progress._start {
-	// width: 100%;
-	transition: all 1s linear 0s;
+	.inst-story__icon-logo {
+		top: 21px;
+		left: 16px;
+	}
 }

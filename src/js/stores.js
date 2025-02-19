@@ -272,8 +272,8 @@ if (!window.require_once_stories_js) {
             1023: {
               spaceBetween: 31,
             },
-            512: {
-              spaceBetween: 27,
+            430: {
+              spaceBetween: 31,
             },
           },
         }
