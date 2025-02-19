@@ -233,6 +233,7 @@ if (!window.require_once_stories_js) {
 
         //initialize video
         let newInstaVideo = document.createElement("div");
+
         newInstaVideo.setAttribute("class", "insta-video");
 
         newInstaVideo.innerHTML = `

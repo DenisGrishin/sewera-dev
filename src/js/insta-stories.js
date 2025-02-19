@@ -22,6 +22,7 @@ class InstaGallery {
   static delegated = false;
   fullGalleryIsOpen = false;
   instaVideoList = new Array(0);
+  isPlayed = false;
 
   static delegate() {
     InstaGallery.delegated = true;
@@ -96,6 +97,7 @@ class InstaGallery {
 
       slide.classList.add("_viewed");
       this.fullGallerySetOpen(true);
+      this.setPlayed(0);
     });
 
     // закрыть сторисы на кнопку справа вверху
@@ -128,9 +130,36 @@ class InstaGallery {
       }
     );
 
+    //Navigation action
+    this.fullSwiper.on("slideChange", (swiper) => {
+      this.fullGalleryNavidation
+        .querySelectorAll(".inst-gallery-full__navigation-line")
+        .forEach((elem, index) => {
+          elem.querySelector(
+            ".inst-gallery-full__navigation-line-progress"
+          ).style.display = "none";
+
+          if (index < swiper.activeIndex) {
+            elem.style.backgroundColor = "#FFF";
+          } else {
+            elem.style.backgroundColor = "";
+          }
+
+          if (index === swiper.activeIndex) {
+            elem.querySelector(
+              ".inst-gallery-full__navigation-line-progress"
+            ).style.display = "";
+          }
+
+          elem.querySelector(
+            ".inst-gallery-full__navigation-line-progress"
+          ).style.width = "0";
+        });
+    });
+
     this.checkViewedStories();
   }
-
+  // constructor end ========================
   fullGallerySetOpen = (state) => {
     if (this.fullGalleryIsOpen === state) return;
 
@@ -182,7 +211,62 @@ class InstaGallery {
       this.instaVideoList.push(
         new InstaStory(newInstaSroty, indx, newSlide, this)
       );
+
+      this.fullGalleryNavidation.insertAdjacentHTML(
+        "beforeend",
+        `
+         <div class="inst-gallery-full__navigation-line">
+          <div class="inst-gallery-full__navigation-line-progress" ></div>
+      </div>
+        `
+      );
     });
+  };
+
+  setPlayed = (indx) => {
+    const lines = this.fullGalleryNavidation.querySelectorAll(
+      ".inst-gallery-full__navigation-line"
+    );
+
+    let maxWidth = 100;
+    // let widthLine = 6.66; // 3.33
+    let widthLine = 10; // 3.33
+
+    this.isPlayed = true;
+    setTimeout(() => {
+      lines[indx]
+        .querySelector(".inst-gallery-full__navigation-line-progress")
+        .classList.add("_start");
+
+      lines[indx].querySelector(
+        ".inst-gallery-full__navigation-line-progress"
+      ).style.width = 10 + "%";
+    }, 10);
+
+    let ci = setInterval(() => {
+      if (widthLine >= maxWidth) {
+        clearInterval(ci);
+
+        if (lines.length > 1 && indx < lines.length - 1) {
+          this.nextSlide();
+        } else {
+          this.fullGallerySetOpen(false);
+        }
+        return;
+      }
+
+      lines[indx].querySelector(
+        ".inst-gallery-full__navigation-line-progress"
+      ).style.width = widthLine + "%";
+
+      widthLine = widthLine + 10;
+    }, 1000);
+  };
+
+  nextSlide = () => {
+    this.fullSwiper.slideNext();
+    this.instaVideoList.forEach((elem) => elem.updateStyle());
+    this.setPlayed(this.fullSwiper.activeIndex);
   };
 
   checkViewedStories = () => {
@@ -205,9 +289,7 @@ class InstaStory {
     this.index = index;
     this.slideElement = slideElement;
     this.fullGallery = fullGallery;
-
     this.swiper = fullGallery.fullSwiper;
-    debugger;
     this.button = instaStory.querySelector(".insta-story__button");
     let mouseDown = (event) => {};
 
@@ -219,6 +301,8 @@ class InstaStory {
 
     let click = (event) => {
       this.fullGallery.fullGallerySlideTo(this.index);
+      // this.fullGallery.startProgress(this.index);
+
       return;
 
       // if (isPause) {
@@ -244,7 +328,7 @@ class InstaStory {
   }
   updateStyle() {
     let activeIndex = this.swiper.activeIndex;
-    debugger;
+
     this.slideElement.classList.remove("swiper-slide_left-step-1");
     this.slideElement.classList.remove("swiper-slide_left-step-2");
     this.slideElement.classList.remove("swiper-slide_right-step-1");

@@ -98,7 +98,7 @@
 	border-radius: 999px;
 }
 .inst-gallery-full__navigation-line-progress {
-	width: 50%;
+	width: 0%;
 	height: 100%;
 	background-color: #fff;
 }
@@ -444,10 +444,7 @@
 		border-radius: 0;
 	}
 }
-.inst-gallery-full__navigation-line-progress._progressev-actv {
-	width: 100% !important ;
-	transition: all 10s linear 0s !important;
-}
+
 .insta-story__button {
 	position: absolute;
 	z-index: 1;
@@ -458,4 +455,8 @@
 	cursor: inherit;
 	transform-style: preserve-3d;
 	transform: translateZ(100px);
+}
+.inst-gallery-full__navigation-line-progress._start {
+	// width: 100%;
+	transition: all 1s linear 0s;
 }
