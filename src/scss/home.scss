@@ -628,6 +628,8 @@ html {
 	padding-bottom: 100px;
 	max-width: 571px !important;
 }
+.sewera-septik .elektromontazhnye {
+}
 .sewera-septik .ksenon-wells-page-bg-img {
 	background-position: bottom 90px right -30px;
 	background-size: 587px auto;
@@ -3879,14 +3881,14 @@ sewera-septik .form-qwiz__user-contact {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 }
-.sewera-septik .one-service__list,
+.sewera-septik .one-service__left ul,
 .sewera-septik .types-wells__info-list {
 	margin-bottom: 0 !important;
 }
 .sewera-septik ._showmore-active .types-wells__content {
 	margin-bottom: 10px;
 }
-.sewera-septik .one-service__list li,
+.sewera-septik .one-service__left ul li,
 .sewera-septik .types-wells__info-list li {
 	list-style: disc !important;
 }
@@ -4678,7 +4680,9 @@ sewera-septik .form-qwiz__user-contact {
 	display: -ms-grid;
 	display: grid;
 	-ms-grid-columns: minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px) minmax(80px, 120px);
-	grid-template-columns: minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px) minmax(80px, 120px);
+	grid-template-columns:
+		minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px)
+		minmax(80px, 120px);
 	-webkit-column-gap: 30px;
 	-moz-column-gap: 30px;
 	column-gap: 30px;
@@ -5961,6 +5965,11 @@ sewera-septik .form-qwiz__user-contact {
 	width: 182px;
 	right: 57px;
 }
+.sewera-septik .form-final_elektromontazhnye .form-final__img img {
+	width: 237px;
+	right: 36px;
+	bottom: -23px;
+}
 .sewera-septik .form-finak_pogreba .form-final__img img {
 	width: 209px;
 	right: 30px;
@@ -7052,6 +7061,11 @@ sewera-septik .form-qwiz__user-contact {
 	width: 604px;
 	bottom: -43px;
 }
+.sewera-septik .banner-main__elektromontazhnye {
+	right: 0;
+	width: 704px;
+	bottom: -43px;
+}
 .sewera-septik .banner-main__doma-videonabljudenie {
 	height: auto;
 	width: 709px;
@@ -7289,6 +7303,8 @@ sewera-septik .form-qwiz__user-contact {
 }
 .sewera-septik .one-service__price {
 	margin-bottom: 20px;
+}
+.sewera-septik .one-service__left ul {
 }
 .sewera-septik .one-service__right {
 	-webkit-box-flex: 0;
@@ -7611,6 +7627,11 @@ sewera-septik .form-qwiz__user-contact {
 		right: -127px;
 		bottom: -106px;
 	}
+	.sewera-septik .banner-main__elektromontazhnye {
+		right: -148px;
+		bottom: -34px;
+		width: 610px;
+	}
 	.sewera-septik .banner-main__doma-videonabljudenie {
 		right: -242px;
 	}
@@ -7731,6 +7752,9 @@ sewera-septik .form-qwiz__user-contact {
 	}
 	.sewera-septik .form-final_svai .form-final__img img {
 		right: 27px;
+	}
+	.sewera-septik .form-final_elektromontazhnye .form-final__img img {
+		right: 9px;
 	}
 	.sewera-septik .form-finak_pogreba .form-final__img img {
 		right: -4px;
@@ -8407,6 +8431,8 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-flex-align: start;
 		align-items: flex-start;
 	}
+
+	.sewera-septik .form-final_elektromontazhnye .form-final__input,
 	.sewera-septik .form-finak_kupeli .form-final__input,
 	.sewera-septik .form-finak_pogreba .form-final__input,
 	.sewera-septik .form-final_adapter-wells .form-final__input,
@@ -8486,6 +8512,7 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .brand-carusel__slide {
 		min-height: 460px;
 	}
+	.sewera-septik .banner-main__elektromontazhnye,
 	.sewera-septik .banner-main__100m-wells-bg,
 	.sewera-septik .banner-main__adapter-wells-bg,
 	.sewera-septik .banner-main__artz-wells-bg,
@@ -8543,6 +8570,7 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-transform: translate(50%, 0);
 		transform: translate(50%, 0);
 	}
+	.sewera-septik .banner-main__elektromontazhnye,
 	.sewera-septik .banner-main__avtopoliv-bg,
 	.sewera-septik .banner-main__beton-zaezd-na-uchastok,
 	.sewera-septik .banner-main__biznes-videonabljudenie,
@@ -8616,6 +8644,10 @@ sewera-septik .form-qwiz__user-contact {
 		width: 279px;
 	}
 	.sewera-septik .banner-main__svai {
+		width: 350px;
+	}
+	.sewera-septik .banner-main__elektromontazhnye {
+		bottom: 235px;
 		width: 350px;
 	}
 	.sewera-septik .banner-main__doma-videonabljudenie {
@@ -9028,6 +9060,7 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .form-final_otmoska img {
 		display: none;
 	}
+	.sewera-septik .form-final_elektromontazhnye .form-final__input,
 	.sewera-septik .form-finak_kupeli .form-final__input,
 	.sewera-septik .form-finak_pogreba .form-final__input,
 	.sewera-septik .form-final_adapter-wells .form-final__input,
@@ -9259,7 +9292,9 @@ sewera-septik .form-qwiz__user-contact {
 	}
 	.sewera-septik .table-smeta__table {
 		-ms-grid-columns: minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px) minmax(80px, 87px);
-		grid-template-columns: minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px) minmax(80px, 87px);
+		grid-template-columns:
+			minmax(260px, 729px) minmax(50px, 115px) minmax(80px, 100px)
+			minmax(80px, 87px);
 	}
 	.sewera-septik .table-smeta__table-finish {
 		font-size: 16px;
@@ -9734,7 +9769,7 @@ sewera-septik .form-qwiz__user-contact {
 		-moz-column-gap: 10px;
 		column-gap: 10px;
 	}
-	.sewera-septik .one-service__list,
+	.sewera-septik .one-service__left ul,
 	.sewera-septik .types-wells__info-list {
 		font-size: 14px;
 		line-height: 1.4;
@@ -10574,6 +10609,10 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .banner-main__svai {
 		width: 350px;
 		bottom: 243px;
+	}
+	.sewera-septik .banner-main__elektromontazhnye {
+		bottom: 310px;
+		width: 350px;
 	}
 	.sewera-septik .banner-main__doma-videonabljudenie {
 		bottom: 357px;
@@ -12132,6 +12171,9 @@ sewera-septik .form-qwiz__user-contact {
 		bottom: 95px;
 		width: 398px;
 	}
+	.sewera-septik .banner-main__elektromontazhnye {
+		right: 56%;
+	}
 	.sewera-septik .banner-main__biznes-videonabljudenie {
 		bottom: 382px;
 	}
@@ -12439,6 +12481,9 @@ sewera-septik .form-qwiz__user-contact {
 	}
 }
 @media (max-width: 389.98px) {
+	.sewera-septik .banner-main__elektromontazhnye {
+		bottom: 337px;
+	}
 	.sewera-septik .banner-main__pesok-wells-bg {
 		bottom: 368px;
 		width: 345px;
