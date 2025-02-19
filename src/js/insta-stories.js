@@ -22,7 +22,7 @@ class InstaGallery {
   static delegated = false;
   fullGalleryIsOpen = false;
   instaVideoList = new Array(0);
-  isPlayed = false;
+  isPlayed = true;
 
   static delegate() {
     InstaGallery.delegated = true;
@@ -126,6 +126,10 @@ class InstaGallery {
           512: {
             spaceBetween: 27,
           },
+          320: {
+            spaceBetween: 27,
+            allowTouchMove: true,
+          },
         },
       }
     );
@@ -155,6 +159,8 @@ class InstaGallery {
             ".inst-gallery-full__navigation-line-progress"
           ).style.width = "0";
         });
+
+      this.instaVideoList.forEach((elem) => elem.updateStyle());
     });
 
     this.checkViewedStories();
@@ -166,12 +172,13 @@ class InstaGallery {
     if (state) {
       this.fullGallery.style.display = "";
       this.fullGalleryIsOpen = true;
+      this.fullSwiper.activeIndex = 0;
       this.instaVideoList.forEach((elem) => elem.updateStyle());
       // this.instaVideoList.forEach((video) => video.setProgress(0));
     } else {
       this.fullGallery.style.display = "none";
       this.fullGalleryIsOpen = false;
-
+      this.fullSwiper.activeIndex = 0;
       this.fullGalleryWrapper.innerHTML = "";
       this.fullGalleryNavidation.innerHTML = "";
     }
@@ -179,11 +186,12 @@ class InstaGallery {
 
   // перключает по слйадом в стрис
   fullGallerySlideTo(index) {
+    if (index === this.fullSwiper.activeIndex) return;
     this.fullSwiper.slideTo(index);
     this.instaVideoList.forEach((elem) => {
       elem.updateStyle();
     });
-    // this.instaVideoList.forEach((video) => video.setProgress(0));
+    this.setPlayed(index);
   }
 
   createStory = (slide) => {
@@ -227,11 +235,15 @@ class InstaGallery {
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
     );
+    if (!this.isPlayed && indx === lines.length - 1) {
+      this.fullGallerySetOpen(false);
+      return;
+    }
 
     let maxWidth = 100;
     // let widthLine = 6.66; // 3.33
-    let widthLine = 10; // 3.33
-
+    let widthLine = 10; // 10
+    let widthStart = 10;
     this.isPlayed = true;
     setTimeout(() => {
       lines[indx]
@@ -240,26 +252,31 @@ class InstaGallery {
 
       lines[indx].querySelector(
         ".inst-gallery-full__navigation-line-progress"
-      ).style.width = 10 + "%";
+      ).style.width = widthStart + "%";
     }, 10);
 
     let ci = setInterval(() => {
       if (widthLine >= maxWidth) {
         clearInterval(ci);
 
-        if (lines.length > 1 && indx < lines.length - 1) {
-          this.nextSlide();
-        } else {
-          this.fullGallerySetOpen(false);
+        this.nextSlide();
+
+        if (indx < lines.length - 2) {
+          this.isPlayed = false;
         }
         return;
       }
+      if (
+        lines[indx].querySelector(
+          ".inst-gallery-full__navigation-line-progress"
+        )
+      ) {
+        lines[indx].querySelector(
+          ".inst-gallery-full__navigation-line-progress"
+        ).style.width = widthLine + "%";
 
-      lines[indx].querySelector(
-        ".inst-gallery-full__navigation-line-progress"
-      ).style.width = widthLine + "%";
-
-      widthLine = widthLine + 10;
+        widthLine = widthLine + widthStart;
+      }
     }, 1000);
   };
 
