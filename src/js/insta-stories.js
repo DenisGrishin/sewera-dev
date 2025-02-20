@@ -2,14 +2,14 @@ class InstaGallery {
   static delegated = false;
   fullGalleryIsOpen = false;
   instaVideoList = new Array(0);
-
   interval = null;
   duration = 30000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
-  currentProgreess = 0;
   loadedContetnInput = new Array(0);
+  indxActvSlideSwiper = 0;
+  currentSwiperSlide = 0;
   static delegate() {
     InstaGallery.delegated = true;
     let instaGalleryDOM = document.querySelectorAll(".inst-gallery");
@@ -81,8 +81,8 @@ class InstaGallery {
         `date-stories-${slide.dataset.index}`,
         slide.dataset.dateStories
       );
-
-      this.storiesCreate(slide);
+      this.indxActvSlideSwiper = slide.dataset.index;
+      this.createStories(slide);
 
       slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
       this.fullGallerySetOpen(true);
@@ -100,30 +100,7 @@ class InstaGallery {
       { passive: true }
     );
     // слайдер на сторис
-    this.fullSwiper = new Swiper(
-      this.instaGallery.querySelector(".inst-gallery-full__swiper"),
-      {
-        spaceBetween: 0,
-        speed: 300,
-        allowTouchMove: false,
-        slidesPerView: "1",
-        breakpoints: {
-          1200: {
-            spaceBetween: 42,
-          },
-          1023: {
-            spaceBetween: 31,
-          },
-          512: {
-            spaceBetween: 27,
-          },
-          320: {
-            spaceBetween: 0,
-            // allowTouchMove: true,
-          },
-        },
-      }
-    );
+    this.initSwiperStories();
 
     //Navigation action
     this.fullSwiper.on("slideChange", (swiper) => {
@@ -152,7 +129,7 @@ class InstaGallery {
         });
       this.reset();
       this.play(this.fullSwiper.activeIndex);
-      this.instaVideoList.forEach((elem) => elem.updateStyle());
+      // this.instaVideoList.forEach((elem) => elem.updateStyle());
     });
 
     this.checkViewedStories();
@@ -175,16 +152,15 @@ class InstaGallery {
       this.fullGalleryIsOpen = true;
 
       this.fullGallerySlideTo(0);
-      this.instaVideoList.forEach((elem) => elem.updateStyle());
+      // this.instaVideoList.forEach((elem) => elem.updateStyle());
       document.body.style.overflow = "hidden";
       this.reset();
     } else {
       this.stop();
       this.fullGallery.style.display = "none";
       this.fullGalleryIsOpen = false;
-
-      this.fullGalleryWrapper.innerHTML = "";
-      this.fullGalleryNavidation.innerHTML = "";
+      this.indxActvSlideSwiper = 0;
+      this.removeStories();
       document.body.style.overflow = "";
     }
   };
@@ -193,13 +169,18 @@ class InstaGallery {
   fullGallerySlideTo(index) {
     if (index === this.fullSwiper.activeIndex) return;
     this.fullSwiper.slideTo(index);
-    this.instaVideoList.forEach((elem) => {
-      elem.updateStyle();
-    });
+    // this.instaVideoList.forEach((elem) => {
+    //   elem.updateStyle();
+    // });
     this.play(index);
   }
 
-  storiesCreate = (slide) => {
+  removeStories = () => {
+    this.fullGalleryWrapper.innerHTML = "";
+    this.fullGalleryNavidation.innerHTML = "";
+  };
+
+  createStories = (slide) => {
     const slideIndx = slide.dataset.index;
 
     let contetn = this.loadedContetnInput.find(
@@ -251,11 +232,8 @@ class InstaGallery {
     }
   };
 
-  storiesNext()=>{
-
-  }
   preloadImg = () => {
-    this.slideGallery.forEach((slide, indx) => {
+    this.slideGallery.forEach((slide, index) => {
       const inputs = slide.querySelectorAll('input[name="contetnStories"]');
       const loadImgBg = [];
       const loadImgContetn = [];
@@ -276,14 +254,68 @@ class InstaGallery {
       });
 
       this.loadedContetnInput.push({
-        slideIndex: indx,
+        slideIndex: index,
         imgListBg: loadImgBg,
         imgListContetn: loadImgContetn,
         linkList: linkArr,
       });
     });
   };
+  nextStories = () => {
+    this.currentSwiperSlide = Number(this.indxActvSlideSwiper) + 1;
 
+    if (this.currentSwiperSlide > this.slideGallery.length - 1) return;
+
+    this.updateStateStories(this.currentSwiperSlide);
+  };
+  prevStories = () => {
+    this.currentSwiperSlide = Number(this.indxActvSlideSwiper) - 1;
+
+    if (this.currentSwiperSlide === -1) return;
+
+    this.updateStateStories(this.currentSwiperSlide);
+  };
+
+  updateStateStories = (index) => {
+    this.reset();
+    this.removeStories();
+    this.indxActvSlideSwiper = index;
+    this.createStories(this.slideGallery[index]);
+    this.play(0);
+    this.initSwiperStories();
+    // this.instaVideoList.forEach((elem) => elem.updateStyle());
+  };
+
+  initSwiperStories = () => {
+    this.fullSwiper = new Swiper(
+      this.instaGallery.querySelector(".inst-gallery-full__swiper"),
+      {
+        spaceBetween: 0,
+        speed: 300,
+        allowTouchMove: false,
+        slidesPerView: 1,
+        effect: "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+        breakpoints: {
+          1200: {
+            spaceBetween: 42,
+          },
+          1023: {
+            spaceBetween: 31,
+          },
+          512: {
+            spaceBetween: 27,
+          },
+          320: {
+            spaceBetween: 0,
+            // allowTouchMove: true,
+          },
+        },
+      }
+    );
+  };
   play = (indx) => {
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
@@ -299,8 +331,11 @@ class InstaGallery {
 
       if (this.progress >= 100) {
         this.reset();
+
         if (indx === lines.length - 1) {
+          this.nextStories();
           // this.fullGallerySetOpen(false);
+          return;
         } else {
           this.nextSlide();
         }
@@ -308,7 +343,7 @@ class InstaGallery {
         return;
       }
 
-      lines[indx].querySelector(
+      lines[Number(indx)].querySelector(
         ".inst-gallery-full__navigation-line-progress"
       ).style.width = this.progress + "%";
     }, 100);
@@ -328,7 +363,7 @@ class InstaGallery {
 
   nextSlide = () => {
     this.fullSwiper.slideNext();
-    this.instaVideoList.forEach((elem) => elem.updateStyle());
+    // this.instaVideoList.forEach((elem) => elem.updateStyle());
     this.play(this.fullSwiper.activeIndex);
   };
 
@@ -394,25 +429,39 @@ class InstaStory {
   }
 
   sliderNext = (event) => {
-    if (event && event.target.tagName === "A") {
+    // if (event && event.target.tagName === "A") {
+    //   return;
+    // }
+
+    if (
+      this.swiper.activeIndex ==
+      this.fullGallery.fullSwiper.slides.length - 1
+    ) {
+      this.fullGallery.nextStories();
       return;
     }
     if (!this.fullGallery.instaVideoList[this.swiper.activeIndex + 1]) {
       return;
     }
+
     this.fullGallery.fullSwiper.slideNext();
-    this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
+    // this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
   };
 
   sliderBack = (event) => {
-    if (event && event.target.tagName === "A") {
+    // if (event && event.target.tagName === "A") {
+    //   return;
+    // }
+
+    if (this.swiper.activeIndex == 0) {
+      this.fullGallery.prevStories();
       return;
     }
     if (!this.fullGallery.instaVideoList[this.swiper.activeIndex - 1]) {
       return;
     }
     this.fullGallery.fullSwiper.slidePrev();
-    this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
+    // this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
   };
   updateStyle() {
     let activeIndex = this.swiper.activeIndex;
