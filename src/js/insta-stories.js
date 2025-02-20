@@ -82,7 +82,7 @@ class InstaGallery {
         slide.dataset.dateStories
       );
 
-      this.createStory(slide);
+      this.storiesCreate(slide);
 
       slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
       this.fullGallerySetOpen(true);
@@ -199,8 +199,7 @@ class InstaGallery {
     this.play(index);
   }
 
-  createStory = (slide) => {
-    const contetns = slide.querySelectorAll('input[name="contetnStory"]');
+  storiesCreate = (slide) => {
     const slideIndx = slide.dataset.index;
 
     let contetn = this.loadedContetnInput.find(
@@ -214,14 +213,17 @@ class InstaGallery {
       let newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
 
-      debugger;
       newInstaSroty.insertAdjacentHTML(
         "beforeend",
         `
         <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
         <img class="inst-story__img" src="${imgBg.src}" >
         
-       ${imgContetn ? `<div class="inst-story__contetn"><img src="${imgContetn.src}"></div>` : ""}
+       ${
+         imgContetn
+           ? `<div class="inst-story__contetn"><img src="${imgContetn.src}"></div>`
+           : ""
+       }
        <div class="inst-story__button"></div>
        ${link ? `<a href='${link}' class="inst-story__link"></a>` : ""}
        <div></div>
@@ -247,45 +249,18 @@ class InstaGallery {
         `
       );
     }
-    contetn.imgListBg.forEach((item, indx) => {
-      // let newInstaSroty = document.createElement("div");
-      // newInstaSroty.setAttribute("class", "inst-story");
-      // debugger;
-      // newInstaSroty.insertAdjacentHTML(
-      //   "beforeend",
-      //   `
-      //   <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
-      //   <img class="inst-story__img" src="${contetn.imgListBg[0].src}" >
-      //  ${contetn.imgListContetn[0].src ? `<div class="inst-story__contetn"><img src="${contetn.imgListContetn[0].src}"></div>` : ""}
-      //  <div class="inst-story__button"></div>
-      //  ${contetn.link ? `<a href='${contetn.link}' class="inst-story__link"></a>` : ""}
-      //  <div></div>
-      //   `
-      // );
-      // let newSlide = document.createElement("div");
-      // newSlide.setAttribute("class", "swiper-slide");
-      // newSlide.appendChild(newInstaSroty);
-      // this.fullGalleryWrapper.appendChild(newSlide);
-      // this.instaVideoList.push(
-      //   new InstaStory(newInstaSroty, indx, newSlide, this)
-      // );
-      // this.fullGalleryNavidation.insertAdjacentHTML(
-      //   "beforeend",
-      //   `
-      //    <div class="inst-gallery-full__navigation-line">
-      //     <div class="inst-gallery-full__navigation-line-progress" ></div>
-      // </div>
-      //   `
-      // );
-    });
   };
+
+  storiesNext()=>{
+
+  }
   preloadImg = () => {
     this.slideGallery.forEach((slide, indx) => {
-      const inputs = slide.querySelectorAll('input[name="contetnStory"]');
+      const inputs = slide.querySelectorAll('input[name="contetnStories"]');
       const loadImgBg = [];
       const loadImgContetn = [];
-
       let linkArr = [];
+
       inputs.forEach((input) => {
         const contetn = input.value.split(",");
         const imgBg = new Image();
@@ -308,6 +283,7 @@ class InstaGallery {
       });
     });
   };
+
   play = (indx) => {
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
@@ -350,7 +326,6 @@ class InstaGallery {
     this.elapsedTime = 0;
   }
 
-  setPlay = (indx) => {};
   nextSlide = () => {
     this.fullSwiper.slideNext();
     this.instaVideoList.forEach((elem) => elem.updateStyle());
@@ -477,6 +452,4 @@ class StorageHelper {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  InstaGallery.delegate();
-});
+InstaGallery.delegate();
