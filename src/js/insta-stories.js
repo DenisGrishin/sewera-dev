@@ -3,7 +3,7 @@ class InstaGallery {
   fullGalleryIsOpen = false;
   instaVideoList = new Array(0);
   interval = null;
-  duration = 30000;
+  duration = 3000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
@@ -102,37 +102,7 @@ class InstaGallery {
     // слайдер на сторис
     this.initSwiperStories();
 
-    //Navigation action
-    this.fullSwiper.on("slideChange", (swiper) => {
-      this.fullGalleryNavidation
-        .querySelectorAll(".inst-gallery-full__navigation-line")
-        .forEach((elem, index) => {
-          elem.querySelector(
-            ".inst-gallery-full__navigation-line-progress"
-          ).style.display = "none";
-
-          if (index < swiper.activeIndex) {
-            elem.style.backgroundColor = "#FFF";
-          } else {
-            elem.style.backgroundColor = "";
-          }
-
-          if (index === swiper.activeIndex) {
-            elem.querySelector(
-              ".inst-gallery-full__navigation-line-progress"
-            ).style.display = "";
-          }
-
-          elem.querySelector(
-            ".inst-gallery-full__navigation-line-progress"
-          ).style.width = "0";
-        });
-      this.reset();
-      this.play(this.fullSwiper.activeIndex);
-      // this.instaVideoList.forEach((elem) => elem.updateStyle());
-    });
-
-    this.checkViewedStories();
+    this.checkIfAllStoriesViewed();
 
     this.fullGallery.addEventListener(
       "click",
@@ -152,7 +122,7 @@ class InstaGallery {
       this.fullGalleryIsOpen = true;
 
       this.fullGallerySlideTo(0);
-      // this.instaVideoList.forEach((elem) => elem.updateStyle());
+
       document.body.style.overflow = "hidden";
       this.reset();
     } else {
@@ -169,9 +139,7 @@ class InstaGallery {
   fullGallerySlideTo(index) {
     if (index === this.fullSwiper.activeIndex) return;
     this.fullSwiper.slideTo(index);
-    // this.instaVideoList.forEach((elem) => {
-    //   elem.updateStyle();
-    // });
+
     this.play(index);
   }
 
@@ -277,13 +245,18 @@ class InstaGallery {
   };
 
   updateStateStories = (index) => {
+    if (!this.isStoriesViewed(index)) {
+      this.slideGallery[index]
+        .querySelector(".inst-gallery__img img")
+        .classList.add("_viewed");
+    }
+
     this.reset();
     this.removeStories();
     this.indxActvSlideSwiper = index;
     this.createStories(this.slideGallery[index]);
     this.play(0);
     this.initSwiperStories();
-    // this.instaVideoList.forEach((elem) => elem.updateStyle());
   };
 
   initSwiperStories = () => {
@@ -294,27 +267,46 @@ class InstaGallery {
         speed: 300,
         allowTouchMove: false,
         slidesPerView: 1,
-        effect: "fade",
-        fadeEffect: {
-          crossFade: true,
-        },
+
         breakpoints: {
-          1200: {
-            spaceBetween: 42,
-          },
-          1023: {
-            spaceBetween: 31,
-          },
-          512: {
-            spaceBetween: 27,
-          },
+          1200: {},
+          1023: {},
+          512: {},
           320: {
-            spaceBetween: 0,
             // allowTouchMove: true,
           },
         },
       }
     );
+    //slideChange
+    this.fullSwiper.on("slideChange", (swiper) => {
+      this.fullGalleryNavidation
+        .querySelectorAll(".inst-gallery-full__navigation-line")
+        .forEach((elem, index) => {
+          elem.querySelector(
+            ".inst-gallery-full__navigation-line-progress"
+          ).style.display = "none";
+
+          if (index < swiper.activeIndex) {
+            elem.style.backgroundColor = "#FFF";
+          } else {
+            elem.style.backgroundColor = "";
+          }
+
+          if (index === swiper.activeIndex) {
+            elem.querySelector(
+              ".inst-gallery-full__navigation-line-progress"
+            ).style.display = "";
+          }
+
+          elem.querySelector(
+            ".inst-gallery-full__navigation-line-progress"
+          ).style.width = "0";
+        });
+
+      this.reset();
+      this.play(this.fullSwiper.activeIndex);
+    });
   };
   play = (indx) => {
     const lines = this.fullGalleryNavidation.querySelectorAll(
@@ -343,7 +335,7 @@ class InstaGallery {
         return;
       }
 
-      lines[Number(indx)].querySelector(
+      lines[indx].querySelector(
         ".inst-gallery-full__navigation-line-progress"
       ).style.width = this.progress + "%";
     }, 100);
@@ -363,11 +355,10 @@ class InstaGallery {
 
   nextSlide = () => {
     this.fullSwiper.slideNext();
-    // this.instaVideoList.forEach((elem) => elem.updateStyle());
     this.play(this.fullSwiper.activeIndex);
   };
 
-  checkViewedStories = () => {
+  checkIfAllStoriesViewed = () => {
     this.slideGallery.forEach((slide) => {
       if (
         StorageHelper.getItem(`date-stories-${slide.dataset.index}`) !==
@@ -381,7 +372,16 @@ class InstaGallery {
       }
     });
   };
+  isStoriesViewed = (index) => {
+    let stories = this.slideGallery[index];
+    let indexStories = stories.dataset.index;
 
+    if (StorageHelper.getItem(`date-stories-${indexStories}`)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   // меняем класс для того тчоб было анимция вращения
 }
 
@@ -429,62 +429,34 @@ class InstaStory {
   }
 
   sliderNext = (event) => {
-    // if (event && event.target.tagName === "A") {
-    //   return;
-    // }
-
     if (
-      this.swiper.activeIndex ==
+      this.fullGallery.fullSwiper.activeIndex ==
       this.fullGallery.fullSwiper.slides.length - 1
     ) {
       this.fullGallery.nextStories();
+
       return;
     }
-    if (!this.fullGallery.instaVideoList[this.swiper.activeIndex + 1]) {
-      return;
-    }
-
-    this.fullGallery.fullSwiper.slideNext();
-    // this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
-  };
-
-  sliderBack = (event) => {
-    // if (event && event.target.tagName === "A") {
+    // if (!this.fullGallery.instaVideoList[this.swiper.activeIndex + 1]) {
     //   return;
     // }
 
-    if (this.swiper.activeIndex == 0) {
-      this.fullGallery.prevStories();
-      return;
-    }
-    if (!this.fullGallery.instaVideoList[this.swiper.activeIndex - 1]) {
-      return;
-    }
-    this.fullGallery.fullSwiper.slidePrev();
-    // this.fullGallery.instaVideoList.forEach((elem) => elem.updateStyle());
+    this.fullGallery.fullSwiper.slideNext();
   };
-  updateStyle() {
-    let activeIndex = this.swiper.activeIndex;
 
-    this.slideElement.classList.remove("swiper-slide_left-step-1");
-    this.slideElement.classList.remove("swiper-slide_left-step-2");
-    this.slideElement.classList.remove("swiper-slide_right-step-1");
-    this.slideElement.classList.remove("swiper-slide_right-step-2");
-    this.slideElement.classList.remove("swiper-slide_not-visible");
+  sliderBack = (event) => {
+    if (this.fullGallery.fullSwiper.activeIndex == 0) {
+      this.fullGallery.prevStories();
 
-    if (activeIndex === this.index) {
-    } else if (activeIndex === this.index - 1) {
-      this.slideElement.classList.add("swiper-slide_left-step-1");
-    } else if (activeIndex === this.index + 1) {
-      this.slideElement.classList.add("swiper-slide_right-step-1");
-    } else if (activeIndex === this.index - 2) {
-      this.slideElement.classList.add("swiper-slide_left-step-2");
-    } else if (activeIndex === this.index + 2) {
-      this.slideElement.classList.add("swiper-slide_right-step-2");
-    } else {
-      this.slideElement.classList.add("swiper-slide_not-visible");
+      return;
     }
-  }
+    console.log(this.fullGallery.instaVideoList[this.swiper.activeIndex - 1]);
+
+    // if (!this.fullGallery.instaVideoList[this.swiper.activeIndex - 1]) {
+    //   return;
+    // }
+    this.fullGallery.fullSwiper.slidePrev();
+  };
 }
 
 class StorageHelper {
