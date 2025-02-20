@@ -88,7 +88,7 @@ class InstaGallery {
 
       this.createStory(slide);
 
-      slide.querySelector(".inst-gallery__img").classList.add("_viewed");
+      slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
       this.fullGallerySetOpen(true);
       this.play(0);
     });
@@ -212,12 +212,12 @@ class InstaGallery {
       newInstaSroty.insertAdjacentHTML(
         "beforeend",
         `
-        <img class="inst-story__icon-logo" src="img/stories/logo.svg">
-        
-
+        <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
         <img class="inst-story__img" src="${listContent[0]}">
+        
+       ${listContent[2] ? `<div class="inst-story__contetn"><img src="${listContent[2]}"></div>` : ""}
        <div class="inst-story__button"></div>
-       <a href='${listContent[1]}' class="inst-story__link"></a>
+       ${listContent[1] ? `<a href='${listContent[1]}' class="inst-story__link"></a>` : ""}
        <div></div>
         `
       );
@@ -258,7 +258,7 @@ class InstaGallery {
       if (this.progress >= 100) {
         this.reset();
         if (indx === lines.length - 1) {
-          // this.fullGallerySetOpen(false);
+          this.fullGallerySetOpen(false);
         } else {
           this.nextSlide();
         }
@@ -304,9 +304,11 @@ class InstaGallery {
         StorageHelper.getItem(`date-stories-${slide.dataset.index}`) !==
         slide.dataset.dateStories
       ) {
-        slide.querySelector(".inst-gallery__img").classList.remove("_viewed");
+        slide
+          .querySelector(".inst-gallery__img img")
+          .classList.remove("_viewed");
       } else {
-        slide.querySelector(".inst-gallery__img").classList.add("_viewed");
+        slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
       }
     });
   };
