@@ -4,11 +4,12 @@ class InstaGallery {
   instaVideoList = new Array(0);
 
   interval = null;
-  duration = 5000;
+  duration = 30000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
   currentProgreess = 0;
+  loadedContetnInput = new Array(0);
   static delegate() {
     InstaGallery.delegated = true;
     let instaGalleryDOM = document.querySelectorAll(".inst-gallery");
@@ -76,11 +77,6 @@ class InstaGallery {
       const slide = e.target.closest(".inst-gallery__slide");
       if (!slide) return;
 
-      // StorageHelper.setItem(
-      //   `stories-${slide.dataset.index}`,
-      //   `viewedStories-${slide.dataset.index}`
-      // );
-
       StorageHelper.setItem(
         `date-stories-${slide.dataset.index}`,
         slide.dataset.dateStories
@@ -92,6 +88,8 @@ class InstaGallery {
       this.fullGallerySetOpen(true);
       this.play(0);
     });
+
+    this.preloadImg();
 
     // закрыть сторисы на кнопку справа вверху
     this.fullGalleryClose.addEventListener(
@@ -108,6 +106,7 @@ class InstaGallery {
         spaceBetween: 0,
         speed: 300,
         allowTouchMove: false,
+        slidesPerView: "1",
         breakpoints: {
           1200: {
             spaceBetween: 42,
@@ -202,22 +201,29 @@ class InstaGallery {
 
   createStory = (slide) => {
     const contetns = slide.querySelectorAll('input[name="contetnStory"]');
+    const slideIndx = slide.dataset.index;
 
-    contetns.forEach((item, indx) => {
-      const listContent = item.value.split(",");
+    let contetn = this.loadedContetnInput.find(
+      (it) => it.slideIndex === Number(slideIndx)
+    );
 
+    for (let index = 0; index < contetn.imgListBg.length; index++) {
+      const imgBg = contetn.imgListBg[index];
+      const imgContetn = contetn.imgListContetn[index];
+      const link = contetn.linkList[index];
       let newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
 
+      debugger;
       newInstaSroty.insertAdjacentHTML(
         "beforeend",
         `
         <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
-        <img class="inst-story__img" src="${listContent[0]}">
+        <img class="inst-story__img" src="${imgBg.src}" >
         
-       ${listContent[2] ? `<div class="inst-story__contetn"><img src="${listContent[2]}"></div>` : ""}
+       ${imgContetn ? `<div class="inst-story__contetn"><img src="${imgContetn.src}"></div>` : ""}
        <div class="inst-story__button"></div>
-       ${listContent[1] ? `<a href='${listContent[1]}' class="inst-story__link"></a>` : ""}
+       ${link ? `<a href='${link}' class="inst-story__link"></a>` : ""}
        <div></div>
         `
       );
@@ -226,9 +232,10 @@ class InstaGallery {
       newSlide.setAttribute("class", "swiper-slide");
 
       newSlide.appendChild(newInstaSroty);
+
       this.fullGalleryWrapper.appendChild(newSlide);
       this.instaVideoList.push(
-        new InstaStory(newInstaSroty, indx, newSlide, this)
+        new InstaStory(newInstaSroty, index, newSlide, this)
       );
 
       this.fullGalleryNavidation.insertAdjacentHTML(
@@ -239,9 +246,68 @@ class InstaGallery {
       </div>
         `
       );
+    }
+    contetn.imgListBg.forEach((item, indx) => {
+      // let newInstaSroty = document.createElement("div");
+      // newInstaSroty.setAttribute("class", "inst-story");
+      // debugger;
+      // newInstaSroty.insertAdjacentHTML(
+      //   "beforeend",
+      //   `
+      //   <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
+      //   <img class="inst-story__img" src="${contetn.imgListBg[0].src}" >
+      //  ${contetn.imgListContetn[0].src ? `<div class="inst-story__contetn"><img src="${contetn.imgListContetn[0].src}"></div>` : ""}
+      //  <div class="inst-story__button"></div>
+      //  ${contetn.link ? `<a href='${contetn.link}' class="inst-story__link"></a>` : ""}
+      //  <div></div>
+      //   `
+      // );
+      // let newSlide = document.createElement("div");
+      // newSlide.setAttribute("class", "swiper-slide");
+      // newSlide.appendChild(newInstaSroty);
+      // this.fullGalleryWrapper.appendChild(newSlide);
+      // this.instaVideoList.push(
+      //   new InstaStory(newInstaSroty, indx, newSlide, this)
+      // );
+      // this.fullGalleryNavidation.insertAdjacentHTML(
+      //   "beforeend",
+      //   `
+      //    <div class="inst-gallery-full__navigation-line">
+      //     <div class="inst-gallery-full__navigation-line-progress" ></div>
+      // </div>
+      //   `
+      // );
     });
   };
+  preloadImg = () => {
+    this.slideGallery.forEach((slide, indx) => {
+      const inputs = slide.querySelectorAll('input[name="contetnStory"]');
+      const loadImgBg = [];
+      const loadImgContetn = [];
 
+      let linkArr = [];
+      inputs.forEach((input) => {
+        const contetn = input.value.split(",");
+        const imgBg = new Image();
+        const imgContetn = new Image();
+
+        imgBg.src = contetn[0];
+        imgContetn.src = contetn[2];
+
+        loadImgBg.push(imgBg);
+        loadImgContetn.push(imgContetn);
+
+        linkArr.push(contetn[1]);
+      });
+
+      this.loadedContetnInput.push({
+        slideIndex: indx,
+        imgListBg: loadImgBg,
+        imgListContetn: loadImgContetn,
+        linkList: linkArr,
+      });
+    });
+  };
   play = (indx) => {
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
@@ -258,7 +324,7 @@ class InstaGallery {
       if (this.progress >= 100) {
         this.reset();
         if (indx === lines.length - 1) {
-          this.fullGallerySetOpen(false);
+          // this.fullGallerySetOpen(false);
         } else {
           this.nextSlide();
         }
@@ -293,13 +359,6 @@ class InstaGallery {
 
   checkViewedStories = () => {
     this.slideGallery.forEach((slide) => {
-      // if (
-      //   StorageHelper.getItem(`stories-${slide.dataset.index}`) ===
-      //   `viewedStories-${slide.dataset.index}`
-      // ) {
-      //   slide.querySelector(".inst-gallery__img").classList.add("_viewed");
-      // }
-
       if (
         StorageHelper.getItem(`date-stories-${slide.dataset.index}`) !==
         slide.dataset.dateStories

@@ -86,7 +86,7 @@
 	align-items: center;
 	justify-content: center;
 	fill: white;
-	cursor: pointer;
+
 	user-select: none;
 	z-index: 5;
 }
@@ -330,7 +330,6 @@
 }
 
 .inst-story__button {
-	cursor: pointer;
 	position: absolute;
 	z-index: 100;
 	width: 100%;
