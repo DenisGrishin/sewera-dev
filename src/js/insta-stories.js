@@ -412,32 +412,39 @@ class InstaStory {
     this.button = instaStory.querySelector(".inst-story__button");
 
     let isPause = false;
+    let st;
     let mouseDown = (event) => {
-      console.log("mouseDown");
-
+      isPause = false;
+      st = setTimeout(() => {
+        isPause = true;
+      }, 200);
       this.fullGallery.pause();
     };
 
     let touchDown = (event) => {
+      isPause = false;
+      st = setTimeout(() => {
+        isPause = true;
+      }, 200);
       this.fullGallery.pause();
     };
 
     let mouseUp = (event) => {
-      console.log("mouseUp");
+      clearInterval(st);
 
       this.fullGallery.play(this.index);
     };
 
     let touchUp = (event) => {
+      clearInterval(st);
       this.fullGallery.play(this.index);
     };
 
     let click = (event) => {
-      // if (isPause) {
-      //   // isPause = false;
-      //   return;
-      // }
-      console.log("click");
+      if (isPause) {
+        return;
+      }
+
       if (event.clientX > innerWidth / 2) {
         this.sliderNext(event);
       } else {
