@@ -1298,6 +1298,7 @@
 		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/skvazhina.svg);
 	}
 }
+._iconElektromontazhnyie,
 ._iconOther-service,
 ._iconKupeli,
 ._iconKolodec,
@@ -1318,6 +1319,11 @@
 		width: 16px;
 		height: 16px;
 		display: inline-block;
+	}
+}
+._iconElektromontazhnyie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/elektromontazhnyie.svg);
 	}
 }
 ._iconSeptik {
