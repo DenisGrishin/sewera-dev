@@ -3,13 +3,15 @@ class InstaGallery {
   fullGalleryIsOpen = false;
   instaVideoList = new Array(0);
   interval = null;
-  duration = 3000;
+  duration = 30000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
   loadedContetnInput = new Array(0);
   indxActvSlideSwiper = 0;
   currentSwiperSlide = 0;
+  isPause = false;
+
   static delegate() {
     InstaGallery.delegated = true;
     let instaGalleryDOM = document.querySelectorAll(".inst-gallery");
@@ -89,7 +91,7 @@ class InstaGallery {
       this.play(0);
     });
 
-    this.preloadImg();
+    this.preloadContent();
 
     // закрыть сторисы на кнопку справа вверху
     this.fullGalleryClose.addEventListener(
@@ -157,8 +159,12 @@ class InstaGallery {
 
     for (let index = 0; index < contetn.imgListBg.length; index++) {
       const imgBg = contetn.imgListBg[index];
-      const imgContetn = contetn.imgListContetn[index];
       const link = contetn.linkList[index];
+      const title = contetn.titleList[index];
+      const description = contetn.descriptionList[index];
+      const textBtn = contetn.textBtnList[index];
+      const colorBtn = contetn.colorBtnList[index];
+
       let newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
 
@@ -167,15 +173,14 @@ class InstaGallery {
         `
         <img class="inst-story__icon-logo" src="/srv/assets/images/main/stories/logo.svg">
         <img class="inst-story__img" src="${imgBg.src}" >
-        
-       ${
-         imgContetn
-           ? `<div class="inst-story__contetn"><img src="${imgContetn.src}"></div>`
-           : ""
-       }
-       <div class="inst-story__button"></div>
-       ${link ? `<a href='${link}' class="inst-story__link"></a>` : ""}
-       <div></div>
+        <div class="inst-story__button"></div>
+
+          <div class="inst-story__contetn">
+          ${title ? `<div class="inst-story__title">${title}</div>` : ""}
+          ${description ? `<div class="inst-story__description">${description}</div>` : ""}
+          ${link ? `<a href='${link}' style="background-color:${colorBtn}" class="inst-story__link"><span>${textBtn}</span></a>` : ""}
+          </div>
+       
         `
       );
 
@@ -200,32 +205,40 @@ class InstaGallery {
     }
   };
 
-  preloadImg = () => {
+  preloadContent = () => {
     this.slideGallery.forEach((slide, index) => {
       const inputs = slide.querySelectorAll('input[name="contetnStories"]');
+
       const loadImgBg = [];
-      const loadImgContetn = [];
-      let linkArr = [];
+      const linkList = [];
+      const titleList = [];
+      const descriptionList = [];
+      const textBtnList = [];
+      const colorBtnList = [];
 
       inputs.forEach((input) => {
-        const contetn = input.value.split(",");
+        const contetn = input.value.split("|");
         const imgBg = new Image();
-        const imgContetn = new Image();
 
         imgBg.src = contetn[0];
-        imgContetn.src = contetn[2];
 
         loadImgBg.push(imgBg);
-        loadImgContetn.push(imgContetn);
 
-        linkArr.push(contetn[1]);
+        linkList.push(contetn[1]);
+        titleList.push(contetn[2]);
+        descriptionList.push(contetn[3]);
+        textBtnList.push(contetn[4]);
+        colorBtnList.push(contetn[5]);
       });
 
       this.loadedContetnInput.push({
         slideIndex: index,
         imgListBg: loadImgBg,
-        imgListContetn: loadImgContetn,
-        linkList: linkArr,
+        linkList: linkList,
+        titleList: titleList,
+        descriptionList: descriptionList,
+        textBtnList: textBtnList,
+        colorBtnList: colorBtnList,
       });
     });
   };
@@ -309,6 +322,7 @@ class InstaGallery {
     });
   };
   play = (indx) => {
+    this.isPause = false;
     const lines = this.fullGalleryNavidation.querySelectorAll(
       ".inst-gallery-full__navigation-line"
     );
@@ -344,6 +358,7 @@ class InstaGallery {
     this.pause();
   };
   pause = () => {
+    this.isPause = true;
     clearInterval(this.interval);
     this.interval = null;
   };
@@ -373,12 +388,14 @@ class InstaGallery {
     });
   };
   isStoriesViewed = (index) => {
-    let stories = this.slideGallery[index];
-    let indexStories = stories.dataset.index;
+    const stories = this.slideGallery[index];
+    const indexStories = stories.dataset.index;
+    const dateStories = stories.dataset.dateStories;
 
     if (StorageHelper.getItem(`date-stories-${indexStories}`)) {
       return true;
     } else {
+      StorageHelper.setItem(`date-stories-${indexStories}`, dateStories);
       return false;
     }
   };
@@ -393,7 +410,11 @@ class InstaStory {
     this.fullGallery = fullGallery;
     this.swiper = fullGallery.fullSwiper;
     this.button = instaStory.querySelector(".inst-story__button");
+
+    let isPause = false;
     let mouseDown = (event) => {
+      console.log("mouseDown");
+
       this.fullGallery.pause();
     };
 
@@ -402,6 +423,8 @@ class InstaStory {
     };
 
     let mouseUp = (event) => {
+      console.log("mouseUp");
+
       this.fullGallery.play(this.index);
     };
 
@@ -410,6 +433,11 @@ class InstaStory {
     };
 
     let click = (event) => {
+      // if (isPause) {
+      //   // isPause = false;
+      //   return;
+      // }
+      console.log("click");
       if (event.clientX > innerWidth / 2) {
         this.sliderNext(event);
       } else {
