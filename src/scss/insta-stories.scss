@@ -90,6 +90,78 @@
 		border-radius: 12px;
 		width: 100%;
 		height: 60px;
+		position: relative;
+		z-index: 10000000;
+		cursor: pointer;
+	}
+}
+.inst-gallery-full {
+	// .inst-gallery-full__nav
+
+	&__nav {
+	}
+
+	// .inst-gallery-full__left
+	&__right,
+	&__left {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: rgba(255, 255, 255, 0.1);
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		top: 50%;
+		border-radius: 50%;
+		transform: translate(0px, -50%);
+		transition: all 0.3s ease 0s;
+		cursor: pointer;
+		&::before {
+			content: "";
+
+			width: 20px;
+			height: 20px;
+			-webkit-box-flex: 0;
+			-ms-flex: 0 1 20px;
+			flex: 0 1 20px;
+			-webkit-transform: rotate(270deg);
+			-ms-transform: rotate(270deg);
+			transform: rotate(270deg);
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			background-size: 15px 15px;
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEgM0w1IDdMOSAzIiBzdHJva2U9IiNmZmYiICBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+		}
+		@media (max-width: 460px) {
+			display: none;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: transparent;
+			}
+		}
+	}
+	&__left {
+		left: -25%;
+
+		&::before {
+			transform: rotate(90deg) translateY(1px);
+		}
+		@media (max-width: $tablet) {
+			left: -13%;
+		}
+	}
+	// .inst-gallery-full__right
+
+	&__right {
+		right: -25%;
+		&::before {
+			transform: rotate(-90deg) translateY(1px);
+		}
+		@media (max-width: $tablet) {
+			right: -13%;
+		}
 	}
 }
 
@@ -104,7 +176,7 @@
 	left: 0;
 	top: 0;
 	z-index: 1500;
-	background: #102938;
+	background-color: rgba(16, 41, 56, 0.9);
 	display: flex;
 	justify-content: center;
 	user-select: none;
@@ -133,12 +205,30 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	// margin-top: 23px;
+
 	gap: 4px;
+	position: relative;
 }
 
 .inst-gallery-full__slider {
 	position: relative;
+	&::before {
+		content: "";
+		background: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/logo.svg") 0 0 / 105px 24px
+			no-repeat;
+		width: 105px;
+		position: absolute;
+		top: 34px;
+		left: 20px;
+		z-index: 10;
+		height: 24px;
+	}
+	@media (max-width: 460px) {
+		&::before {
+			left: 16px;
+			top: 40px;
+		}
+	}
 }
 .inst-gallery-full__navigation {
 	display: flex;
@@ -168,7 +258,7 @@
 .inst-gallery-full__swiper .swiper-slide {
 	border-radius: 8px;
 	overflow: hidden;
-	background-color: #1e1e1e;
+	// background-color: #1e1e1e;
 	transform: scale(1);
 }
 .inst-gallery-full__swiper .swiper-wrapper {
@@ -214,32 +304,27 @@
 	transform: translateZ(-100px);
 }
 
-.inst-gallery-full__sound {
-	position: absolute;
-	right: 0;
-	width: 51px;
-	height: 42px;
-	display: none;
-	justify-content: center;
-	cursor: pointer;
-	z-index: 10;
-	transform-style: preserve-3d;
-	transform: translateZ(150px);
-}
-
 :root {
 	--insta-gallery-slide-height: 87.742vh;
 
 	--insta-gallery-slide-width: 48.281vh;
 }
 .inst-gallery-full__swiper {
-	height: var(--insta-gallery-slide-height);
-	width: var(--insta-gallery-slide-width);
-	border-radius: 6px;
+	// height: var(--insta-gallery-slide-height);
+	// width: var(--insta-gallery-slide-width);
+	// height: var(--insta-gallery-slide-height);
+	// width: var(--insta-gallery-slide-width);
+	border-radius: 12px;
+	height: calc(100vh - 20px);
+	margin: 10px 0;
+	max-height: 650px;
+	max-width: 365px;
+	width: 55vh;
+
 	overflow: hidden !important;
 }
 
-@media screen and (min-width: 430px) {
+@media screen and (min-width: 460px) {
 	.swiper-slide_left-step-1,
 	.swiper-slide_left-step-2,
 	.swiper-slide_not-visible,
@@ -256,6 +341,8 @@
 			opacity 0.3s,
 			transform 0.3s,
 			transform-origin 0.3s !important;
+		width: 100%;
+		height: 100%;
 	}
 	.swiper-slide_not-visible {
 		opacity: 0;
@@ -370,7 +457,7 @@
 	height: auto;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 460px) {
 	.insta-gallery__title {
 		margin-bottom: calc(30px / 2);
 		font-weight: 700;
@@ -407,7 +494,7 @@
 	.inst-gallery-full__navigation {
 		position: absolute;
 		z-index: 10;
-		top: 0;
+		top: 20px;
 		left: 0;
 		width: 100%;
 		margin-bottom: 0;
@@ -417,11 +504,13 @@
 	.inst-gallery-full__swiper {
 		width: 100vw;
 		height: 100vh;
+		max-width: 100%;
+		max-height: 100%;
 	}
 	.inst-gallery-full__close {
 		background: #00000000;
-		top: 8px;
-		right: 0;
+		top: 28px;
+		right: 2px;
 		width: 45px;
 		height: 45px;
 	}
@@ -444,6 +533,7 @@
 	z-index: 10;
 	width: 100%;
 	height: 100%;
+
 	object-fit: cover;
 	padding: 20px;
 	display: flex;
