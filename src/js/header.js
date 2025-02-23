@@ -48,6 +48,7 @@ function hoverCatalogBtn() {
     btnMenu.addEventListener("mouseover", (e) => {
       btnMenu.classList.add("_active-burger");
       blockMenu.hidden = false;
+      debugger;
       autoHeightSubMenu();
     });
   }
@@ -219,15 +220,25 @@ function showSearchBlock() {
     });
   }
 }
-
+function getMaxOfArray(numArray) {
+  return Math.max.apply(null, numArray);
+}
 function autoHeightSubMenu() {
-  const menuWrapper = document.querySelector(".menu-sub__wrapper");
-  const heightNameMenuSub =
-    document.querySelector(".menu-sub__name").offsetHeight;
+  const menuWrappers = document.querySelectorAll(".menu-sub__wrapper");
+  const heightNameMenuSub = document.querySelectorAll(".menu-sub__name"); //.offsetHeight
+  let numArr = [];
+
+  heightNameMenuSub.forEach((element) => {
+    numArr.push(element.offsetHeight);
+  });
+  const maxHeightName = getMaxOfArray(numArr);
+
   const heightMainMenu = document.querySelector(
     ".catalog-menu__main-nav"
   ).offsetHeight;
-  menuWrapper.style.maxHeight = heightMainMenu - heightNameMenuSub + "px";
+  menuWrappers.forEach((menuWrapper) => {
+    menuWrapper.style.maxHeight = heightMainMenu - maxHeightName + "px";
+  });
 }
 
 function switchDarkLogo() {
@@ -243,6 +254,7 @@ function switchDarkLogo() {
     }
   }
 }
+autoHeightSubMenu();
 switchDarkLogo();
 showCatalogBtn();
 showSearchBlock();

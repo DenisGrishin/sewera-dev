@@ -850,7 +850,7 @@
 
 		height: 100%;
 		// max-height: 435px;
-		padding-right: 103px;
+		padding-right: 30px;
 		column-gap: 60px;
 	}
 
@@ -858,17 +858,21 @@
 
 	&__list {
 		flex: 0 1 226px;
+		.header &_mb {
+			margin-bottom: 36px;
+		}
 	}
-
+	// .menu-sub__title-item
+	&__title-item {
+		font-weight: 700;
+	}
 	// .menu-sub__item
 
 	&__item {
 		line-height: 1.5;
-		&:first-child {
-			font-weight: 700;
-		}
+
 		&:not(:last-child) {
-			margin-bottom: 10px;
+			margin-bottom: 8px;
 		}
 		a {
 			@media (any-hover: hover) {
@@ -1298,6 +1302,10 @@
 		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/skvazhina.svg);
 	}
 }
+._iconLandshaftnyj,
+._iconDemontaj,
+._iconDrenazh,
+._iconOzelenenie,
 ._iconElektromontazhnyie,
 ._iconOther-service,
 ._iconKupeli,
@@ -1319,6 +1327,26 @@
 		width: 16px;
 		height: 16px;
 		display: inline-block;
+	}
+}
+._iconLandshaftnyj {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/landshaftnyj.svg);
+	}
+}
+._iconDemontaj {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/demontaj.svg);
+	}
+}
+._iconDrenazh {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/drenazh.svg);
+	}
+}
+._iconOzelenenie {
+	&::before {
+		background-image: url(https://sewera.manager3.fvds.ru/srv/assets/images/main/header/icons/catalog-menu-icon/ozelenenie.svg);
 	}
 }
 ._iconElektromontazhnyie {
