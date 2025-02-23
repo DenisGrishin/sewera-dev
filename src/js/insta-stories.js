@@ -126,6 +126,7 @@ class InstaGallery {
       this.fullGallery.style.display = "";
       this.fullGalleryIsOpen = true;
       document.body.style.overflow = "hidden";
+      this.storyProgressBar.play(0, this);
     } else {
       this.fullGallery.style.display = "none";
       this.fullGalleryIsOpen = false;
@@ -162,16 +163,16 @@ class InstaGallery {
     this.fullSwiperNext = document.querySelector(".inst-gallery-full__right");
 
     this.storyProgressBar = new StoryProgressBar(this);
-
+    let newInstaSroty;
     for (let index = 0; index < contetn.imgListBg.length; index++) {
       const imgBg = contetn.imgListBg[index];
       const link = contetn.linkList[index];
       const title = contetn.titleList[index];
       const description = contetn.descriptionList[index];
-      const textBtn = contetn.textBtnList[index];
+      const textLink = contetn.textLinkList[index];
       const colorBtn = contetn.colorBtnList[index];
 
-      let newInstaSroty = document.createElement("div");
+      newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
 
       newInstaSroty.insertAdjacentHTML(
@@ -184,7 +185,7 @@ class InstaGallery {
         <div class="inst-story__button"></div>
           ${title ? `<div class="inst-story__title">${title}</div>` : ""}
           ${description ? `<div class="inst-story__description">${description}</div>` : ""}
-          ${link ? `<a href='${link}' style="background-color:${colorBtn}" class="inst-story__link"><span>${textBtn}</span></a>` : ""}
+          ${link ? `<a href='${link}' style="background-color:${colorBtn}" class="inst-story__link"><span>${textLink}</span></a>` : ""}
           </div>
        
         `
@@ -205,16 +206,9 @@ class InstaGallery {
       </div>
         `
       );
-
-      this.instaVideoList.push();
     }
-    new InstaStory(
-      newInstaSroty,
-      index,
-      this,
-      this.storyProgressBar,
-      lengthContetn
-    );
+
+    new InstaStory(0, this, this.storyProgressBar, lengthContetn);
 
     this.onSlideChange();
   };
@@ -281,7 +275,7 @@ class InstaGallery {
       const linkList = [];
       const titleList = [];
       const descriptionList = [];
-      const textBtnList = [];
+      const textLinkList = [];
       const colorBtnList = [];
 
       inputs.forEach((input) => {
@@ -295,7 +289,7 @@ class InstaGallery {
         linkList.push(contetn[1]);
         titleList.push(contetn[2]);
         descriptionList.push(contetn[3]);
-        textBtnList.push(contetn[4]);
+        textLinkList.push(contetn[4]);
         colorBtnList.push(contetn[5]);
       });
 
@@ -305,14 +299,13 @@ class InstaGallery {
         linkList: linkList,
         titleList: titleList,
         descriptionList: descriptionList,
-        textBtnList: textBtnList,
+        textLinkList: textLinkList,
         colorBtnList: colorBtnList,
       });
     });
   };
   // ! end ===
   nextStory = () => {
-    debugger;
     this.currentSwiperSlide = Number(this.indxActvSlideOutsideSwiper) + 1;
 
     this.hiddenNextBtnNav();
@@ -338,14 +331,14 @@ class InstaGallery {
         .querySelector(".inst-gallery__img img")
         .classList.add("_viewed");
     }
-
     this.storyProgressBar.reset();
     this.removeStory();
     this.indxActvSlideOutsideSwiper = index;
     this.initSwiperStory();
     this.createStories(this.slideGallery[index]);
-
-    this.storyProgressBar.play(0, this);
+    debugger;
+    // ! приходит другой индекс
+    this.storyProgressBar.play(index, this);
   };
   hiddenNextBtnNav = () => {
     if (
@@ -369,7 +362,7 @@ class InstaGallery {
     }
   };
 
-  // ! start ===
+  // ! надо start ===
   checkIfAllStoriesViewed = () => {
     this.slideGallery.forEach((slide) => {
       if (
@@ -402,29 +395,18 @@ class InstaGallery {
 }
 
 class InstaStory {
-  constructor(
-    instaStory,
-    index,
-    instaGallery,
-    storyProgressBar,
-    lengthContetn
-  ) {
-    this.instaStory = instaStory;
+  constructor(index, instaGallery, storyProgressBar, lengthContetn) {
     this.index = index;
     this.instaGallery = instaGallery;
     this.swiperStory = instaGallery.swiperStory;
-    this.button = instaStory.querySelector(".inst-story__button");
+    this.buttons = document.querySelectorAll(".inst-story__button");
     this.storyProgressBar = storyProgressBar;
     this.lengthContetn = lengthContetn;
 
-    if (this.index >= this.lengthContetn - 1) {
-      debugger;
-      this.storyProgressBar.play(0, this.instaGallery);
-    }
-
+    // this.storyProgressBar.play(0, this.instaGallery);
     let isPause = false;
     let pauseTimeout;
-    2;
+
     let mouseDown = (event) => {
       isPause = false;
       pauseTimeout = setTimeout(() => {
@@ -443,6 +425,8 @@ class InstaStory {
 
     let mouseUp = (event) => {
       clearInterval(pauseTimeout);
+      // ! что то тут
+
       this.storyProgressBar.play(this.index, this.instaGallery);
     };
 
@@ -455,7 +439,6 @@ class InstaStory {
       if (isPause) {
         return;
       }
-
       if (event.clientX > innerWidth / 2) {
         this.sliderNext(event);
       } else {
@@ -464,21 +447,19 @@ class InstaStory {
       return;
     };
 
-    // this.instaGallery.fullSwiperBack.addEventListener("click", click, {
-    //   passive: true,
-    // });
-    // this.instaGallery.fullSwiperNext.addEventListener("click", click, {
-    //   passive: true,
-    // });
-
-    this.button.addEventListener("click", click, { passive: true });
-    this.button.addEventListener("mousedown", mouseDown, { passive: true });
-    this.button.addEventListener("touchstart", touchDown, { passive: true });
-    this.button.addEventListener("mouseup", mouseUp, { passive: true });
-    this.button.addEventListener("touchend", touchUp, { passive: true });
-    this.button.oncontextmenu = (event) => {
-      return false;
-    };
+    this.instaGallery.fullSwiperNext.addEventListener("click", click, {
+      passive: true,
+    });
+    this.buttons.forEach((button) => {
+      button.addEventListener("click", click, { passive: true });
+      button.addEventListener("mousedown", mouseDown, { passive: true });
+      button.addEventListener("touchstart", touchDown, { passive: true });
+      button.addEventListener("mouseup", mouseUp, { passive: true });
+      button.addEventListener("touchend", touchUp, { passive: true });
+      button.oncontextmenu = (event) => {
+        return false;
+      };
+    });
   }
 
   sliderNext = (event) => {
@@ -497,14 +478,6 @@ class InstaStory {
 
     this.swiperStory.slidePrev();
   };
-
-  // перключает по слйадом в стрис
-  fullGallerySlideTo(index) {
-    if (index === this.fullSwiper.activeIndex) return;
-    this.fullSwiper.slideTo(index);
-
-    this.storyProgressBar.play(index, this.instaGallery);
-  }
 }
 
 class StoryProgressBar {
@@ -520,7 +493,6 @@ class StoryProgressBar {
   }
 
   play = (indexSlide, instaGallery) => {
-    debugger;
     const lines = this.elementStoryProgressBar.querySelectorAll(
       ".inst-gallery-full__navigation-line"
     );
