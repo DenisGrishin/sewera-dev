@@ -1,3 +1,24 @@
+function bildSliders() {
+  //BildSlider
+  let sliders = document.querySelectorAll(
+    '[class*="__swiper"]:not(.swiper-wrapper):not(.swiper)'
+  );
+  if (sliders) {
+    sliders.forEach((slider) => {
+      if (
+        slider.querySelector(".swiper-wrapper") ||
+        slider.querySelector(".swiper")
+      )
+        return;
+      slider.parentElement.classList.add("swiper");
+      slider.classList.add("swiper-wrapper");
+      for (const slide of slider.children) {
+        slide.classList.add("swiper-slide");
+      }
+    });
+  }
+}
+bildSliders();
 class InstaGallery {
   static delegated = false;
   storyGalleryIsOpen = false;
@@ -44,11 +65,12 @@ class InstaGallery {
     this.elementStoryProgressBar.innerHTML = "";
 
     //gallery
+
     this.outsideSwiper = new Swiper(
       this.instaGallery.querySelector(".inst-gallery__slider"),
       {
         spaceBetween: 48,
-        slidesPerView: "5",
+        slidesPerView: "auto",
         breakpoints: {
           1023: {
             spaceBetween: 48,
@@ -94,7 +116,10 @@ class InstaGallery {
         this.storySwiperBack.style.display = "none";
       }
 
-      if (slide.dataset.index == this.slideGallery.length - 1) {
+      if (
+        slide.dataset.index == this.slideGallery.length - 1 &&
+        1 >= this.lengthСontent
+      ) {
         this.storySwiperNext.style.display = "none";
       }
     });
@@ -169,11 +194,7 @@ class InstaGallery {
     let newInstaSroty;
     for (let index = 0; index < content.imgListBg.length; index++) {
       const imgBg = content.imgListBg[index];
-      const link = content.linkList[index];
-      const title = content.titleList[index];
-      const description = content.descriptionList[index];
-      const textLink = content.textLinkList[index];
-      const colorBtn = content.colorBtnList[index];
+      const contentText = content.listContentText[index];
 
       newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
@@ -186,12 +207,9 @@ class InstaGallery {
         
         <div class="inst-story__contetn">
         <div class="inst-story__button"></div>
-          ${title ? `<div class="inst-story__title">${title}</div>` : ""}
-          ${description ? `<div class="inst-story__description">${description}</div>` : ""}
-          ${link ? `<a href='${link}' style="background-color:${colorBtn}" class="inst-story__link"><span>${textLink}</span></a>` : ""}
-          </div>
-       
-        `
+          ${contentText ? `<div class="inst-story__content-text">${contentText}</div>` : ""}
+        </div>
+          `
       );
 
       let newSlide = document.createElement("div");
@@ -276,35 +294,20 @@ class InstaGallery {
       const inputs = slide.querySelectorAll('input[name="contetnStories"]');
 
       const loadImgBg = [];
-      const linkList = [];
-      const titleList = [];
-      const descriptionList = [];
-      const textLinkList = [];
-      const colorBtnList = [];
+      const contentText = [];
 
       inputs.forEach((input) => {
         const content = input.value.split("|");
         const imgBg = new Image();
-
         imgBg.src = content[0];
-
         loadImgBg.push(imgBg);
-
-        linkList.push(content[1]);
-        titleList.push(content[2]);
-        descriptionList.push(content[3]);
-        textLinkList.push(content[4]);
-        colorBtnList.push(content[5]);
+        contentText.push(content[1]);
       });
 
       this.loadedContetnInput.push({
         slideIndex: index,
         imgListBg: loadImgBg,
-        linkList: linkList,
-        titleList: titleList,
-        descriptionList: descriptionList,
-        textLinkList: textLinkList,
-        colorBtnList: colorBtnList,
+        listContentText: contentText,
       });
     });
   };
@@ -500,7 +503,7 @@ class InstaStory {
 
 class StoryProgressBar {
   interval = null;
-  duration = 3000;
+  duration = 30000;
   progress = 0;
   startTime = null;
   elapsedTime = 0;
