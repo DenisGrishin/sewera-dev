@@ -1,11 +1,10 @@
 class InstaGallery {
   static delegated = false;
-  fullGalleryIsOpen = false;
-  instaVideoList = new Array(0);
-
+  storyGalleryIsOpen = false;
   loadedContetnInput = new Array(0);
-  indxActvSlideOutsideSwiper = 0;
+  indxActvinstaGallerySwiper = 0;
   currentSwiperSlide = 0;
+  lengthСontent = 0;
 
   static delegate() {
     InstaGallery.delegated = true;
@@ -26,12 +25,12 @@ class InstaGallery {
     );
 
     //full gallery
-    this.fullGalleryClose = this.instaGallery.querySelector(
+    this.storyGalleryClose = this.instaGallery.querySelector(
       ".inst-gallery-full__close"
     );
-    this.fullGallery = this.instaGallery.querySelector(".inst-gallery-full");
+    this.storyGallery = this.instaGallery.querySelector(".inst-gallery-full");
 
-    this.fullGalleryWrapper = this.instaGallery.querySelector(
+    this.storyGalleryWrapper = this.instaGallery.querySelector(
       ".inst-gallery-full__swiper .swiper-wrapper"
     );
     //navigation
@@ -39,9 +38,9 @@ class InstaGallery {
       ".inst-gallery-full__navigation"
     );
 
-    this.fullGalleryBtnNav = document.querySelector(".inst-gallery-full__nav");
+    this.storyGalleryBtnNav = document.querySelector(".inst-gallery-full__nav");
 
-    this.fullGalleryWrapper.innerHTML = "";
+    this.storyGalleryWrapper.innerHTML = "";
     this.elementStoryProgressBar.innerHTML = "";
 
     //gallery
@@ -83,94 +82,98 @@ class InstaGallery {
         slide.dataset.dateStories
       );
 
-      this.indxActvSlideOutsideSwiper = slide.dataset.index;
+      this.indxActvinstaGallerySwiper = slide.dataset.index;
 
       this.initSwiperStory();
       this.createStories(slide);
-      this.fullGallerySetOpen(true);
+      this.storyGallerySetOpen(true);
 
       slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
 
       if (slide.dataset.index == 0) {
-        this.fullSwiperBack.style.display = "none";
+        this.storySwiperBack.style.display = "none";
+      }
+
+      if (slide.dataset.index == this.slideGallery.length - 1) {
+        this.storySwiperNext.style.display = "none";
       }
     });
 
     this.preloadContent();
 
     // закрыть сторисы на кнопку справа вверху
-    this.fullGalleryClose.addEventListener(
+    this.storyGalleryClose.addEventListener(
       "click",
       () => {
-        this.fullGallerySetOpen(false);
+        this.storyGallerySetOpen(false);
       },
       { passive: true }
     );
 
     this.checkIfAllStoriesViewed();
 
-    this.fullGallery.addEventListener(
+    this.storyGallery.addEventListener(
       "click",
       (event) => {
-        let isTarget = event.target === this.fullGallery;
-        if (isTarget) this.fullGallerySetOpen(false);
+        let isTarget = event.target === this.storyGallery;
+        if (isTarget) this.storyGallerySetOpen(false);
       },
       { passive: true }
     );
   }
   // constructor end ========================
-  fullGallerySetOpen = (state) => {
-    if (this.fullGalleryIsOpen === state) return;
+  storyGallerySetOpen = (state) => {
+    if (this.storyGalleryIsOpen === state) return;
 
     if (state) {
-      this.fullGallery.style.display = "";
-      this.fullGalleryIsOpen = true;
+      this.storyGallery.style.display = "";
+      this.storyGalleryIsOpen = true;
       document.body.style.overflow = "hidden";
       this.storyProgressBar.play(0, this);
     } else {
-      this.fullGallery.style.display = "none";
-      this.fullGalleryIsOpen = false;
+      this.storyGallery.style.display = "none";
+      this.storyGalleryIsOpen = false;
       this.storyProgressBar.stop();
-      this.indxActvSlideOutsideSwiper = 0;
+      this.indxActvinstaGallerySwiper = 0;
       this.removeStory();
       document.body.style.overflow = "";
     }
   };
 
   removeStory = () => {
-    this.fullGalleryWrapper.innerHTML = "";
+    this.storyGalleryWrapper.innerHTML = "";
     this.elementStoryProgressBar.innerHTML = "";
-    this.fullGalleryBtnNav.innerHTML = "";
+    this.storyGalleryBtnNav.innerHTML = "";
     this.swiperStory.destroy(true, true);
   };
 
   createStories = (slide) => {
     const slideIndx = slide.dataset.index;
-    const lengthContetn = slide.querySelectorAll(".content").length;
+    this.lengthСontent = slide.querySelectorAll(".content").length;
 
-    let contetn = this.loadedContetnInput.find(
+    let content = this.loadedContetnInput.find(
       (it) => it.slideIndex === Number(slideIndx)
     );
     document.querySelector(".inst-gallery-full__nav").insertAdjacentHTML(
       "beforeend",
       `
-									<div class="inst-gallery-full__left"></div>
-									<div class="inst-gallery-full__right"></div>
+									<div class="inst-gallery-full__back"></div>
+									<div class="inst-gallery-full__next"></div>
 								`
     );
 
-    this.fullSwiperBack = document.querySelector(".inst-gallery-full__left");
-    this.fullSwiperNext = document.querySelector(".inst-gallery-full__right");
+    this.storySwiperBack = document.querySelector(".inst-gallery-full__back");
+    this.storySwiperNext = document.querySelector(".inst-gallery-full__next");
 
     this.storyProgressBar = new StoryProgressBar(this);
     let newInstaSroty;
-    for (let index = 0; index < contetn.imgListBg.length; index++) {
-      const imgBg = contetn.imgListBg[index];
-      const link = contetn.linkList[index];
-      const title = contetn.titleList[index];
-      const description = contetn.descriptionList[index];
-      const textLink = contetn.textLinkList[index];
-      const colorBtn = contetn.colorBtnList[index];
+    for (let index = 0; index < content.imgListBg.length; index++) {
+      const imgBg = content.imgListBg[index];
+      const link = content.linkList[index];
+      const title = content.titleList[index];
+      const description = content.descriptionList[index];
+      const textLink = content.textLinkList[index];
+      const colorBtn = content.colorBtnList[index];
 
       newInstaSroty = document.createElement("div");
       newInstaSroty.setAttribute("class", "inst-story");
@@ -196,7 +199,7 @@ class InstaGallery {
 
       newSlide.appendChild(newInstaSroty);
 
-      this.fullGalleryWrapper.appendChild(newSlide);
+      this.storyGalleryWrapper.appendChild(newSlide);
 
       this.elementStoryProgressBar.insertAdjacentHTML(
         "beforeend",
@@ -208,11 +211,11 @@ class InstaGallery {
       );
     }
 
-    new InstaStory(0, this, this.storyProgressBar, lengthContetn);
+    this.initSwiperStory();
 
-    this.onSlideChange();
+    new InstaStory(0, this, this.storyProgressBar, this.lengthСontent);
   };
-  // ! start======
+
   initSwiperStory = () => {
     this.swiperStory = new Swiper(
       this.instaGallery.querySelector(".inst-gallery-full__swiper"),
@@ -232,6 +235,8 @@ class InstaGallery {
         },
       }
     );
+
+    this.onSlideChange();
   };
 
   onSlideChange = () => {
@@ -260,8 +265,7 @@ class InstaGallery {
             ".inst-gallery-full__navigation-line-progress"
           ).style.width = "0";
         });
-      // this.hiddenNextBtnNav();
-      // this.showBackBtnNav();
+      this.updateNavigationButtons();
       this.storyProgressBar.reset();
       this.storyProgressBar.play(this.swiperStory.activeIndex, this);
     });
@@ -279,18 +283,18 @@ class InstaGallery {
       const colorBtnList = [];
 
       inputs.forEach((input) => {
-        const contetn = input.value.split("|");
+        const content = input.value.split("|");
         const imgBg = new Image();
 
-        imgBg.src = contetn[0];
+        imgBg.src = content[0];
 
         loadImgBg.push(imgBg);
 
-        linkList.push(contetn[1]);
-        titleList.push(contetn[2]);
-        descriptionList.push(contetn[3]);
-        textLinkList.push(contetn[4]);
-        colorBtnList.push(contetn[5]);
+        linkList.push(content[1]);
+        titleList.push(content[2]);
+        descriptionList.push(content[3]);
+        textLinkList.push(content[4]);
+        colorBtnList.push(content[5]);
       });
 
       this.loadedContetnInput.push({
@@ -304,25 +308,26 @@ class InstaGallery {
       });
     });
   };
-  // ! end ===
-  nextStory = () => {
-    this.currentSwiperSlide = Number(this.indxActvSlideOutsideSwiper) + 1;
 
-    this.hiddenNextBtnNav();
+  nextStory = () => {
+    this.currentSwiperSlide = Number(this.indxActvinstaGallerySwiper) + 1;
+
+    this.storySwiperNext.style.display = "none";
+
     if (this.currentSwiperSlide > this.slideGallery.length - 1) return;
 
     this.updateStateStories(this.currentSwiperSlide);
   };
 
   prevStory = () => {
-    this.currentSwiperSlide = Number(this.indxActvSlideOutsideSwiper) - 1;
+    this.currentSwiperSlide = Number(this.indxActvinstaGallerySwiper) - 1;
 
     if (this.currentSwiperSlide === -1) return;
 
     this.updateStateStories(this.currentSwiperSlide);
 
     if (this.currentSwiperSlide == 0) {
-      this.fullSwiperBack.style.display = "none";
+      this.storySwiperBack.style.display = "none";
     }
   };
   updateStateStories = (index) => {
@@ -331,38 +336,45 @@ class InstaGallery {
         .querySelector(".inst-gallery__img img")
         .classList.add("_viewed");
     }
-    this.storyProgressBar.reset();
     this.removeStory();
-    this.indxActvSlideOutsideSwiper = index;
-    this.initSwiperStory();
+    this.storyProgressBar.reset();
+    this.indxActvinstaGallerySwiper = index;
+
     this.createStories(this.slideGallery[index]);
-    debugger;
-    // ! приходит другой индекс
-    this.storyProgressBar.play(index, this);
+
+    this.storyProgressBar.play(0, this);
   };
-  hiddenNextBtnNav = () => {
+
+  updateNavigationButtons = () => {
     if (
-      this.currentSwiperSlide == this.slideGallery.length &&
-      this.swiperStory.activeIndex ==
-        document.querySelectorAll(".inst-gallery-full__navigation-line")
-          .length -
-          1
+      this.swiperStory.activeIndex == 1 &&
+      this.indxActvinstaGallerySwiper == 0
     ) {
-      this.fullSwiperNext.style.display = "none";
+      this.storySwiperBack.style.display = "flex";
+    }
+
+    if (
+      this.swiperStory.activeIndex == this.lengthСontent - 1 &&
+      this.indxActvinstaGallerySwiper == this.slideGallery.length - 1
+    ) {
+      this.storySwiperNext.style.display = "none";
+    }
+
+    if (
+      this.swiperStory.activeIndex == this.lengthСontent - 1 &&
+      this.indxActvinstaGallerySwiper == this.slideGallery.length - 1
+    ) {
+      this.storySwiperNext.style.display = "none";
+    }
+
+    if (
+      this.swiperStory.activeIndex == this.lengthСontent - 2 &&
+      this.indxActvinstaGallerySwiper == this.slideGallery.length - 1
+    ) {
+      this.storySwiperNext.style.display = "flex";
     }
   };
 
-  showBackBtnNav = () => {
-    if (
-      this.swiperStory.activeIndex <
-      document.querySelectorAll(".inst-gallery-full__navigation-line").length -
-        1
-    ) {
-      this.fullSwiperNext.style.display = "flex";
-    }
-  };
-
-  // ! надо start ===
   checkIfAllStoriesViewed = () => {
     this.slideGallery.forEach((slide) => {
       if (
@@ -390,20 +402,17 @@ class InstaGallery {
       return false;
     }
   };
-  // ! end ====
-  // меняем класс для того тчоб было анимция вращения
 }
 
 class InstaStory {
-  constructor(index, instaGallery, storyProgressBar, lengthContetn) {
+  constructor(index, instaGallery, storyProgressBar, lengthСontent) {
     this.index = index;
     this.instaGallery = instaGallery;
     this.swiperStory = instaGallery.swiperStory;
     this.buttons = document.querySelectorAll(".inst-story__button");
     this.storyProgressBar = storyProgressBar;
-    this.lengthContetn = lengthContetn;
+    this.lengthСontent = lengthСontent;
 
-    // this.storyProgressBar.play(0, this.instaGallery);
     let isPause = false;
     let pauseTimeout;
 
@@ -425,14 +434,20 @@ class InstaStory {
 
     let mouseUp = (event) => {
       clearInterval(pauseTimeout);
-      // ! что то тут
 
-      this.storyProgressBar.play(this.index, this.instaGallery);
+      this.storyProgressBar.play(
+        this.swiperStory.activeIndex,
+        this.instaGallery
+      );
     };
 
     let touchUp = (event) => {
       clearInterval(pauseTimeout);
-      this.storyProgressBar.play(this.index, storyProgressBar.play);
+
+      this.storyProgressBar.play(
+        this.swiperStory.activeIndex,
+        storyProgressBar.play
+      );
     };
 
     let click = (event) => {
@@ -447,7 +462,10 @@ class InstaStory {
       return;
     };
 
-    this.instaGallery.fullSwiperNext.addEventListener("click", click, {
+    this.instaGallery.storySwiperNext.addEventListener("click", click, {
+      passive: true,
+    });
+    this.instaGallery.storySwiperBack.addEventListener("click", click, {
       passive: true,
     });
     this.buttons.forEach((button) => {
@@ -556,3 +574,5 @@ class StorageHelper {
 }
 
 InstaGallery.delegate();
+// ! сдеалть чтоб на послднем слайде выключался
+// ! контент
