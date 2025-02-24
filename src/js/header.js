@@ -48,7 +48,6 @@ function hoverCatalogBtn() {
     btnMenu.addEventListener("mouseover", (e) => {
       btnMenu.classList.add("_active-burger");
       blockMenu.hidden = false;
-      debugger;
       autoHeightSubMenu();
     });
   }

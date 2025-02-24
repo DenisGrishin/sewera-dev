@@ -7239,9 +7239,9 @@ sewera-septik .form-qwiz__user-contact {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
+	-webkit-box-pack: space-between;
+	-ms-flex-pack: space-between;
+	justify-content: space-between;
 	row-gap: 16px;
 	max-width: 500px;
 	margin: 0 !important;
@@ -10784,8 +10784,8 @@ sewera-septik .form-qwiz__user-contact {
 	}
 	.sewera-septik .banner-main__item {
 		-webkit-box-flex: 0;
-		-ms-flex: 0 1 40%;
-		flex: 0 1 40%;
+		-ms-flex: 0 1 42%;
+		flex: 0 1 42%;
 		font-size: 12px;
 	}
 	.sewera-septik .types-wells__wrapper-slide_obustroystva {
@@ -12456,9 +12456,9 @@ sewera-septik .form-qwiz__user-contact {
 		width: -webkit-min-content;
 		width: -moz-min-content;
 		width: min-content;
-		-webkit-box-pack: start;
-		-ms-flex-pack: start;
-		justify-content: flex-start;
+		-webkit-box-pack: space-between;
+		-ms-flex-pack: space-between;
+		justify-content: space-between;
 	}
 }
 @media (max-width: 410.98px) {
