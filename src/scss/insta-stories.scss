@@ -58,6 +58,187 @@
 	}
 }
 
+.inst-form {
+	// .inst-form__contetn
+
+	&__contetn {
+		color: #fff;
+	}
+}
+.inst-form .discount-category {
+	// .discount-category__title
+
+	&__title {
+		text-align: left;
+		font-size: 20px;
+		line-height: 1.35;
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+
+	// .discount-category__list
+
+	&__list {
+		margin: 0;
+		width: 100%;
+	}
+
+	// .discount-category__item
+
+	&__item {
+		&:not(:last-child) {
+			border-bottom: 1px solid #ffffff69;
+		}
+	}
+	&__btn-next {
+		margin-top: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		font-weight: 600;
+		border-radius: 12px;
+		width: 100%;
+		height: 60px;
+		position: relative;
+		z-index: 10000000;
+		cursor: pointer;
+		background-color: var(--mainColor);
+	}
+}
+.item-disc {
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	line-height: 1.2;
+	position: relative;
+	width: 100%;
+	padding: 12px 0;
+
+	&::after,
+	&::before {
+		content: "";
+
+		position: absolute;
+		top: 50%;
+		right: 0;
+		border-radius: 4px;
+		transform: translate(0px, -50%);
+		transition: all 0.3s ease 0s;
+	}
+	&::before {
+		width: 20px;
+		height: 20px;
+		background-color: #fff;
+	}
+	&::after {
+		right: 3px;
+		background-position: 50% 50%;
+		background-size: 14px 14px;
+		background-repeat: no-repeat;
+		width: 14px;
+		height: 14px;
+	}
+	&:has(input:checked)::before {
+		background-color: #0db25a;
+	}
+	&:has(input:checked)::after {
+		background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyOCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuMDAxOTUgOC45OTgwNUwxMS4wMDIgMTYuOTk4TDI1LjAwMiAyLjk5ODA1IiBzdHJva2U9IndoaXRlIiBzdHlsZT0ic3Ryb2tlOndoaXRlO3N0cm9rZS1vcGFjaXR5OjE7IiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K");
+	}
+	// .item-disc__checkbox
+
+	&__checkbox {
+		&:checked + .item-disc__discount {
+			background-color: #0db25a;
+		}
+	}
+
+	// .item-disc__icon
+
+	&__icon {
+		display: flex;
+	}
+
+	// .item-disc__discount
+
+	&__discount {
+		flex: 0 0 40px;
+		padding: 4px;
+		border-radius: 4px;
+		background-color: #f0f4f926;
+		transition: all 0.3s ease 0s;
+		margin-left: 28px;
+		& span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&::before {
+			content: "";
+			background-position: 50% 50%;
+			background-size: 20px 20px;
+			background-repeat: no-repeat;
+			position: absolute;
+			top: 50%;
+			transform: translate(0px, -50%);
+			left: -3px;
+			width: 25px;
+			height: 25px;
+		}
+		&_septick {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/septick.svg");
+			}
+		}
+		&_ukladka-dorozhek {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/ukladka-dorozhek.svg");
+			}
+		}
+		&_burenie-skvazhin {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/burenie-skvazhin.svg");
+			}
+		}
+		&_raschistka-uchastka {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/Raschistka-uchastka.svg");
+			}
+		}
+		&_sistema-ochistki {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/sistema-ochistki.svg");
+			}
+		}
+		&_demontaj-snos {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/demontaj-snos.svg");
+			}
+		}
+		&_livnevaya-kanalizaciya {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/Livnevaya-kanalizaciya.svg");
+			}
+		}
+		&_ozelenenie {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/ozelenenie.svg");
+			}
+		}
+		&_avtopoliv {
+			&::before {
+				background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/avtopoliv.svg");
+			}
+		}
+	}
+
+	// .item-disc__name
+
+	&__name {
+	}
+}
+
 /* 
 ==============================================================================================================================================
  ==============================================================================================================================================
@@ -266,6 +447,10 @@
 .inst-gallery-full__volume svg {
 	fill: white;
 }
+.inst-form {
+	background-color: #574ae9;
+}
+.insta-form,
 .inst-story {
 	display: flex;
 	width: 100%;
@@ -303,21 +488,12 @@
 	transform: translateZ(-100px);
 }
 
-:root {
-	--insta-gallery-slide-height: 87.742vh;
-
-	--insta-gallery-slide-width: 48.281vh;
-}
 .inst-gallery-full__swiper {
-	// height: var(--insta-gallery-slide-height);
-	// width: var(--insta-gallery-slide-width);
-	// height: var(--insta-gallery-slide-height);
-	// width: var(--insta-gallery-slide-width);
 	border-radius: 12px;
 	height: calc(100vh - 20px);
 	margin: 10px 0;
-	max-height: 650px;
-	max-width: 365px;
+	max-height: 675px;
+	max-width: 380px;
 	width: 55vh;
 
 	overflow: hidden !important;
@@ -392,10 +568,7 @@
 		font-size: 18px;
 		line-height: 22px;
 	}
-	:root {
-		--insta-gallery-slide-height: 79.636vh;
-		--insta-gallery-slide-width: 43.818vh;
-	}
+
 	.inst-gallery-full__container {
 		// margin-top: 37px;
 	}
@@ -414,10 +587,6 @@
 		overflow: visible !important;
 	}
 
-	:root {
-		--insta-gallery-slide-height: 87.111vh;
-		--insta-gallery-slide-width: 48vh;
-	}
 	.inst-gallery-full__container {
 		// margin-top: 19px;
 	}
@@ -530,19 +699,26 @@
 		left: 16px;
 	}
 }
+.inst-form__contetn,
 .inst-story__contetn {
 	position: relative;
 	z-index: 10;
 	width: 100%;
 	height: 100%;
 
-	object-fit: cover;
 	padding: 20px;
 	display: flex;
 	align-items: flex-end;
 	img {
 		vertical-align: bottom;
 	}
+}
+.inst-form__contetn {
+	padding-top: 50px;
+	align-items: stretch;
+	text-align-last: left;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 @media (min-width: 1980px) {
