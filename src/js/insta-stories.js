@@ -92,6 +92,7 @@ class InstaGallery {
     this.slideGallery.forEach((slide, index) => {
       slide.setAttribute("data-index", index);
     });
+    this.preloadContent();
 
     // события на иконку стоиса
     this.instaGallery.addEventListener("click", (e) => {
@@ -107,7 +108,9 @@ class InstaGallery {
       this.indxActvinstaGallerySwiper = slide.dataset.index;
 
       this.initSwiperStory();
-      this.createStories(slide);
+
+      this.createStory(slide);
+
       this.storyGallerySetOpen(true);
 
       slide.querySelector(".inst-gallery__img img").classList.add("_viewed");
@@ -123,8 +126,6 @@ class InstaGallery {
         this.storySwiperNext.style.display = "none";
       }
     });
-
-    this.preloadContent();
 
     // закрыть сторисы на кнопку справа вверху
     this.storyGalleryClose.addEventListener(
@@ -172,13 +173,14 @@ class InstaGallery {
     this.swiperStory.destroy(true, true);
   };
 
-  createStories = (slide) => {
-    const slideIndx = slide.dataset.index;
-    this.lengthСontent = slide.querySelectorAll(".content").length;
-
-    let content = this.loadedContetnInput.find(
-      (it) => it.slideIndex === Number(slideIndx)
-    );
+  createStory = (slide) => {
+    debugger;
+    const content = this.findContent(slide);
+    // все это надо преносить в  фукцию createStory и там вызвыть две други ждя стоздание
+    if (content.type === "defaultStory") {
+    }
+    if (content.type === "discount") {
+    }
     document.querySelector(".inst-gallery-full__nav").insertAdjacentHTML(
       "beforeend",
       `
@@ -192,6 +194,7 @@ class InstaGallery {
 
     this.storyProgressBar = new StoryProgressBar(this);
     let newInstaSroty;
+
     for (let index = 0; index < content.imgListBg.length; index++) {
       const imgBg = content.imgListBg[index];
       const contentText = content.listContentText[index];
@@ -234,6 +237,16 @@ class InstaGallery {
     new InstaStory(0, this, this.storyProgressBar, this.lengthСontent);
   };
 
+  createTextContetn;
+
+  findContent = (slide) => {
+    const slideIndx = slide.dataset.index;
+    this.lengthСontent = slide.querySelectorAll(".content").length;
+
+    return this.loadedContetnInput.find(
+      (it) => it.slideIndex === Number(slideIndx)
+    );
+  };
   initSwiperStory = () => {
     this.swiperStory = new Swiper(
       this.instaGallery.querySelector(".inst-gallery-full__swiper"),
@@ -291,24 +304,52 @@ class InstaGallery {
 
   preloadContent = () => {
     this.slideGallery.forEach((slide, index) => {
-      const inputs = slide.querySelectorAll('input[name="contetnStories"]');
+      const input = slide.querySelector("input");
 
-      const loadImgBg = [];
-      const contentText = [];
+      if (input.name === "contetnStories") {
+        this.preloadDefaultStory(slide, index);
+      }
+      if (input.name === "contentDiscount") {
+        this.preloadDiscount(slide, index);
+      }
+    });
+  };
+  preloadDiscount = (slide, index) => {
+    const listDisount = [];
+    const inputs = slide.querySelectorAll('input[name="contentDiscount"]');
 
-      inputs.forEach((input) => {
-        const content = input.value.split("|");
-        const imgBg = new Image();
-        imgBg.src = content[0];
-        loadImgBg.push(imgBg);
-        contentText.push(content[1]);
+    inputs.forEach((input) => {
+      const content = input.value.split("|");
+      listDisount.push({
+        discount: content[0],
+        name: content[1],
       });
+    });
+    this.loadedContetnInput.push({
+      slideIndex: index,
+      type: "discount",
+      listDisount: listDisount,
+    });
+  };
+  preloadDefaultStory = (slide, index) => {
+    const loadImgBg = [];
+    const contentText = [];
 
-      this.loadedContetnInput.push({
-        slideIndex: index,
-        imgListBg: loadImgBg,
-        listContentText: contentText,
-      });
+    const inputs = slide.querySelectorAll('input[name="contetnStories"]');
+
+    inputs.forEach((input) => {
+      const content = input.value.split("|");
+      const imgBg = new Image();
+      imgBg.src = content[0];
+      loadImgBg.push(imgBg);
+      contentText.push(content[1]);
+    });
+
+    this.loadedContetnInput.push({
+      slideIndex: index,
+      type: "defaultStory",
+      imgListBg: loadImgBg,
+      listContentText: contentText,
     });
   };
 
@@ -343,7 +384,7 @@ class InstaGallery {
     this.storyProgressBar.reset();
     this.indxActvinstaGallerySwiper = index;
 
-    this.createStories(this.slideGallery[index]);
+    this.createStory(this.slideGallery[index]);
 
     this.storyProgressBar.play(0, this);
   };
