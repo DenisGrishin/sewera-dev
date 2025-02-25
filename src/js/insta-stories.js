@@ -22,7 +22,6 @@ bildSliders();
 class InstaGallery {
   static delegated = false;
   storyGalleryIsOpen = false;
-  loadedContetnInput = new Array(0);
   indxActvinstaGallerySwiper = 0;
   currentSwiperSlide = 0;
   lengthСontent = 0;
@@ -92,7 +91,8 @@ class InstaGallery {
     this.slideGallery.forEach((slide, index) => {
       slide.setAttribute("data-index", index);
     });
-    this.preloadContent();
+
+    this.preloadContent = new PreloadContent(this.slideGallery);
 
     // события на иконку стоиса
     this.instaGallery.addEventListener("click", (e) => {
@@ -106,8 +106,6 @@ class InstaGallery {
       );
 
       this.indxActvinstaGallerySwiper = slide.dataset.index;
-
-      this.initSwiperStory();
 
       this.createStory(slide);
 
@@ -155,11 +153,15 @@ class InstaGallery {
       this.storyGallery.style.display = "";
       this.storyGalleryIsOpen = true;
       document.body.style.overflow = "hidden";
-      this.storyProgressBar.play(0, this);
+      if (this.storyProgressBar) {
+        this.storyProgressBar.play(0, this);
+      }
     } else {
       this.storyGallery.style.display = "none";
       this.storyGalleryIsOpen = false;
-      this.storyProgressBar.stop();
+      if (this.typeCotent === "defaultStory") {
+        this.storyProgressBar.stop();
+      }
       this.indxActvinstaGallerySwiper = 0;
       this.removeStory();
       document.body.style.overflow = "";
@@ -170,17 +172,17 @@ class InstaGallery {
     this.storyGalleryWrapper.innerHTML = "";
     this.elementStoryProgressBar.innerHTML = "";
     this.storyGalleryBtnNav.innerHTML = "";
+    if (this.storyProgressBar) {
+      this.storyProgressBar.stop();
+    }
+    this.storyProgressBar = "";
     this.swiperStory.destroy(true, true);
   };
 
   createStory = (slide) => {
-    debugger;
-    const content = this.findContent(slide);
-    // все это надо преносить в  фукцию createStory и там вызвыть две други ждя стоздание
-    if (content.type === "defaultStory") {
-    }
-    if (content.type === "discount") {
-    }
+    this.content = this.preloadContent.findContent(slide);
+    this.lengthСontent = this.preloadContent.lengthСontent;
+
     document.querySelector(".inst-gallery-full__nav").insertAdjacentHTML(
       "beforeend",
       `
@@ -192,6 +194,17 @@ class InstaGallery {
     this.storySwiperBack = document.querySelector(".inst-gallery-full__back");
     this.storySwiperNext = document.querySelector(".inst-gallery-full__next");
 
+    if (this.content.type === "defaultStory") {
+      this.typeCotent = this.content.type;
+      this.createDefaultStory(this.content);
+    }
+    if (this.content.type === "discount") {
+      this.typeCotent = this.content.type;
+      this.createDiscount(this.content);
+    }
+  };
+
+  createDefaultStory = (content) => {
     this.storyProgressBar = new StoryProgressBar(this);
     let newInstaSroty;
 
@@ -234,18 +247,59 @@ class InstaGallery {
 
     this.initSwiperStory();
 
-    new InstaStory(0, this, this.storyProgressBar, this.lengthСontent);
+    new InstaStory(this, this.storyProgressBar, this.lengthСontent);
   };
+  createDiscount = (content) => {
+    let newSlide = document.createElement("div");
+    newSlide.setAttribute("class", "swiper-slide");
 
-  createTextContetn;
+    let newInstaSroty = document.createElement("div");
+    newInstaSroty.classList.add("inst-story", "inst-form");
 
-  findContent = (slide) => {
-    const slideIndx = slide.dataset.index;
-    this.lengthСontent = slide.querySelectorAll(".content").length;
+    newSlide.appendChild(newInstaSroty);
+    this.storyGalleryWrapper.appendChild(newSlide);
 
-    return this.loadedContetnInput.find(
-      (it) => it.slideIndex === Number(slideIndx)
+    newInstaSroty.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="inst-form__content discount-category">
+      <div class="discount-category__title">Выберите 3 услуги февраля, на которые
+					хотите
+					получить скидку</div>
+          		<ul class="discount-category__list ">
+				
+			      	</ul>
+				<button type="button" class="discount-category__btn-next">Зафиксировать
+					скидки</button>
+      </div>
+   
+      
+        `
     );
+    const listItemDiscount = newInstaSroty.querySelector(
+      ".discount-category__list"
+    );
+
+    for (let index = 0; index < content.listDisount.length; index++) {
+      const itemDiscount = content.listDisount[index];
+
+      listItemDiscount.insertAdjacentHTML(
+        "beforeend",
+        `
+         <li class="discount-category__item item-disc">
+						<label for="item-disc-${index}" class="item-disc__label">
+							<input id="item-disc-${index}" hidden type="checkbox" name='${itemDiscount.discount},${itemDiscount.name}' class="item-disc__checkbox">
+							<span class="item-disc__discount _IcSeptick"><span>${itemDiscount.discount}%</span></span>
+							<span class="item-disc__name">${itemDiscount.name}</span>
+						</label>
+					</li>
+          `
+      );
+    }
+
+    this.initSwiperStory();
+
+    new InstaDiscount(this, newInstaSroty, listItemDiscount);
   };
   initSwiperStory = () => {
     this.swiperStory = new Swiper(
@@ -297,59 +351,10 @@ class InstaGallery {
           ).style.width = "0";
         });
       this.updateNavigationButtons();
-      this.storyProgressBar.reset();
-      this.storyProgressBar.play(this.swiperStory.activeIndex, this);
-    });
-  };
-
-  preloadContent = () => {
-    this.slideGallery.forEach((slide, index) => {
-      const input = slide.querySelector("input");
-
-      if (input.name === "contetnStories") {
-        this.preloadDefaultStory(slide, index);
+      if (this.storyProgressBar) {
+        this.storyProgressBar.reset();
+        this.storyProgressBar.play(this.swiperStory.activeIndex, this);
       }
-      if (input.name === "contentDiscount") {
-        this.preloadDiscount(slide, index);
-      }
-    });
-  };
-  preloadDiscount = (slide, index) => {
-    const listDisount = [];
-    const inputs = slide.querySelectorAll('input[name="contentDiscount"]');
-
-    inputs.forEach((input) => {
-      const content = input.value.split("|");
-      listDisount.push({
-        discount: content[0],
-        name: content[1],
-      });
-    });
-    this.loadedContetnInput.push({
-      slideIndex: index,
-      type: "discount",
-      listDisount: listDisount,
-    });
-  };
-  preloadDefaultStory = (slide, index) => {
-    const loadImgBg = [];
-    const contentText = [];
-
-    const inputs = slide.querySelectorAll('input[name="contetnStories"]');
-
-    inputs.forEach((input) => {
-      const content = input.value.split("|");
-      const imgBg = new Image();
-      imgBg.src = content[0];
-      loadImgBg.push(imgBg);
-      contentText.push(content[1]);
-    });
-
-    this.loadedContetnInput.push({
-      slideIndex: index,
-      type: "defaultStory",
-      imgListBg: loadImgBg,
-      listContentText: contentText,
     });
   };
 
@@ -381,12 +386,16 @@ class InstaGallery {
         .classList.add("_viewed");
     }
     this.removeStory();
-    this.storyProgressBar.reset();
+    if (this.storyProgressBar) {
+      this.storyProgressBar.reset();
+    }
     this.indxActvinstaGallerySwiper = index;
 
     this.createStory(this.slideGallery[index]);
 
-    this.storyProgressBar.play(0, this);
+    if (this.storyProgressBar) {
+      this.storyProgressBar.play(0, this);
+    }
   };
 
   updateNavigationButtons = () => {
@@ -449,8 +458,7 @@ class InstaGallery {
 }
 
 class InstaStory {
-  constructor(index, instaGallery, storyProgressBar, lengthСontent) {
-    this.index = index;
+  constructor(instaGallery, storyProgressBar, lengthСontent) {
     this.instaGallery = instaGallery;
     this.swiperStory = instaGallery.swiperStory;
     this.buttons = document.querySelectorAll(".inst-story__button");
@@ -490,7 +498,7 @@ class InstaStory {
 
       this.storyProgressBar.play(
         this.swiperStory.activeIndex,
-        storyProgressBar.play
+        this.instaGallery
       );
     };
 
@@ -541,7 +549,264 @@ class InstaStory {
     this.swiperStory.slidePrev();
   };
 }
+class InstaDiscount {
+  listSelected = [];
 
+  constructor(instaGallery, newInstaSroty, listItemDiscount) {
+    this.instaGallery = instaGallery;
+    this.newInstaSroty = newInstaSroty;
+    this.listItemDiscount = listItemDiscount;
+    this.contetnBlock = this.newInstaSroty.querySelector(".inst-form__content");
+    this.nextBtn = this.newInstaSroty.querySelector(
+      ".discount-category__btn-next"
+    );
+
+    this.listItemDiscount.addEventListener("change", this.chooseDiscounts);
+
+    this.nextBtn.addEventListener("click", this.nextStep);
+
+    this.nextBtn.addEventListener("click", this.nextStep);
+
+    this.instaGallery.storySwiperNext.addEventListener("click", this.click);
+    this.instaGallery.storySwiperBack.addEventListener("click", this.click);
+  }
+
+  click = (event) => {
+    if (event.clientX > innerWidth / 2) {
+      this.instaGallery.nextStory();
+    } else {
+      this.instaGallery.prevStory();
+    }
+  };
+
+  nextStep = (event) => {
+    if (this.listSelected.length !== 3) return;
+
+    this.createFinishStep();
+  };
+
+  createFinishStep = () => {
+    this.contetnBlock.innerHTML = "";
+    this.contetnBlock.insertAdjacentHTML(
+      "beforeend",
+      `
+      
+				<div class="discount-category__title">Услуги, которые вы выбрали:</div>
+
+				<ul class="discount-category__list-selected ">
+				
+				</ul>
+
+				<div class="discount-category__title">Зафиксировать скидки</div>
+
+				<form class="discount-category__form form-discount-category">
+					<div class="form-discount-category__block-input">
+						<label for="name-item-disc">Ваше имя</label>
+						<input type="text" class="form-discount-category__input" required  placeholder="Ваше имя" name="Имя"
+							id="name-item-disc">
+					</div>
+
+					<div class="form-discount-category__block-input">
+						<label for="tel-item-disc">Ваш номер телефона</label>
+						<input type="tel" class="form-discount-category__input phone_mask" required  placeholder="Номер телефона"
+							name="Телефон" id="tel-item-disc">
+					</div>
+
+					<div class="form-discount-category__agreements-data">Нажимая кнопку
+						«Зафиксировать»,
+						вы соглашаетесь
+						с <a href="politika-konfidencialnosti/">политикой обработки персональных
+							данных</a></div>
+
+              
+              
+              <button type="submit" class="discount-category__submit">Зафиксировать
+              скидки</button>
+          </form>
+      `
+    );
+
+    const selectorListSelected = this.contetnBlock.querySelector(
+      ".discount-category__list-selected"
+    );
+    const form = this.contetnBlock.querySelector(".form-discount-category");
+
+    if (selectorListSelected && form) {
+      for (let index = 0; index < 3; index++) {
+        const item = this.listSelected[index];
+
+        selectorListSelected.insertAdjacentHTML(
+          "beforeend",
+          `
+        	<li class="item-selected">
+						<span class="item-selected__discount ${item.icon}"><span>${item.discount}%</span></span>
+						<span class="item-selected__name">${item.name}</span>
+					</li>
+        `
+        );
+
+        form.insertAdjacentHTML(
+          "beforeend",
+          `
+        	<input type='hidden' value='${item.discount}%, ${item.name}'>
+          `
+        );
+      }
+    }
+
+    form.addEventListener("submit", this.submit);
+    this.initMaskPhone();
+  };
+  submit = (event) => {
+    debugger;
+    event.preventDefault();
+    var th = $(".form-discount-category");
+    $(".load__preloader").fadeIn("", function () {
+      $.ajax({
+        type: "POST",
+        url: "/index.php?route=common/footer/quiz_submit",
+        data: th.serialize(),
+        dataType: "json",
+      })
+        .done(function (json) {
+          if (json["success"]) {
+            $(".load__preloader").fadeOut("slow");
+            this.instaGallery.nextStory();
+          }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.error("Ошибка AJAX запроса:", textStatus, errorThrown);
+          $(".load__preloader").fadeOut("slow"); // Скрываем прелоадер в случае ошибки
+          this.instaGallery.nextStory();
+        });
+    });
+  };
+  initMaskPhone = () => {
+    $.fn.setCursorPosition = function (pos) {
+      if (
+        $(this).get(0).setSelectionRange &&
+        $(this).val().replace(/\D/g, "").length != 11
+      ) {
+        $(this).get(0).setSelectionRange(pos, pos);
+      }
+    };
+
+    $.mask.definitions["N"] = "[/0-6|9/]";
+
+    $(".phone_mask")
+      .click(function () {
+        $(this).setCursorPosition(2);
+      })
+      .mask("+7 N99 999-99-99");
+  };
+  chooseDiscounts = (event) => {
+    let item = event.target.closest(".discount-category__item");
+
+    if (!item) return;
+
+    const input = item.querySelector(".item-disc__checkbox");
+
+    if (this.listSelected.some((it) => input.id === it.id)) {
+      this.listSelected = this.listSelected.filter((it) => input.id !== it.id);
+
+      item.classList.remove("_seleced");
+
+      if (this.listSelected.length <= 3) {
+        this.listItemDiscount.classList.remove("_fixed");
+        this.nextBtn.classList.remove("discount-category__btn-next_arrow");
+      }
+
+      return;
+    }
+
+    const icon = item.querySelector(".item-disc__discount").classList[1]
+      ? item.querySelector(".item-disc__discount").classList[1]
+      : "";
+    this.listSelected.push({
+      id: input.id,
+      discount: input.name.split(",")[0],
+      name: input.name.split(",")[1],
+      icon: icon,
+    });
+
+    if (this.listSelected.length >= 3) {
+      this.listItemDiscount.classList.add("_fixed");
+
+      this.nextBtn.classList.add("discount-category__btn-next_arrow");
+    }
+
+    item.classList.add("_seleced");
+  };
+}
+class PreloadContent {
+  loadedContetnInput = [];
+  lengthСontent = 0;
+  constructor(slideGallery) {
+    slideGallery.forEach((slide, index) => {
+      const input = slide.querySelector("input");
+
+      if (input.name === "contetnStories") {
+        this.preloadDefaultStory(slide, index);
+      }
+      if (input.name === "contentDiscount") {
+        this.preloadDiscount(slide, index);
+      }
+    });
+  }
+
+  get getContetn() {
+    return this.loadedContetnInput;
+  }
+
+  findContent = (slide) => {
+    const slideIndx = slide.dataset.index;
+    this.lengthСontent = slide.querySelectorAll(".content").length;
+
+    return this.loadedContetnInput.find(
+      (it) => it.slideIndex === Number(slideIndx)
+    );
+  };
+
+  preloadDiscount = (slide, index) => {
+    const listDisount = [];
+    const inputs = slide.querySelectorAll('input[name="contentDiscount"]');
+
+    inputs.forEach((input) => {
+      const content = input.value.split("|");
+      listDisount.push({
+        discount: content[0],
+        name: content[1],
+      });
+    });
+    this.loadedContetnInput.push({
+      slideIndex: index,
+      type: "discount",
+      listDisount: listDisount,
+    });
+  };
+
+  preloadDefaultStory = (slide, index) => {
+    const loadImgBg = [];
+    const contentText = [];
+
+    const inputs = slide.querySelectorAll('input[name="contetnStories"]');
+
+    inputs.forEach((input) => {
+      const content = input.value.split("|");
+      const imgBg = new Image();
+      imgBg.src = content[0];
+      loadImgBg.push(imgBg);
+      contentText.push(content[1]);
+    });
+
+    this.loadedContetnInput.push({
+      slideIndex: index,
+      type: "defaultStory",
+      imgListBg: loadImgBg,
+      listContentText: contentText,
+    });
+  };
+}
 class StoryProgressBar {
   interval = null;
   duration = 30000;
@@ -618,5 +883,3 @@ class StorageHelper {
 }
 
 InstaGallery.delegate();
-// ! сдеалть чтоб на послднем слайде выключался
-// ! контент
