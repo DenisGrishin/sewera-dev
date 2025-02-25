@@ -116,7 +116,11 @@ class InstaGallery {
       if (slide.dataset.index == 0) {
         this.storySwiperBack.style.display = "none";
       }
-
+      addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          this.storyGallerySetOpen(false);
+        }
+      });
       if (
         slide.dataset.index == this.slideGallery.length - 1 &&
         1 >= this.lengthСontent
@@ -152,12 +156,13 @@ class InstaGallery {
     if (state) {
       this.storyGallery.style.display = "";
       this.storyGalleryIsOpen = true;
-      // document.body.style.overflow = "hidden";
+
       this.disableScroll();
       if (this.storyProgressBar) {
         this.storyProgressBar.play(0, this);
       }
     } else {
+      this.instaDiscount = "";
       this.storyGallery.style.display = "none";
       this.storyGalleryIsOpen = false;
       if (this.typeCotent === "defaultStory") {
@@ -165,7 +170,7 @@ class InstaGallery {
       }
       this.indxActvinstaGallerySwiper = 0;
       this.removeStory();
-      // document.body.style.overflow = "";
+
       this.enableScroll();
     }
   };
@@ -178,6 +183,7 @@ class InstaGallery {
       this.storyProgressBar.stop();
     }
     this.storyProgressBar = "";
+    this.instaDiscount = "";
     this.swiperStory.destroy(true, true);
   };
 
@@ -265,27 +271,11 @@ class InstaGallery {
     newSlide.appendChild(newInstaSroty);
     this.storyGalleryWrapper.appendChild(newSlide);
 
-    const months = [
-      "Января",
-      "февраля",
-      "Марта",
-      "Апреля",
-      "Мая",
-      "Июня",
-      "Июля",
-      "Авгуса",
-      "Сентября",
-      "Октября",
-      "Ноября",
-      "Декабря",
-    ];
-
-    const currentMonthName = months[new Date().getMonth()];
     newInstaSroty.insertAdjacentHTML(
       "beforeend",
       `
       <div class="inst-form__content discount-category">
-      <div class="discount-category__title">Выберите 3 услуги ${currentMonthName}, на которые
+      <div class="discount-category__title">Выберите 3 услуги ${this.getMonths()}, на которые
 					хотите
 					получить скидку</div>
           		<ul class="discount-category__list ">
@@ -319,9 +309,40 @@ class InstaGallery {
       );
     }
 
+    this.instaDiscount = new InstaDiscount(
+      this,
+      newInstaSroty,
+      listItemDiscount,
+      content.slideIndex
+    );
     this.initSwiperStory();
 
-    new InstaDiscount(this, newInstaSroty, listItemDiscount);
+    if (
+      StorageHelper.getItem(
+        `discount-${this.slideGallery[content.slideIndex].dataset.dateStories}`,
+        true
+      )
+    ) {
+      this.instaDiscount.createSuccessStep();
+    }
+  };
+  getMonths = () => {
+    const months = [
+      "Января",
+      "февраля",
+      "Марта",
+      "Апреля",
+      "Мая",
+      "Июня",
+      "Июля",
+      "Авгуса",
+      "Сентября",
+      "Октября",
+      "Ноября",
+      "Декабря",
+    ];
+
+    return months[new Date().getMonth()];
   };
   initSwiperStory = () => {
     this.swiperStory = new Swiper(
@@ -381,7 +402,9 @@ class InstaGallery {
   };
   disableScroll() {
     const scrollPosition = window.scrollY;
-    document.body.style.paddingRight = `${window.innerWidth - document.body.clientWidth}px`;
+    document.body.style.paddingRight = `${
+      window.innerWidth - document.body.clientWidth
+    }px`;
     document.body.classList.add("no-scroll");
     window.scrollTo(0, scrollPosition);
   }
@@ -495,7 +518,7 @@ class InstaStory {
     this.buttons = document.querySelectorAll(".inst-story__button");
     this.storyProgressBar = storyProgressBar;
     this.lengthСontent = lengthСontent;
-
+    this.btnCopy = document.querySelector("._copy");
     let isPause = false;
     let pauseTimeout;
 
@@ -545,6 +568,13 @@ class InstaStory {
       return;
     };
 
+    if (this.btnCopy) {
+      document.querySelector("._copy").addEventListener("click", () => {
+        const text = "SEWERA";
+        this.copyToClipboard(text);
+      });
+    }
+
     this.instaGallery.storySwiperNext.addEventListener("click", click, {
       passive: true,
     });
@@ -579,22 +609,34 @@ class InstaStory {
 
     this.swiperStory.slidePrev();
   };
+
+  copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("Текст скопирован в буфер обмена!");
+      })
+      .catch((err) => {
+        console.error("Ошибка при копировании текста: ", err);
+      });
+  };
 }
 class InstaDiscount {
   listSelected = [];
 
-  constructor(instaGallery, newInstaSroty, listItemDiscount) {
+  constructor(instaGallery, newInstaSroty, listItemDiscount, slideIndex) {
     this.instaGallery = instaGallery;
     this.newInstaSroty = newInstaSroty;
     this.listItemDiscount = listItemDiscount;
+    this.dateStories =
+      instaGallery.slideGallery[slideIndex].dataset.dateStories;
+
     this.contetnBlock = this.newInstaSroty.querySelector(".inst-form__content");
     this.nextBtn = this.newInstaSroty.querySelector(
       ".discount-category__btn-next"
     );
 
     this.listItemDiscount.addEventListener("change", this.chooseDiscounts);
-
-    this.nextBtn.addEventListener("click", this.nextStep);
 
     this.nextBtn.addEventListener("click", this.nextStep);
 
@@ -613,7 +655,15 @@ class InstaDiscount {
   nextStep = (event) => {
     if (this.listSelected.length !== 3) return;
 
-    this.createFinishStep();
+    // this.createFinishStep();
+    StorageHelper.setItem(
+      `discount-${this.dateStories}`,
+      {
+        listSelected: this.listSelected,
+      },
+      true
+    );
+    this.createSuccessStep();
   };
 
   createFinishStep = () => {
@@ -648,7 +698,7 @@ class InstaDiscount {
 					<div class="form-discount-category__agreements-data">Нажимая кнопку
 						«Зафиксировать»,
 						вы соглашаетесь
-						с <a href="politika-konfidencialnosti/">политикой обработки персональных
+						с <a href="politika-konfidencialnosti/" target="_blank">политикой обработки персональных
 							данных</a></div>
 
               
@@ -690,6 +740,58 @@ class InstaDiscount {
     form.addEventListener("submit", this.submit);
     this.initMaskPhone();
   };
+
+  createSuccessStep = () => {
+    this.contetnBlock.innerHTML = "";
+    this.contetnBlock.classList.add("discount-category-success");
+    this.contetnBlock.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class='discount-category__big-title'>Ваши скидки на ${this.getMonths()}</div>
+      <ul class="discount-category__list-selected _decor-line">
+				
+			</ul>
+      `
+    );
+    const selectorListSelected = this.contetnBlock.querySelector(
+      ".discount-category__list-selected"
+    );
+    let objLoclaStorage = StorageHelper.getItem(
+      `discount-${this.dateStories}`,
+      true
+    );
+    for (let index = 0; index < 3; index++) {
+      const item = objLoclaStorage.listSelected[index];
+
+      selectorListSelected.insertAdjacentHTML(
+        "beforeend",
+        `
+        <li class="item-selected">
+          <span class="item-selected__discount ${item.icon}"><span>${item.discount}%</span></span>
+          <span class="item-selected__name">${item.name}</span>
+        </li>
+      `
+      );
+    }
+  };
+  getMonths = () => {
+    const months = [
+      "Январь",
+      "февраль",
+      "Март",
+      "Апрель",
+      "Май",
+      "Июнь",
+      "Июль",
+      "Август",
+      "Сентябрь",
+      "Октябрь",
+      "Ноябрь",
+      "Декабрь",
+    ];
+
+    return months[new Date().getMonth()];
+  };
   submit = (event) => {
     event.preventDefault();
     var th = $(".form-discount-category");
@@ -704,8 +806,16 @@ class InstaDiscount {
         .done((json) => {
           if (json["success"]) {
             $(".load__preloader").fadeOut("slow");
+            StorageHelper.setItem(
+              `discount-${this.dateStories}`,
+              {
+                listSelected: this.listSelected,
+              },
+              true
+            );
 
-            this.instaGallery.nextStory();
+            this.createSuccessStep();
+            // this.instaGallery.nextStory();
           }
         })
         .fail((jqXHR, textStatus, errorThrown) => {
@@ -774,6 +884,7 @@ class InstaDiscount {
     item.classList.add("_seleced");
   };
 }
+
 class PreloadContent {
   loadedContetnInput = [];
   lengthСontent = 0;
@@ -909,12 +1020,16 @@ class StoryProgressBar {
   }
 }
 class StorageHelper {
-  static setItem(key, value) {
-    localStorage.setItem(key, value);
+  static setItem(key, value, isObj = false) {
+    if (!isObj) return localStorage.setItem(key, value);
+
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
-  static getItem(key) {
-    return localStorage.getItem(key);
+  static getItem(key, isObj = false) {
+    if (!isObj) return localStorage.getItem(key);
+
+    return JSON.parse(localStorage.getItem(key));
   }
 
   static removeItem(key) {
