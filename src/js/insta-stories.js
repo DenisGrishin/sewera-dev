@@ -655,15 +655,7 @@ class InstaDiscount {
   nextStep = (event) => {
     if (this.listSelected.length !== 3) return;
 
-    // this.createFinishStep();
-    StorageHelper.setItem(
-      `discount-${this.dateStories}`,
-      {
-        listSelected: this.listSelected,
-      },
-      true
-    );
-    this.createSuccessStep();
+    this.createFinishStep();
   };
 
   createFinishStep = () => {
@@ -685,13 +677,13 @@ class InstaDiscount {
         <input type="hidden" name="Ссылка источник" value="https://sewera.ru/">
 					<div class="form-discount-category__block-input">
 						<label for="name-item-disc">Ваше имя</label>
-						<input type="text" class="form-discount-category__input" required  placeholder="Ваше имя" name="Имя"
+						<input type="text" class="form-discount-category__input" required  placeholder="Имя" name="Имя"
 							id="name-item-disc">
 					</div>
 
 					<div class="form-discount-category__block-input">
 						<label for="tel-item-disc">Ваш номер телефона</label>
-						<input type="tel" class="form-discount-category__input phone_mask" required  placeholder="Номер телефона"
+						<input type="tel" class="form-discount-category__input phone_mask" required  placeholder="+7 (___) ___-__-__"
 							name="Телефон" id="tel-item-disc">
 					</div>
 
@@ -704,7 +696,7 @@ class InstaDiscount {
               
               
               <button type="submit" class="discount-category__submit">Зафиксировать
-              скидки</button>
+              </button>
           </form>
       `
     );
@@ -815,14 +807,11 @@ class InstaDiscount {
             );
 
             this.createSuccessStep();
-            // this.instaGallery.nextStory();
           }
         })
         .fail((jqXHR, textStatus, errorThrown) => {
           console.error("Ошибка AJAX запроса:", textStatus, errorThrown);
           $(".load__preloader").fadeOut("slow");
-
-          this.instaGallery.nextStory();
         });
     });
   };
