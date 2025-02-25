@@ -1,3 +1,10 @@
+body.no-scroll {
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
 .inst-gallery {
 	& .page-bl {
 		@media (max-width: $laptop) {
@@ -92,7 +99,7 @@
 		&:not(:last-child) {
 			border-bottom: 1px solid #ffffff69;
 		}
-		&._seleced {
+		&._fixed {
 			&:not(:last-child) {
 				border-color: hsla(0, 0%, 100%, 0.23);
 			}
@@ -243,7 +250,7 @@
 	background-color: #ffffff33;
 	border-radius: 24px;
 	padding: 6px 12px;
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	column-gap: 8px;
 	// .item-selected__discount
@@ -326,7 +333,6 @@
 ._IcSistema-ochistki,
 ._IcDemontaj-snos,
 ._IcLivnevaya-kanalizaciya,
-._IcLivnevaya-kanalizaciya,
 ._IcOzelenenie,
 ._IcAvtopoliv {
 	&::before {
@@ -344,47 +350,47 @@
 }
 ._IcSeptick {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/septick.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/septick.svg");
 	}
 }
 ._IcuKladka-dorozhek {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/ukladka-dorozhek.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/ukladka-dorozhek.svg");
 	}
 }
 ._IcBurenie-skvazhin {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/burenie-skvazhin.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/burenie-skvazhin.svg");
 	}
 }
 ._IcRaschistka-uchastka {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/Raschistka-uchastka.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/Raschistka-uchastka.svg");
 	}
 }
 ._IcSistema-ochistki {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/sistema-ochistki.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/sistema-ochistki.svg");
 	}
 }
 ._IcDemontaj-snos {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/demontaj-snos.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/demontaj-snos.svg");
 	}
 }
 ._IcLivnevaya-kanalizaciya {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/Livnevaya-kanalizaciya.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/Livnevaya-kanalizaciya.svg");
 	}
 }
 ._IcOzelenenie {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/ozelenenie.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/ozelenenie.svg");
 	}
 }
 ._IcAvtopoliv {
 	&::before {
-		background-image: url("https://sewera.manager3.fvds.ru//srv/assets/images/main/stories/discount-icon/avtopoliv.svg");
+		background-image: url("https://sewera.manager3.fvds.ru/srv/assets/images/main/stories/discount-icon/avtopoliv.svg");
 	}
 }
 /* 
@@ -873,10 +879,10 @@
 	align-items: flex-start;
 }
 
-@media (min-width: 1980px) {
-	.inst-gallery-full__swiper {
-		--insta-gallery-slide-height: 77.742vh;
+// @media (min-width: 1980px) {
+// 	.inst-gallery-full__swiper {
+// 		--insta-gallery-slide-height: 77.742vh;
 
-		width: 528px;
-	}
-}
+// 		width: 528px;
+// 	}
+// }

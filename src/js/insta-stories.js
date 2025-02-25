@@ -152,7 +152,8 @@ class InstaGallery {
     if (state) {
       this.storyGallery.style.display = "";
       this.storyGalleryIsOpen = true;
-      document.body.style.overflow = "hidden";
+      // document.body.style.overflow = "hidden";
+      this.disableScroll();
       if (this.storyProgressBar) {
         this.storyProgressBar.play(0, this);
       }
@@ -164,7 +165,8 @@ class InstaGallery {
       }
       this.indxActvinstaGallerySwiper = 0;
       this.removeStory();
-      document.body.style.overflow = "";
+      // document.body.style.overflow = "";
+      this.enableScroll();
     }
   };
 
@@ -221,9 +223,13 @@ class InstaGallery {
      
         <img class="inst-story__img" src="${imgBg.src}" >
         
-        <div class="inst-story__contetn">
+        <div class="inst-story__content">
         <div class="inst-story__button"></div>
-          ${contentText ? `<div class="inst-story__content-text">${contentText}</div>` : ""}
+          ${
+            contentText
+              ? `<div class="inst-story__content-text">${contentText}</div>`
+              : ""
+          }
         </div>
           `
       );
@@ -259,11 +265,27 @@ class InstaGallery {
     newSlide.appendChild(newInstaSroty);
     this.storyGalleryWrapper.appendChild(newSlide);
 
+    const months = [
+      "Января",
+      "февраля",
+      "Марта",
+      "Апреля",
+      "Мая",
+      "Июня",
+      "Июля",
+      "Авгуса",
+      "Сентября",
+      "Октября",
+      "Ноября",
+      "Декабря",
+    ];
+
+    const currentMonthName = months[new Date().getMonth()];
     newInstaSroty.insertAdjacentHTML(
       "beforeend",
       `
       <div class="inst-form__content discount-category">
-      <div class="discount-category__title">Выберите 3 услуги февраля, на которые
+      <div class="discount-category__title">Выберите 3 услуги ${currentMonthName}, на которые
 					хотите
 					получить скидку</div>
           		<ul class="discount-category__list ">
@@ -289,7 +311,7 @@ class InstaGallery {
          <li class="discount-category__item item-disc">
 						<label for="item-disc-${index}" class="item-disc__label">
 							<input id="item-disc-${index}" hidden type="checkbox" name='${itemDiscount.discount},${itemDiscount.name}' class="item-disc__checkbox">
-							<span class="item-disc__discount _IcSeptick"><span>${itemDiscount.discount}%</span></span>
+							<span class="item-disc__discount ${itemDiscount.icon}"><span>${itemDiscount.discount}%</span></span>
 							<span class="item-disc__name">${itemDiscount.name}</span>
 						</label>
 					</li>
@@ -357,7 +379,16 @@ class InstaGallery {
       }
     });
   };
-
+  disableScroll() {
+    const scrollPosition = window.scrollY;
+    document.body.style.paddingRight = `${window.innerWidth - document.body.clientWidth}px`;
+    document.body.classList.add("no-scroll");
+    window.scrollTo(0, scrollPosition);
+  }
+  enableScroll() {
+    document.body.style.paddingRight = "0";
+    document.body.classList.remove("no-scroll");
+  }
   nextStory = () => {
     this.currentSwiperSlide = Number(this.indxActvinstaGallerySwiper) + 1;
 
@@ -600,6 +631,8 @@ class InstaDiscount {
 				<div class="discount-category__title">Зафиксировать скидки</div>
 
 				<form class="discount-category__form form-discount-category">
+        <input type="hidden" name="subject" value="Сторис скидки на услуги">
+        <input type="hidden" name="Ссылка источник" value="https://sewera.ru/">
 					<div class="form-discount-category__block-input">
 						<label for="name-item-disc">Ваше имя</label>
 						<input type="text" class="form-discount-category__input" required  placeholder="Ваше имя" name="Имя"
@@ -648,7 +681,7 @@ class InstaDiscount {
         form.insertAdjacentHTML(
           "beforeend",
           `
-        	<input type='hidden' value='${item.discount}%, ${item.name}'>
+        	<input type='hidden' name='${item.name}' value='${item.discount}%'>
           `
         );
       }
@@ -658,29 +691,32 @@ class InstaDiscount {
     this.initMaskPhone();
   };
   submit = (event) => {
-    debugger;
     event.preventDefault();
     var th = $(".form-discount-category");
-    $(".load__preloader").fadeIn("", function () {
+
+    $(".load__preloader").fadeIn("", () => {
       $.ajax({
         type: "POST",
-        url: "/index.php?route=common/footer/quiz_submit",
+        url: "/index.php?route=common/footer/form_submit_modal",
         data: th.serialize(),
         dataType: "json",
       })
-        .done(function (json) {
+        .done((json) => {
           if (json["success"]) {
             $(".load__preloader").fadeOut("slow");
+
             this.instaGallery.nextStory();
           }
         })
-        .fail(function (jqXHR, textStatus, errorThrown) {
+        .fail((jqXHR, textStatus, errorThrown) => {
           console.error("Ошибка AJAX запроса:", textStatus, errorThrown);
-          $(".load__preloader").fadeOut("slow"); // Скрываем прелоадер в случае ошибки
+          $(".load__preloader").fadeOut("slow");
+
           this.instaGallery.nextStory();
         });
     });
   };
+
   initMaskPhone = () => {
     $.fn.setCursorPosition = function (pos) {
       if (
@@ -744,12 +780,15 @@ class PreloadContent {
   constructor(slideGallery) {
     slideGallery.forEach((slide, index) => {
       const input = slide.querySelector("input");
+      if (input) {
+        if (input.name === "contentStories") {
+          this.preloadDefaultStory(slide, index);
+        }
 
-      if (input.name === "contetnStories") {
-        this.preloadDefaultStory(slide, index);
-      }
-      if (input.name === "contentDiscount") {
-        this.preloadDiscount(slide, index);
+        if (input.name === "contentDiscount") {
+          console.log(true);
+          this.preloadDiscount(slide, index);
+        }
       }
     });
   }
@@ -774,8 +813,9 @@ class PreloadContent {
     inputs.forEach((input) => {
       const content = input.value.split("|");
       listDisount.push({
-        discount: content[0],
-        name: content[1],
+        icon: content[0],
+        discount: content[1],
+        name: content[2],
       });
     });
     this.loadedContetnInput.push({
@@ -789,7 +829,7 @@ class PreloadContent {
     const loadImgBg = [];
     const contentText = [];
 
-    const inputs = slide.querySelectorAll('input[name="contetnStories"]');
+    const inputs = slide.querySelectorAll('input[name="contentStories"]');
 
     inputs.forEach((input) => {
       const content = input.value.split("|");
