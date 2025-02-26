@@ -1,4 +1,4 @@
-.sewera-info .our-way {
+.our-way {
 	// .our-way__header
 
 	&__header {
@@ -45,7 +45,7 @@
 	}
 }
 
-.sewera-info .body-our-way {
+.sewera-main-page .body-our-way {
 	display: flex;
 
 	@media (max-width: $laptop) {
