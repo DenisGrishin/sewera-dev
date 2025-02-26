@@ -106,14 +106,10 @@ body.no-scroll {
 
 	&__item {
 		&:not(:last-child) {
-			border-bottom: 1px solid #ffffff69;
-		}
-		&._fixed {
-			&:not(:last-child) {
-				border-color: hsla(0, 0%, 100%, 0.23);
-			}
+			border-bottom: 1px solid hsla(0, 0%, 100%, 0.412);
 		}
 	}
+
 	&__submit,
 	&__btn-next {
 		margin-top: 10px;
@@ -165,6 +161,11 @@ body.no-scroll {
 	// .discount-category__form
 
 	&__form {
+	}
+}
+.inst-form ._fixed ._seleced.discount-category__item {
+	&:not(:last-child) {
+		border-bottom: 1px solid hsla(0, 0%, 100%, 0.19);
 	}
 }
 .inst-form .discount-category-success {
