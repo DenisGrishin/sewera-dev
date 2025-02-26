@@ -155,7 +155,8 @@ body.no-scroll {
 	&__list-selected {
 		flex: 1 1 100%;
 		margin: 0;
-		margin-top: 10px;
+		margin-top: 5px;
+		margin-bottom: 20px;
 	}
 
 	// .discount-category__form
@@ -301,7 +302,7 @@ body.no-scroll {
 }
 
 .discount-category .form-discount-category {
-	margin-top: 10px;
+	margin-top: 5px;
 	display: flex;
 	flex-direction: column;
 	row-gap: 15px;
