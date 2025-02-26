@@ -113,9 +113,12 @@ $mobileSmall: 429.98px; // Телефоны S
 // Подключение стилей отдельных страниц
 // @import "home";
 // @import "type-service-big";
+@import "common";
+
 @import "header";
 // @import "footer";
 // @import "dark-header-footer";
 // @import "serarchPage";
 // @import "./info-page";
 @import "./mainPage";
+@import "content-bar.scss";

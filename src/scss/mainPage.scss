@@ -1,23 +1,30 @@
-.our-way {
+.sewera-main-page ul {
+	margin: 0;
+}
+
+.sewera-main-page p {
+	padding-bottom: 0px;
+}
+.sewera-main-page .our-way {
 	// .our-way__header
 
 	&__header {
-		margin-bottom: 72px;
-		text-align: center;
+		margin-bottom: 75px;
+		text-align: left;
 
 		@media (max-width: $laptop_L) {
-			margin-bottom: 64px;
-		}
-
-		@media (max-width: $laptop) {
-			margin-bottom: 32px;
+			margin-bottom: 67px;
 		}
 	}
 
 	// .our-way__title
 
 	&__title {
-		margin-bottom: 8px;
+		margin-bottom: 16px;
+		text-align: left;
+		@media (max-width: $laptop) {
+			margin-bottom: 8px;
+		}
 	}
 
 	// .our-way__sub-title
@@ -31,6 +38,7 @@
 		}
 
 		@media (max-width: $laptop) {
+			padding-bottom: 0;
 			@include mainFS;
 
 			br {
@@ -45,7 +53,7 @@
 	}
 }
 
-.sewera-main-page .body-our-way {
+.sewera-main-page .our-way .body-our-way {
 	display: flex;
 
 	@media (max-width: $laptop) {
@@ -56,7 +64,7 @@
 
 	&__contetn {
 		background-color: var(--bgMain);
-		padding: 40px;
+		padding: 32px;
 		border-radius: 12px;
 
 		@media (max-width: $laptop_L) {
@@ -70,7 +78,7 @@
 
 	&__img,
 	&__contetn {
-		flex: 0 0 618px;
+		flex: 0 0 586px;
 
 		@media (max-width: $laptop_L) {
 			flex: 0 1 618px;
@@ -81,39 +89,22 @@
 		}
 	}
 
-	// .body-our-way__title
-
-	&__title {
-		margin-bottom: 24px;
-
-		@media (max-width: $laptop) {
-			margin-bottom: 20px;
-		}
-	}
-
 	// .body-our-way__text
 
 	&__text {
-		max-width: 453px;
+		padding-bottom: 0;
+		max-width: 503px;
 
 		&:not(:last-child) {
-			margin-bottom: 40px;
+			margin-bottom: 24px;
 		}
 
 		@media (max-width: $laptop_L) {
-			max-width: 389px;
-
-			&:not(:last-child) {
-				margin-bottom: 34px;
-			}
+			max-width: 420px;
 		}
 
 		@media (max-width: $laptop) {
 			max-width: 100%;
-
-			&:not(:last-child) {
-				margin-bottom: 30px;
-			}
 		}
 
 		@media (max-width: $tablet) {
@@ -122,7 +113,60 @@
 			}
 		}
 	}
+	// .body-our-way__list
 
+	&__list {
+		margin-bottom: 24px;
+		margin-left: 0;
+		@media (max-width: $tablet) {
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+	}
+
+	// .body-our-way__item
+
+	&__item {
+		display: flex;
+		align-items: center;
+		column-gap: 20px;
+		@include mainFS;
+		&:not(:last-child) {
+			margin-bottom: 24px;
+		}
+		@media (max-width: $tablet) {
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+		}
+		@media (max-width: $tablet) {
+			@include smallFS;
+		}
+	}
+
+	// .body-our-way__icon
+
+	&__icon {
+		flex: 0 0 38px;
+		width: 38px;
+		height: 38px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fff;
+		border-radius: 8px;
+	}
+
+	// .body-our-way__link
+
+	&__link {
+		display: inline-flex;
+		padding: 14px 20px;
+		@media (max-width: $laptop) {
+			display: flex;
+		}
+	}
 	// .body-our-way__img
 
 	&__img {
@@ -183,6 +227,198 @@
 				height: 16px;
 				background-size: contain;
 			}
+		}
+	}
+}
+.sewera-main-page .slider-banner {
+	padding-bottom: 45px;
+	@media (max-width: 900.98px) {
+		padding-bottom: 35px;
+	}
+	@media (max-width: 719.98px) {
+		padding-bottom: 30px;
+	}
+	& .page-bl {
+		display: flex;
+		gap: 8px;
+		@media (max-width: $tablet) {
+			flex-direction: column-reverse;
+		}
+	}
+	// .slider-banner__col
+
+	&__col {
+		flex: 0 1 50%;
+		background-color: var(--bgMain);
+		border-radius: 12px;
+
+		&:first-child {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			position: relative;
+		}
+		&:last-child {
+		}
+		@media (max-width: $tablet) {
+			&:first-child {
+				padding: 20px;
+			}
+		}
+	}
+
+	// .slider-banner__title
+
+	&__title {
+		padding-left: 48px;
+		padding-right: 70px;
+		display: inline-block;
+		margin-bottom: 50px;
+		text-align: left;
+		@media (max-width: $laptop) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+		@media (max-width: $tablet) {
+			padding: 0px;
+			margin-bottom: 30px;
+		}
+	}
+
+	// .slider-banner__slider
+
+	&__slider {
+		border-radius: 12px;
+	}
+
+	// .slider-banner__swiper
+
+	&__swiper {
+	}
+
+	// .slider-banner__slide
+
+	&__slide {
+		width: 100% !important;
+		height: 445px !important;
+		@media (max-width: $laptop_L) {
+			height: 345px !important;
+		}
+	}
+	&__btn {
+		padding: 15px 20px;
+		align-self: flex-start;
+		cursor: pointer;
+		position: absolute;
+		z-index: 1;
+		bottom: 48px;
+		left: 48px;
+		@media (max-width: $laptop) {
+			left: 24px;
+			bottom: 24px;
+		}
+		@media (max-width: $tablet) {
+			position: static;
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+.sewera-main-page .slide-banner {
+	position: relative;
+	position: relative;
+	&::after {
+		content: "";
+		background: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(80.89%, rgba(0, 0, 0, 0)),
+			to(rgba(0, 0, 0, 0.9))
+		);
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 78.89%, rgba(0, 0, 0, 0.9) 100%);
+		position: absolute;
+		width: 100%;
+		height: 430px;
+		opacity: 0.7;
+		bottom: 0;
+		z-index: 0;
+		left: 0;
+	}
+	// .slide-banner__img
+
+	&__img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
+	// .slide-banner__content
+
+	&__content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+
+	// .slide-banner__name
+
+	&__name {
+		text-align: left;
+		width: 100%;
+		margin-bottom: 23px;
+		color: #fff;
+		position: relative;
+		z-index: 1;
+		font-family: var(--f-RF);
+	}
+
+	// .slide-banner__price
+
+	&__price {
+		background-color: #fff;
+		padding: 13px 12px;
+		border-radius: 8px;
+		font-weight: 600;
+		line-height: 1;
+		@media (max-width: $laptop_L) {
+			padding: 10px 8px;
+		}
+		@media (max-width: $tablet) {
+			@include smallFS;
+			padding: 6px;
+		}
+	}
+	// .slide-banner__pagination
+
+	&__pagination {
+		position: absolute;
+		z-index: 10;
+		width: calc(100% - 48px);
+		height: 3px;
+		bottom: 26px;
+		left: 50%;
+		transform: translate(-50%, 0px);
+		display: flex;
+		& .swiper-pagination-bullet {
+			border-radius: 0;
+			width: 100%;
+			height: 3px;
+			background-color: #fff;
+			opacity: 0.5;
+			border-radius: 8px;
+		}
+		& .swiper-pagination-bullet-active {
+			background-color: #fff;
+			opacity: 1;
 		}
 	}
 }

@@ -1,0 +1,146 @@
+.sewera-main-page .section-mb .sewera-info .section-mb {
+	margin-bottom: 90px;
+	@media (max-width: $laptop) {
+		margin-bottom: 60px;
+	}
+	@media (max-width: $tablet) {
+		margin-bottom: 48px;
+	}
+}
+.sewera-main-page .title-info_mb,
+.sewera-main-page .title-info-m,
+.sewera-info .title-info_mb,
+.sewera-info .title-info-m {
+	font-size: 34px;
+	line-height: 1.14;
+	font-weight: 700;
+	font-family: Onest, sans-serif, Arial !important;
+	text-align: center;
+	@media (max-width: $laptop_L) {
+		font-size: 32px;
+		line-height: 1.25;
+	}
+	@media (max-width: $laptop) {
+		@include middleFS;
+	}
+	@media (max-width: $tablet) {
+		@include middleFS-LD;
+	}
+}
+.sewera-main-page .title-info-small,
+.sewera-info .title-info-small {
+	font-size: 24px;
+	line-height: 1.3;
+	font-weight: 700;
+	font-family: Onest, sans-serif, Arial !important;
+	@media (max-width: $laptop_L) {
+		font-size: 22px;
+	}
+	@media (max-width: $laptop) {
+		font-size: 20px;
+	}
+	@media (max-width: $tablet) {
+		font-size: 18px;
+	}
+}
+.sewera-main-page .middel-title-info,
+.sewera-info .middel-title-info {
+	@include middleFS;
+	font-weight: 700;
+	font-family: Onest, sans-serif, Arial !important;
+	@media (max-width: $laptop_L) {
+		@include middleFS-LLD;
+	}
+	@media (max-width: $laptop) {
+		@include middleFS-LD;
+	}
+	@media (max-width: $tablet) {
+		@include mainBigFS;
+	}
+}
+.sewera-info .title-info_mb {
+	margin-bottom: 40px;
+	@media (max-width: $laptop_L) {
+		margin-bottom: 32px;
+	}
+}
+.sewera-main-page .text-info,
+.sewera-info .text-info {
+	@include mainBigFS;
+
+	@media (max-width: $laptop_L) {
+		@include mainBigFS-LLD;
+	}
+	@media (max-width: $laptop) {
+		@include mainFS;
+	}
+	@media (max-width: $tablet) {
+		@include smallFS;
+	}
+}
+.sewera-main-page .butt_arrow-r,
+.sewera-main-page .butt,
+.sewera-info .butt_arrow-r,
+.sewera-info .butt {
+	padding: 12px 20px;
+	border-radius: 8px;
+	background-color: var(--mainColor);
+	color: #fff;
+	font-weight: 600;
+	@include mainFS;
+
+	@media (max-width: $laptop) {
+		@include smallFS;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+.sewera-main-page .butt_arrow-r,
+.sewera-info .butt_arrow-r {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&::after {
+		content: "";
+		margin-left: 8px;
+		background: url("https://sewera.ru/srv/assets/images/septik/icons/arrow-table.svg") 0 0 / 14px 14px no-repeat;
+		width: 14px;
+		height: 14px;
+	}
+}
+.sewera-info .agreements-data {
+	font-size: 14px;
+	line-height: 125%;
+	opacity: 0.5;
+	& a {
+		text-decoration: underline;
+	}
+}
+.sewera-info .wrapper-social-contct-garantija {
+	.title-section {
+		@include middleFS;
+		text-align: left !important;
+		font-weight: 700;
+		margin-bottom: 24px !important;
+		font-family: Onest, sans-serif, Arial !important;
+		@media (max-width: $laptop_L) {
+			@include middleFS-LLD;
+		}
+		@media (max-width: $laptop) {
+			@include middleFS-LD;
+		}
+		@media (max-width: $tablet) {
+			@include mainBigFS;
+		}
+	}
+	.submitted__wrapper-btn-link {
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
+}

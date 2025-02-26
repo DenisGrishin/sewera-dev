@@ -1,0 +1,552 @@
+.sewera-main-page .content-bar {
+	background: #fff;
+}
+.sewera-main-page .content-bar__h2 {
+	text-align: left;
+	margin-bottom: 40px;
+}
+.sewera-main-page .content-bar__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+.sewera-main-page .content-bar__container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto;
+	gap: 32px 30px;
+	margin-bottom: -120px;
+}
+.sewera-main-page .content-bar__container_hidden:not(.active) {
+	height: 0 !important;
+}
+.sewera-main-page .content-bar__container_hidden {
+	pointer-events: none;
+	transition: height 0.5s;
+	overflow: hidden;
+}
+.sewera-main-page .content-bar__container_hidden.active {
+	pointer-events: auto;
+}
+.sewera-main-page .content-bar__item {
+	height: 340px;
+}
+.sewera-main-page .content-bar__item_1,
+.sewera-main-page .content-bar__item_7 {
+	grid-column: 1/3;
+	grid-row: 1/2;
+}
+.sewera-main-page .content-bar__item_2,
+.sewera-main-page .content-bar__item_8 {
+	grid-column: 3/4;
+	grid-row: 1/2;
+}
+.sewera-main-page .content-bar__item_3,
+.sewera-main-page .content-bar__item_9 {
+	grid-column: 4/5;
+	grid-row: 1/2;
+}
+.sewera-main-page .content-bar__item_10,
+.sewera-main-page .content-bar__item_4 {
+	grid-column: 3/5;
+	grid-row: 2/3;
+}
+.sewera-main-page .content-bar__item_11,
+.sewera-main-page .content-bar__item_5 {
+	grid-column: 1/2;
+	grid-row: 2/3;
+}
+.sewera-main-page .content-bar__item_12,
+.sewera-main-page .content-bar__item_6 {
+	grid-column: 2/3;
+	grid-row: 2/3;
+}
+.sewera-main-page .content-bar__wrap {
+	background: var(--bgMain);
+	display: flex;
+	border-radius: 8px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+.sewera-main-page .content-bar__wrap_big {
+	height: 100%;
+}
+.sewera-main-page .content-bar__wrap_small {
+	height: 220px;
+}
+.sewera-main-page .content-bar__wrap_1:hover {
+	background: #95edbe;
+}
+.sewera-main-page .content-bar__wrap_2:hover {
+	background: #a3deff;
+}
+.sewera-main-page .content-bar__wrap_3:hover,
+.sewera-main-page .content-bar__wrap_6:hover {
+	background: #d1cab9;
+}
+.sewera-main-page .content-bar__wrap_10,
+.sewera-main-page .content-bar__wrap_4 {
+	margin-top: -120px;
+}
+.sewera-main-page .content-bar__wrap_4:hover {
+	background: #c1f5a5;
+}
+.sewera-main-page .content-bar__wrap_5:hover {
+	background: #b2cfff;
+}
+.sewera-main-page .content-bar__wrap_7:hover {
+	background: #ffd98d;
+}
+.sewera-main-page .content-bar__wrap_8:hover {
+	background: #ffc4c4;
+}
+.sewera-main-page .content-bar__wrap_9:hover {
+	background: #f0dfb2;
+}
+.sewera-main-page .content-bar__wrap_10:hover {
+	background: #dcc6ff;
+}
+.sewera-main-page .content-bar__wrap_11:hover {
+	background: #ffc9ae;
+}
+.sewera-main-page .content-bar__wrap_12:hover {
+	background: #bcf1ff;
+}
+.sewera-main-page .content-bar__link {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 15px;
+	width: 100%;
+	height: auto;
+	padding: 20px 20px 40px;
+}
+.sewera-main-page .content-bar__link_1 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-1.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_2 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-2.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_3 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-3.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_4 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-4.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_5 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-5.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_6 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-6.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_7 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-7.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_8 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-8.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_9 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-9.webp") bottom right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_10 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-10.webp") top right/100% auto
+		no-repeat;
+}
+.sewera-main-page .content-bar__link_11 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-11.webp") bottom right/100%
+		auto no-repeat;
+}
+.sewera-main-page .content-bar__link_12 {
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-img-12.webp") bottom right/100%
+		auto no-repeat;
+}
+.sewera-main-page .content-bar__title {
+	font-weight: 700;
+	font-size: 24px;
+	font-family: "Roboto Flex";
+	color: #102938;
+	padding-bottom: 20px;
+}
+.sewera-main-page .content-bar__title_small {
+	font-size: 20px;
+	line-height: 130%;
+	padding-bottom: 8px;
+}
+.sewera-main-page .content-bar__price {
+	font: 600 16px/125% "Roboto Flex";
+	background: #fff;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 6px;
+	padding: 11px 12px;
+	color: #102938;
+	text-align: center;
+	border-radius: 4px;
+}
+.sewera-main-page .content-bar__price::after {
+	content: "";
+	width: 14px;
+	height: 14px;
+	background: url("https://sewera.ru/srv/assets/images/main/content-bar/content-bar-arrow-price.svg") center/contain
+		no-repeat;
+}
+.sewera-main-page .content-bar__price_small {
+	gap: 4px;
+	font-size: 14px;
+	padding: 8px 6px;
+}
+.sewera-main-page .content-bar__price_small::after {
+	width: 12px;
+	height: 12px;
+}
+.sewera-main-page .content-bar__desctiption-bottom {
+	max-width: 245px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	gap: 9px;
+}
+.sewera-main-page .content-bar__advantage {
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 8px;
+}
+.sewera-main-page .content-bar__icon {
+	width: 24px;
+	height: 24px;
+}
+.sewera-main-page .content-bar__text {
+	font: 500 16px/125% "Roboto Flex";
+	color: #102938;
+}
+.sewera-main-page .content-bar__button {
+	font: 600 16px/125% "Roboto Flex";
+	min-width: 292px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 17px 20px;
+	color: #102938;
+	text-align: center;
+	border-radius: 6px;
+	border: 0 dashed #102938;
+	background: var(--bgMain);
+	cursor: pointer;
+	margin-top: 90px;
+}
+@media (max-width: 1279px) {
+	.sewera-main-page .content-bar__content {
+		gap: 20px;
+	}
+	.sewera-main-page .content-bar__container {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		gap: 22px 20px;
+		margin-bottom: -80px;
+	}
+	.sewera-main-page .content-bar__item {
+		height: 280px;
+	}
+	.sewera-main-page .content-bar__wrap_small {
+		height: 200px;
+	}
+	.sewera-main-page .content-bar__wrap_10,
+	.sewera-main-page .content-bar__wrap_4 {
+		margin-top: -80px;
+	}
+	.sewera-main-page .content-bar__link {
+		padding: 20px;
+	}
+	.sewera-main-page .content-bar__link_1,
+	.sewera-main-page .content-bar__link_4,
+	.sewera-main-page .content-bar__link_7 {
+		background-position: bottom right -45px;
+	}
+	.sewera-main-page .content-bar__link_5 {
+		background-position: bottom -18px right;
+	}
+	.sewera-main-page .content-bar__link_6 {
+		background-position: bottom -10px right;
+	}
+	.sewera-main-page .content-bar__link_10 {
+		background-position: top right -15px;
+	}
+	.sewera-main-page .content-bar__title {
+		font-size: 22px;
+		line-height: 120%;
+		padding-bottom: 10px;
+	}
+	.sewera-main-page .content-bar__title_small {
+		font-size: 18px;
+		line-height: 130%;
+		letter-spacing: 0.18px;
+		padding-bottom: 8px;
+	}
+	.sewera-main-page .content-bar__button {
+		margin-top: 60px;
+	}
+}
+@media (max-width: 1023px) {
+	.sewera-main-page .content-bar__h2 {
+		margin-bottom: 32px;
+	}
+	.sewera-main-page .content-bar__container {
+		gap: 20px;
+		margin-bottom: -47px;
+	}
+	.sewera-main-page .content-bar__item {
+		height: 187px;
+	}
+	.sewera-main-page .content-bar__wrap {
+		border-radius: 6px;
+	}
+	.sewera-main-page .content-bar__wrap_small {
+		height: 140px;
+	}
+	.sewera-main-page .content-bar__wrap_10,
+	.sewera-main-page .content-bar__wrap_4 {
+		margin-top: -47px;
+	}
+	.sewera-main-page .content-bar__link {
+		padding: 15px 10px;
+		background-size: contain;
+	}
+	.sewera-main-page .content-bar__link_1,
+	.sewera-main-page .content-bar__link_4 {
+		background-position: bottom right -25px;
+	}
+	.sewera-main-page .content-bar__link_7 {
+		background-position: bottom right -15px;
+	}
+	.sewera-main-page .content-bar__link_10 {
+		background-position: top right -5px;
+	}
+	.sewera-main-page .content-bar__title {
+		font-size: 16px;
+		line-height: 115%;
+		padding-bottom: 5px;
+	}
+	.sewera-main-page .content-bar__title_small {
+		font-size: 14px;
+		line-height: 120%;
+		letter-spacing: 0.14px;
+	}
+	.sewera-main-page .content-bar__price {
+		gap: 4px;
+		padding: 8px 6px;
+		font-size: 14px;
+	}
+	.sewera-main-page .content-bar__price::after {
+		width: 12px;
+		height: 12px;
+	}
+	.sewera-main-page .content-bar__price_small {
+		gap: 4px;
+		font-size: 12px;
+		padding: 4.5px 4px;
+	}
+	.sewera-main-page .content-bar__price_small::after {
+		width: 10px;
+		height: 10px;
+	}
+	.sewera-main-page .content-bar__desctiption-bottom {
+		max-width: 180px;
+		gap: 6px;
+	}
+	.sewera-main-page .content-bar__advantage {
+		gap: 3.78px;
+	}
+	.sewera-main-page .content-bar__icon {
+		width: 16px;
+		height: 16px;
+	}
+	.sewera-main-page .content-bar__text {
+		font-size: 12px;
+	}
+	.sewera-main-page .content-bar__button {
+		min-width: 216px;
+		font-size: 14px;
+		margin-top: 27px;
+	}
+}
+@media (max-width: 767px) {
+	.sewera-main-page .content-bar__title,
+	.sewera-main-page .content-bar__title_small {
+		font-size: 14px;
+		line-height: normal;
+	}
+
+	.sewera-main-page .content-bar__container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+		gap: 20px;
+		margin-bottom: 0;
+	}
+	.sewera-main-page .content-bar__item,
+	.sewera-main-page .content-bar__wrap_small {
+		height: 145px;
+	}
+	.sewera-main-page .content-bar__item_1,
+	.sewera-main-page .content-bar__item_7 {
+		grid-column: 1/3;
+		grid-row: 1/2;
+	}
+	.sewera-main-page .content-bar__item_2,
+	.sewera-main-page .content-bar__item_8 {
+		grid-column: 1/2;
+		grid-row: 2/3;
+	}
+	.sewera-main-page .content-bar__item_3,
+	.sewera-main-page .content-bar__item_9 {
+		grid-column: 2/3;
+		grid-row: 2/3;
+	}
+	.sewera-main-page .content-bar__item_10,
+	.sewera-main-page .content-bar__item_4 {
+		grid-column: 1/3;
+		grid-row: 3/4;
+	}
+	.sewera-main-page .content-bar__item_11,
+	.sewera-main-page .content-bar__item_5 {
+		grid-column: 1/2;
+		grid-row: 4/5;
+	}
+	.sewera-main-page .content-bar__item_12,
+	.sewera-main-page .content-bar__item_6 {
+		grid-column: 2/3;
+		grid-row: 4/5;
+	}
+	.sewera-main-page .content-bar__wrap_10,
+	.sewera-main-page .content-bar__wrap_4 {
+		margin-top: 0;
+	}
+	.sewera-main-page .content-bar__link {
+		gap: 5px;
+		padding: 10px;
+	}
+	.sewera-main-page .content-bar__link_1,
+	.sewera-main-page .content-bar__link_7 {
+		background-position: bottom right 0;
+	}
+	.sewera-main-page .content-bar__link_4 {
+		background-position: bottom 0 right 0;
+	}
+	.sewera-main-page .content-bar__link_10 {
+		background-position: top 0 right 0;
+	}
+	.sewera-main-page .content-bar__title_small {
+		letter-spacing: auto;
+	}
+	.sewera-main-page .content-bar__price {
+		padding: 4.5px 4px;
+		font-size: 12px;
+	}
+	.sewera-main-page .content-bar__price::after {
+		width: 10px;
+		height: 10px;
+	}
+	.sewera-main-page .content-bar__desctiption-bottom {
+		gap: 4px;
+	}
+	.sewera-main-page .content-bar__button {
+		margin-top: -20px;
+	}
+}
+@media (max-width: 490px) {
+	.sewera-main-page .content-bar__link_1 {
+		background-size: 80% auto;
+	}
+	.sewera-main-page .content-bar__link_3 {
+		background-size: 90% auto;
+		background-position: bottom right;
+	}
+	.sewera-main-page .content-bar__link_4 {
+		background-size: 75% auto;
+		background-position: bottom -5px right 0;
+	}
+	.sewera-main-page .content-bar__link_5 {
+		background-size: 90% auto;
+		background-position: bottom -10px right;
+	}
+	.sewera-main-page .content-bar__link_6 {
+		background-size: 85% auto;
+		background-position: bottom 0 right;
+	}
+	.sewera-main-page .content-bar__link_7 {
+		background-size: 78% auto;
+	}
+	.sewera-main-page .content-bar__link_10 {
+		background-size: 80% auto;
+		background-position: top -5px right 0;
+	}
+}
+@media (max-width: 429px) {
+	.sewera-main-page .content-bar__container,
+	.sewera-main-page .content-bar__content {
+		gap: 15px;
+	}
+	.sewera-main-page .content-bar__button {
+		min-width: 100%;
+		margin-top: -15px;
+	}
+}
+@media (max-width: 359px) {
+	.sewera-main-page .content-bar__link_1 {
+		background-size: 90% auto;
+		background-position: bottom right -20px;
+	}
+	.sewera-main-page .content-bar__link_2 {
+		background-size: 120% auto;
+	}
+	.sewera-main-page .content-bar__link_3,
+	.sewera-main-page .content-bar__link_5 {
+		background-size: 110% auto;
+	}
+	.sewera-main-page .content-bar__link_4 {
+		background-size: 105% auto;
+		background-position: bottom 0 right -55px;
+	}
+	.sewera-main-page .content-bar__link_6 {
+		background-size: 112% auto;
+		background-position: bottom -10px right;
+	}
+	.sewera-main-page .content-bar__link_7 {
+		background-size: 90% auto;
+		background-position: bottom right -5px;
+	}
+	.sewera-main-page .content-bar__link_8 {
+		background-size: 110% auto;
+		background-position: bottom right 0;
+	}
+	.sewera-main-page .content-bar__link_10 {
+		background-size: 90% auto;
+		background-position: top -5px right 0;
+	}
+	.sewera-main-page .content-bar__link_11 {
+		background-size: 118% auto;
+		background-position: bottom 7px right -15px;
+	}
+	.sewera-main-page .content-bar__link_12 {
+		background-size: 110% auto;
+		background-position: bottom 5px right;
+	}
+}
