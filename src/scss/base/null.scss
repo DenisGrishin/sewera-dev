@@ -22,16 +22,19 @@ body {
 	min-width: $minWidth + px;
 }
 body {
-	color: $mainColor;
-	line-height: 1;
+	color: $mainColor !important;
+	line-height: 1.5;
 	font-family: $fontFamily;
 	font-size: $fontSize;
-	//text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	@media (max-width: $laptop) {
+		color: $mainColor !important;
+	}
 }
 input,
 button,
