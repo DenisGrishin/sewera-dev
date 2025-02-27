@@ -270,7 +270,7 @@ class InstaGallery {
 
     newSlide.appendChild(newInstaSroty);
     this.storyGalleryWrapper.appendChild(newSlide);
-
+    // ${this.getMonths()}
     newInstaSroty.insertAdjacentHTML(
       "beforeend",
       `
@@ -341,8 +341,21 @@ class InstaGallery {
       "Ноября",
       "Декабря",
     ];
+    // Устанавливаем московское время (UTC+3)
+    let now = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })
+    );
 
-    return months[new Date().getMonth()];
+    // Добавляем 7 дней
+    let futureDate = new Date(now);
+    futureDate.setDate(now.getDate() + 7);
+
+    // Если месяц изменился — устанавливаем 1-е число нового месяца
+    if (futureDate.getMonth() !== now.getMonth()) {
+      futureDate.setDate(1); // Первое число следующего месяца
+    }
+
+    return months[futureDate.getMonth()];
   };
   initSwiperStory = () => {
     this.swiperStory = new Swiper(
@@ -732,7 +745,7 @@ class InstaDiscount {
     form.addEventListener("submit", this.submit);
     this.initMaskPhone();
   };
-
+  // ${this.getMonths()}
   createSuccessStep = () => {
     this.contetnBlock.innerHTML = "";
     this.contetnBlock.classList.add("discount-category-success");
@@ -782,7 +795,24 @@ class InstaDiscount {
       "Декабрь",
     ];
 
-    return months[new Date().getMonth()];
+    // return months[new Date().getMonth()];
+    // Устанавливаем московское время (UTC+3)
+    let now = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })
+    );
+
+    // Добавляем 7 дней
+    let futureDate = new Date(now);
+    futureDate.setDate(now.getDate() + 7);
+
+    // Если месяц изменился — устанавливаем 1-е число нового месяца
+    if (futureDate.getMonth() !== now.getMonth()) {
+      futureDate.setDate(1); // Первое число следующего месяца
+    }
+
+    // Получаем название месяца на русском
+
+    return months[futureDate.getMonth()];
   };
   submit = (event) => {
     event.preventDefault();

@@ -6,7 +6,14 @@ body.no-scroll {
 	left: 0;
 }
 .inst-gallery {
+	padding-top: 45px;
 	font-family: "Onest", Arial, Helvetica, sans-serif;
+	@media (max-width: 901.98px) {
+		padding-top: 35px;
+	}
+	@media (max-width: 719.98px) {
+		padding-top: 30px;
+	}
 	& .page-bl {
 		@media (max-width: $laptop) {
 			padding: 0;
@@ -19,11 +26,19 @@ body.no-scroll {
 	// .inst-gallery__slider
 
 	&__slider {
+		display: flex;
+
+		& .swiper-wrapper {
+			justify-content: center;
+			@media (max-width: $laptop_L) {
+				justify-content: stretch;
+			}
+		}
 		@media (max-width: $laptop) {
-			padding: 40px;
+			padding-right: 40px;
 		}
 		@media (max-width: $tablet) {
-			padding: 15px;
+			padding-right: 15px;
 		}
 	}
 
@@ -39,6 +54,9 @@ body.no-scroll {
 		height: 160px;
 		display: flex;
 		justify-content: flex-end;
+		&:last-child {
+			margin-right: 0 !important;
+		}
 	}
 
 	// .inst-gallery__img
@@ -50,8 +68,13 @@ body.no-scroll {
 			border-radius: 12px;
 			padding: 2px;
 			border: 2px solid #ff6701;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+
 			&._viewed {
 				border-color: transparent;
+				border-width: 0;
 			}
 		}
 	}
@@ -441,6 +464,7 @@ body.no-scroll {
 	// .inst-story__title
 	&__content-text {
 		color: #fff;
+		width: 100%;
 	}
 }
 .inst-gallery-full {
