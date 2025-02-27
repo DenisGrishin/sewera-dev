@@ -323,11 +323,67 @@
 			width: 100%;
 		}
 	}
+	// .slide-banner__pagination
+
+	&__pagination {
+		position: absolute;
+		z-index: 10;
+		width: calc(100% - 48px);
+		height: 3px;
+		bottom: 26px;
+		left: 50%;
+		transform: translate(-50%, 0px);
+		display: flex;
+		& .swiper-pagination-bullet {
+			border-radius: 0;
+			width: 100%;
+			height: 3px;
+			background-color: #fff;
+			opacity: 0.5;
+			border-radius: 8px;
+		}
+		& .swiper-pagination-bullet-active {
+			background-color: #fff;
+			opacity: 1;
+		}
+	}
+	// .slider-banner__nav
+
+	&__nav {
+		display: flex;
+		column-gap: 10px;
+		position: absolute;
+		bottom: 50px;
+		right: 25px;
+		z-index: 1;
+	}
+
+	// .slider-banner__back
+
+	&__back,
+	&__next {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fff;
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		svg {
+			width: 15px;
+			height: 15px;
+		}
+	}
+
+	// .slider-banner__next
+
+	&__next {
+	}
 }
 
 .sewera-main-page .slide-banner {
 	position: relative;
-	position: relative;
+
 	&::after {
 		content: "";
 		background: -webkit-gradient(
@@ -337,7 +393,7 @@
 			color-stop(80.89%, rgba(0, 0, 0, 0)),
 			to(rgba(0, 0, 0, 0.9))
 		);
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 78.89%, rgba(0, 0, 0, 0.9) 100%);
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 70.89%, rgba(0, 0, 0, 0.9) 100%);
 		position: absolute;
 		width: 100%;
 		height: 430px;
@@ -372,12 +428,15 @@
 	// .slide-banner__name
 
 	&__name {
+		align-self: flex-start;
 		text-align: left;
 		width: 100%;
+		max-width: 400px;
 		margin-bottom: 23px;
 		color: #fff;
 		position: relative;
 		z-index: 1;
+		line-height: 1.2;
 		font-family: var(--f-RF);
 	}
 
@@ -397,28 +456,174 @@
 			padding: 6px;
 		}
 	}
-	// .slide-banner__pagination
+}
 
-	&__pagination {
-		position: absolute;
-		z-index: 10;
-		width: calc(100% - 48px);
-		height: 3px;
-		bottom: 26px;
-		left: 50%;
-		transform: translate(-50%, 0px);
-		display: flex;
-		& .swiper-pagination-bullet {
-			border-radius: 0;
-			width: 100%;
-			height: 3px;
-			background-color: #fff;
-			opacity: 0.5;
-			border-radius: 8px;
+.sewera-main-page .partners {
+	// partners__container
+	&__container {
+		@media (max-width: $laptop) {
+			padding: 0;
 		}
-		& .swiper-pagination-bullet-active {
-			background-color: #fff;
-			opacity: 1;
+		@media (max-width: $tablet) {
+			padding: 0;
+		}
+	}
+	// .partners__title
+
+	&__title {
+		margin-bottom: 16px;
+		text-align: left;
+		@media (max-width: $laptop) {
+			margin-bottom: 8px;
+		}
+	}
+
+	// .partners__sub-title
+
+	&__sub-title {
+		font-size: 20px;
+		line-height: 1.4;
+		margin-bottom: 40px;
+		@media (max-width: $laptop_L) {
+			margin-bottom: 32px;
+			@include mainBigFS-LLD;
+		}
+
+		@media (max-width: $laptop) {
+			padding-bottom: 0;
+			@include mainFS;
+
+			br {
+				display: none;
+			}
+		}
+	}
+
+	// .partners__slider
+
+	&__slider {
+		@media (max-width: $laptop) {
+			padding-right: 40px;
+		}
+		@media (max-width: $tablet) {
+			padding-right: 15px;
+		}
+	}
+
+	// .partners__swiper
+
+	&__swiper {
+	}
+
+	// .partners__slide
+
+	&__slide {
+	}
+}
+
+.slide-partner {
+	border-radius: 12px;
+	background-color: var(--bgMain);
+
+	padding: 24px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: $laptop) {
+		height: 250px;
+	}
+	@media (max-width: $tablet) {
+		height: 230px;
+		padding: 12px;
+	}
+	// .slide-partner__img
+
+	&__img {
+		margin-bottom: 16px;
+		img {
+			object-fit: contain;
+			height: 128px;
+		}
+	}
+
+	// .slide-partner__name
+
+	&__name {
+		text-align: center;
+	}
+	&__link {
+		display: flex;
+		display: none;
+		color: #92a1b1;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		@include smallFS;
+		transition: all 0.3s ease 0s;
+		svg {
+			margin-left: 8px;
+			path {
+				transition: all 0.3s ease 0s;
+			}
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: var(--c-orange);
+			}
+			&:hover svg {
+				path {
+					stroke: var(--c-orange);
+				}
+			}
+		}
+	}
+}
+.sewera-main-page .tabs-section__title {
+	text-align: left;
+}
+.sewera-main-page .tabs-social__navigation {
+	padding: 8px;
+}
+.sewera-main-page .tabs-social__title {
+	@include mainFS;
+	padding: 12px 0;
+	transition: none;
+	&._tab-active {
+		transition: none;
+		border-radius: 8px;
+		background-color: var(--mainColor);
+		color: #fff;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: transparent;
+		}
+		&._tab-active:hover {
+			background-color: var(--mainColor);
+		}
+	}
+
+	&::before {
+		background-size: contain;
+	}
+	&:nth-child(1) {
+		&::before {
+			width: 20px;
+			height: 18px;
+		}
+	}
+	&:nth-child(2) {
+		&::before {
+			width: 30px;
+			height: 20px;
+		}
+	}
+	&:nth-child(3) {
+		&::before {
+			width: 20px;
+			height: 20px;
 		}
 	}
 }
