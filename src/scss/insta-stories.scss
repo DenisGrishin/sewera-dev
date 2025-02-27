@@ -6,14 +6,8 @@ body.no-scroll {
 	left: 0;
 }
 .inst-gallery {
-	padding-top: 45px;
 	font-family: "Onest", Arial, Helvetica, sans-serif;
-	@media (max-width: 901.98px) {
-		padding-top: 35px;
-	}
-	@media (max-width: 719.98px) {
-		padding-top: 30px;
-	}
+
 	& .page-bl {
 		@media (max-width: $laptop) {
 			padding: 0;
