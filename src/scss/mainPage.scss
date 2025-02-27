@@ -707,3 +707,122 @@
 .swiper-grid .swiper-wrapper {
 	flex-wrap: wrap;
 }
+.sewera-main-page .nav-block {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-column-gap: 8px;
+	-moz-column-gap: 8px;
+	column-gap: 8px;
+	background: var(--bgMain);
+	padding: 8px;
+	border-radius: 12px;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	margin-bottom: 40px;
+	width: 100%;
+	height: 60px;
+}
+@media (max-width: 1279.98px) {
+	.sewera-main-page .nav-block {
+		margin-bottom: 32px;
+	}
+}
+@media (max-width: 767.98px) {
+	.sewera-main-page .nav-block {
+		margin-bottom: 24px;
+	}
+}
+@media (max-width: 430px) {
+	.sewera-main-page .nav-block {
+		position: relative;
+		left: 50%;
+		-webkit-transform: translate(-50%, 0);
+		-ms-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+	}
+}
+.sewera-main-page .nav-block__btn-nav {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 6px 23px;
+	width: 100%;
+	text-wrap: nowrap;
+	border-radius: 8px;
+	font-weight: 700;
+	border-bottom: none;
+	cursor: pointer;
+}
+.sewera-main-page .nav-block__btn-nav._active-tab-map {
+	background-color: var(--mainColor);
+	color: #fff;
+	border-radius: 8px;
+}
+@media (max-width: 767.98px) {
+	.sewera-main-page .nav-block__btn-nav {
+		font-size: 14px;
+		line-height: 1.25;
+		padding: 6px 12px;
+	}
+}
+
+.sewera-main-page .map-info .page-bl {
+}
+.sewera-main-page .map-info__title {
+	margin-bottom: 20px;
+}
+.sewera-main-page .map-info__navigation {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	margin-bottom: 20px;
+}
+.sewera-main-page .map-info__text {
+	margin-bottom: 20px;
+	padding-bottom: 0px !important;
+}
+
+@media (max-width: 767.98px) {
+	.sewera-main-page .map-info__text {
+		font-size: 14px;
+		line-height: 1.25;
+		color: #102938;
+	}
+	.sewera-main-page .map-info__text br {
+		display: none;
+	}
+}
+.sewera-main-page .map-info__block-map {
+	height: 500px;
+	border-radius: 12px;
+	border: 1px solid #bfcee0;
+}
+.sewera-main-page .map-info__block-map ymaps {
+	border-radius: 12px;
+}
+.title-info-m {
+	font: 700 28px "Onest";
+	color: #102938;
+}
+@media (max-width: 1279px) {
+	.title-info-m {
+		font-size: 26px;
+		line-height: 120%;
+	}
+}
+@media (max-width: 1023px) {
+	.title-info-m {
+		font-size: 20px;
+		line-height: 115%;
+	}
+}
