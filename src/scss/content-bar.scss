@@ -14,7 +14,7 @@
 .sewera-main-page .content-bar__container {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	gap: 32px 30px;
 	margin-bottom: -120px;
@@ -257,7 +257,7 @@
 	}
 	.sewera-main-page .content-bar__container {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: auto;
 		gap: 22px 20px;
 		margin-bottom: -80px;
@@ -396,7 +396,7 @@
 
 	.sewera-main-page .content-bar__container {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto;
 		gap: 20px;
 		margin-bottom: 0;

@@ -46,8 +46,8 @@ function initSliders() {
         clickable: true,
       },
       navigation: {
-        nextEl: ".slider-banner__back",
-        prevEl: ".slider-banner__next",
+        nextEl: ".slider-banner__next",
+        prevEl: ".slider-banner__back",
       },
       breakpoints: {
         319.98: {},
