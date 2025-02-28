@@ -582,9 +582,10 @@ class InstaStory {
     };
 
     if (this.btnCopy) {
-      document.querySelector("._copy").addEventListener("click", () => {
+      this.btnCopy.addEventListener("click", () => {
         const text = "SEWERA";
         this.copyToClipboard(text);
+        this.showTooltipCopy();
       });
     }
 
@@ -626,14 +627,38 @@ class InstaStory {
   copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
-      .then(() => {
-        console.log("Текст скопирован в буфер обмена!");
-      })
-      .catch((err) => {
-        console.error("Ошибка при копировании текста: ", err);
-      });
+      .then(() => {})
+      .catch((err) => {});
+  };
+  showTooltipCopy = () => {
+    this.btnCopy.querySelector("._tooltip");
+
+    if (this.btnCopy.querySelector("._tooltip")) {
+      return;
+      // this.btnCopy.querySelector("._tooltip").remove();
+    }
+
+    setTimeout(() => {
+      this.btnCopy.insertAdjacentHTML(
+        "beforeend",
+        `<span class='_tooltip '>Скопировано!</span>`
+      );
+
+      setTimeout(() => {
+        this.btnCopy.querySelector("._tooltip").classList.add("_show");
+      }, 100);
+    }, 10);
+
+    setTimeout(() => {
+      if (this.btnCopy.querySelector("._tooltip")) {
+        this.btnCopy.querySelector("._tooltip").classList.remove("_show");
+
+        setTimeout(() => this.btnCopy.querySelector("._tooltip").remove(), 300);
+      }
+    }, 3000);
   };
 }
+
 class InstaDiscount {
   listSelected = [];
 

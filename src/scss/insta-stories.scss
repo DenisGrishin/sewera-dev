@@ -904,6 +904,7 @@ body.no-scroll {
 	z-index: 11111111111111111;
 	font-family: "Onest", Arial, Helvetica, sans-serif;
 	cursor: pointer;
+	position: relative;
 	&::after {
 		content: "";
 
@@ -958,5 +959,40 @@ body.no-scroll {
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
 		background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjEiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjAwMSAyOS45OThINDguMDAxTTQ4LjAwMSAyOS45OThMMzAuNTAxIDEyLjQ5OE00OC4wMDEgMjkuOTk4TDMwLjUwMSA0Ny40OTgiIHN0cm9rZT0id2hpdGUiIHN0eWxlPSJzdHJva2U6d2hpdGU7c3Ryb2tlLW9wYWNpdHk6MTsiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=");
+	}
+}
+._tooltip {
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 4px;
+	display: inline-block;
+	color: var(--mainColor);
+	position: absolute;
+	font-size: 12px;
+	top: -40px;
+	font-weight: 400;
+	letter-spacing: 0.43px;
+	z-index: 11;
+	right: 10px;
+	opacity: 0;
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.664);
+	transform: translateY(-5px);
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
+	&._show {
+		opacity: 1;
+
+		transform: translateY(0);
+	}
+	&::after {
+		content: "";
+
+		position: absolute;
+		bottom: -20px;
+		left: 50%;
+		transform: translate(-50%, 0px);
+		border: 10px solid transparent;
+		border-top: 10px solid #fff;
 	}
 }
