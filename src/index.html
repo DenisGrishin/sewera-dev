@@ -19,7 +19,7 @@
 		@@include('html/_header.htm',{})
 		<!-- </div> -->
 		<div class="site-content ">
-			<div class="sewera-main-page sewera-septik">
+			<div class="sewera-main-page">
 				<section class="slider-banner">
 					<div class="page-bl">
 						<div class="slider-banner__col">
@@ -183,12 +183,12 @@
 							<div class="content-bar__container">
 								<div class="content-bar__item content-bar__item_1">
 									<div class="content-bar__wrap content-bar__wrap_big content-bar__wrap_1">
-										<a href="septiki/" class="content-bar__link content-bar__link_1">
+										<a href="blagoustrojstvo/" class="content-bar__link content-bar__link_1">
 											<div class="content-bar__desctiption-top">
-												<div class="content-bar__title">Септик под ключ</div>
+												<div class="content-bar__title">Благоустройство</div>
 
 												<div class="content-bar__price">
-													<span>От 87 500 руб.</span>
+													<span>От 210 руб./м²</span>
 												</div>
 											</div>
 											<div class="content-bar__desctiption-bottom">
@@ -198,7 +198,7 @@
 														<path id="Vector" d="M13 10V3L5 14H11V21L19 10H13Z" stroke="#102938"
 															stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
 													</svg>
-													<span class="content-bar__text">Быстрый монтаж</span>
+													<span class="content-bar__text">Визуализация проекта</span>
 												</div>
 												<div class="content-bar__advantage">
 													<svg class="content-bar__icon" width="24" height="24" viewBox="0 0 24 24"
@@ -208,7 +208,7 @@
 															stroke="#102938" stroke-width="1.5" stroke-linecap="round"
 															stroke-linejoin="round"></path>
 													</svg>
-													<span class="content-bar__text">Год полной гарантии</span>
+													<span class="content-bar__text">Гарантия по договору</span>
 												</div>
 												<div class="content-bar__advantage">
 													<svg class="content-bar__icon" width="24" height="24" viewBox="0 0 24 24"
@@ -252,11 +252,11 @@
 								</div>
 								<div class="content-bar__item content-bar__item_4">
 									<div class="content-bar__wrap content-bar__wrap_big content-bar__wrap_4">
-										<a href="blagoustrojstvo/" class="content-bar__link content-bar__link_4">
+										<a href="septiki/" class="content-bar__link content-bar__link_4">
 											<div class="content-bar__desctiption-top">
-												<div class="content-bar__title">Благоустройство</div>
+												<div class="content-bar__title">Септик под ключ</div>
 												<div class="content-bar__price">
-													<span>От 210 руб./м²</span>
+													<span>От 87 500 руб.</span>
 												</div>
 											</div>
 											<div class="content-bar__desctiption-bottom">
@@ -272,7 +272,7 @@
 															stroke="#102938" stroke-width="1.5" stroke-linecap="round"
 															stroke-linejoin="round"></path>
 													</svg>
-													<span class="content-bar__text">Визуализация проекта</span>
+													<span class="content-bar__text">Быстрый монтаж</span>
 												</div>
 												<div class="content-bar__advantage">
 													<svg class="content-bar__icon" width="24" height="24" viewBox="0 0 24 24"
@@ -282,7 +282,7 @@
 															stroke="#102938" stroke-width="1.5" stroke-linecap="round"
 															stroke-linejoin="round"></path>
 													</svg>
-													<span class="content-bar__text">Гарантия по договору</span>
+													<span class="content-bar__text">Год полной гарантии</span>
 												</div>
 												<div class="content-bar__advantage">
 													<svg class="content-bar__icon" width="24" height="24" viewBox="0 0 24 24"
@@ -486,9 +486,9 @@
 						<div class="our-way__body body-our-way">
 							<div class="body-our-way__contetn text-middle ">
 
-								<p class="body-our-way__text"><strong>Все работы в одном окне:</strong> от септиков
-									и автополива до украшения
-									дома к празднику. С нами комфорт загородной жизни становится доступнее : )</p>
+								<p class="body-our-way__text"><strong>Все работы «в одном окне»: </strong> Sewera — это полный
+									комплекс решений по инженерному оснащению и благоустройству. От канализации до озеленения —
+									мы делаем всё, чтобы путь к загородной жизни был лёгким и комфортным.</p>
 
 								<ul class="body-our-way__list">
 									<li class="body-our-way__item">
@@ -2103,55 +2103,8 @@
 </body>
 
 </html>
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		function bildSliders() {
-			//BildSlider
-			let sliders = document.querySelectorAll(
-				'[class*="__swiper"]:not(.swiper-wrapper):not(.swiper)'
-			);
-			if (sliders) {
-				sliders.forEach((slider) => {
-					if (
-						slider.querySelector(".swiper-wrapper") ||
-						slider.querySelector(".swiper")
-					)
-						return;
-					slider.parentElement.classList.add("swiper");
-					slider.classList.add("swiper-wrapper");
-					for (const slide of slider.children) {
-						slide.classList.add("swiper-slide");
-					}
-				});
-			}
-		}
-		let swiper = new Swiper(".slider-banner__slider", {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			autoHeight: false,
-			speed: 300,
-			autoplay: {
-				delay: 3000,
-			},
-			loop: true,
-			pagination: {
-				el: ".slider-banner__pagination",
-				clickable: true,
-			},
-			navigation: {
-				nextEl: ".slider-banner__next",
-				prevEl: ".slider-banner__back",
-			},
-			breakpoints: {
-				319.98: {},
-				429.98: {},
-
-				767.98: {},
-				1023.98: {},
-			},
-			on: {},
-		});
-	})
-</script>
+<style>
+	.footer {
+		margin-top: 45px !important;
+	}
+</style>

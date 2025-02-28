@@ -49,14 +49,14 @@ $verySmallLh: 1.2;
 
 // Основные цвета
 
-// $mainColor: #102938;
-// $textColorGray: #405460;
-// $titleOpacityColor: hsla(203, 56%, 14%, 0.8);
-// $textColorBlue: #009cd9;
-// $bgColor: #f0f4f9;
-// $textGreen: #0db25a;
-// $textPink: #ff005d;
-// $colorOrange: #ff6701;
+$mainColor: #102938;
+$textColorGray: #405460;
+$titleOpacityColor: hsla(203, 56%, 14%, 0.8);
+$textColorBlue: #009cd9;
+$bgColor: #f0f4f9;
+$textGreen: #0db25a;
+$textPink: #ff005d;
+$colorOrange: #ff6701;
 
 $bigRadiusBor: 8px;
 $smallRadiusBor: 4px;
@@ -89,9 +89,9 @@ $mobileSmall: 429.98px; // Телефоны S
 
 // @import "home";
 // @import "./variablesCss.scss";
-// @import "./base/null";
 // @import "./mainCommon";
+// @import "./base/null";
 
-@import "./mainPage";
-// @import "content-bar.scss";
+// @import "./mainPage";
+@import "content-bar.scss";
 // @import "./socialNetworkBlcok";
