@@ -255,6 +255,7 @@
 	// .slider-banner__col
 
 	&__col {
+		max-width: 596px;
 		flex: 0 1 50%;
 		background-color: var(--bgMain);
 		border-radius: 12px;
@@ -338,6 +339,13 @@
 
 	&__slider {
 		border-radius: 12px;
+		overflow: hidden;
+		width: 100%;
+		height: 445px !important;
+
+		@media (max-width: $tablet) {
+			height: 289px !important;
+		}
 	}
 
 	// .slider-banner__swiper
@@ -349,11 +357,12 @@
 
 	&__slide {
 		width: 100% !important;
+
 		height: 445px !important;
 		@media (max-width: $laptop_L) {
-			@media (max-width: $tablet) {
-				height: 289px !important;
-			}
+		}
+		@media (max-width: $tablet) {
+			height: 289px !important;
 		}
 	}
 	&__btn {
@@ -452,6 +461,7 @@
 	// .slide-banner__img
 
 	&__img {
+		display: block;
 		object-fit: cover;
 		width: 100%;
 		height: 100%;

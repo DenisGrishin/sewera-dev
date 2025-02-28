@@ -2101,3 +2101,55 @@
 </body>
 
 </html>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		function bildSliders() {
+			//BildSlider
+			let sliders = document.querySelectorAll(
+				'[class*="__swiper"]:not(.swiper-wrapper):not(.swiper)'
+			);
+			if (sliders) {
+				sliders.forEach((slider) => {
+					if (
+						slider.querySelector(".swiper-wrapper") ||
+						slider.querySelector(".swiper")
+					)
+						return;
+					slider.parentElement.classList.add("swiper");
+					slider.classList.add("swiper-wrapper");
+					for (const slide of slider.children) {
+						slide.classList.add("swiper-slide");
+					}
+				});
+			}
+		}
+		let swiper = new Swiper(".slider-banner__slider", {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			autoHeight: false,
+			speed: 300,
+			autoplay: {
+				delay: 3000,
+			},
+			loop: true,
+			pagination: {
+				el: ".slider-banner__pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".slider-banner__next",
+				prevEl: ".slider-banner__back",
+			},
+			breakpoints: {
+				319.98: {},
+				429.98: {},
+
+				767.98: {},
+				1023.98: {},
+			},
+			on: {},
+		});
+	})
+</script>
