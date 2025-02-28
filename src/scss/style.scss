@@ -2,23 +2,7 @@
 
 // @import url(https://fonts.googleapis.com/css?family=Onest:100,200,300,regular,500,600,700,800,900);
 // @import url(https://fonts.googleapis.com/css?family=Roboto+Flex:regular);
-:root {
-	--f-RF: "Roboto Flex";
 
-	--mainColor: #102938;
-	--textColorGray: #405460;
-	--titleOpacityColor: hsla(203, 56%, 14%, 0.8);
-	--textColorBlue: #009cd9;
-	--bgMain: #f0f4f9;
-	--c-light-green: #ecf9f2;
-	--c-light-cream: #fff7e6;
-	--с-light-beige: #fff8d8;
-	--с-light-blue: #eff9ff;
-	--c-orange: #ff6701;
-	--c-card-option-beige: #ffb3061a;
-	--c-card-option-orange: #ff670114;
-	--c-card-option-green: #0db25a14;
-}
 @mixin middleFS {
 	font-size: 28px;
 	line-height: 1.27;
@@ -65,14 +49,14 @@ $verySmallLh: 1.2;
 
 // Основные цвета
 
-$mainColor: #102938;
-$textColorGray: #405460;
-$titleOpacityColor: hsla(203, 56%, 14%, 0.8);
-$textColorBlue: #009cd9;
-$bgColor: #f0f4f9;
-$textGreen: #0db25a;
-$textPink: #ff005d;
-$colorOrange: #ff6701;
+// $mainColor: #102938;
+// $textColorGray: #405460;
+// $titleOpacityColor: hsla(203, 56%, 14%, 0.8);
+// $textColorBlue: #009cd9;
+// $bgColor: #f0f4f9;
+// $textGreen: #0db25a;
+// $textPink: #ff005d;
+// $colorOrange: #ff6701;
 
 $bigRadiusBor: 8px;
 $smallRadiusBor: 4px;
@@ -103,17 +87,11 @@ $laptop: 1023.98px;
 $tablet: 767.98px; // Телефоны L
 $mobileSmall: 429.98px; // Телефоны S
 
-// Обнуление и общие параметры
-
-// Подключение стилей отдельных страниц
-// Обнуление и общие параметры ============================================================================================================================================================================================== =============================================================================================== ===============================================================================================
-
-// Оболочка ============================================================================================================================================================================================================================================================================================================================================================================================================================================
-
-// Подключение стилей отдельных страниц
 // @import "home";
-// ! common обезательно всегда заливать с mainPage
-@import "common";
+// @import "./variablesCss.scss";
+// @import "./base/null";
+// @import "./mainCommon";
+
 @import "./mainPage";
 // @import "content-bar.scss";
 // @import "./socialNetworkBlcok";

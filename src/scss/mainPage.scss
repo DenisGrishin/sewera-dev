@@ -480,6 +480,9 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: flex-end;
+		@media (max-width: $laptop) {
+			padding: 20px;
+		}
 	}
 
 	// .slide-banner__name
@@ -590,6 +593,7 @@
 			margin-top: 42px;
 			font-weight: 700;
 			transition: all 0.3s ease 0s;
+
 			svg {
 				path {
 					transition: all 0.3s ease 0s;
@@ -670,6 +674,10 @@
 }
 .sewera-main-page .tabs-section__title {
 	text-align: left;
+	margin-bottom: 40px;
+	@media (max-width: $laptop_L) {
+		margin-bottom: 32px;
+	}
 }
 .sewera-main-page .tabs-social__navigation {
 	padding: 8px;
