@@ -1,0 +1,989 @@
+.sewera-septik .tabs-section {
+	padding: 45px 0;
+}
+.sewera-septik .tabs-social__navigation {
+	border-radius: 8px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 20px;
+	background-color: #f0f4f9;
+	padding: 20px;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+}
+.sewera-septik .tabs-social__title {
+	background-color: #f0f4f9;
+	text-align: center;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+	padding: 13px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.3;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+.sewera-septik .tabs-social__title._tab-active {
+	background-color: #fff;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	border-radius: 8px;
+}
+.sewera-septik .tabs-social__title::before {
+	content: "";
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	margin-right: 10px;
+}
+.sewera-septik .tabs-social__title:nth-child(1)::before {
+	width: 25px;
+	height: 22px;
+	background-image: url(https://sewera.ru/srv/assets/images/septik/icons/telegramIcon.svg);
+}
+.sewera-septik .tabs-social__title:nth-child(2)::before {
+	width: 32px;
+	height: 23px;
+	background-image: url(https://sewera.ru/srv/assets/images/septik/icons/youtubeIcon.svg);
+}
+.sewera-septik .tabs-social__title:nth-child(3)::before {
+	width: 32px;
+	height: 23px;
+	background-image: url(https://sewera.ru/srv/assets/images/septik/icons/magazineIcon.webp);
+}
+.sewera-septik .tabs-social__body {
+	background-color: #f0f4f9;
+	padding: 20px;
+	border-radius: 8px;
+	position: relative;
+}
+.sewera-septik .wapper-social .submitted__die-yt,
+.sewera-septik .wapper-social .submitted__slider-post,
+.sewera-septik .wapper-social .tabs-social__body,
+.sewera-septik .wapper-social .tabs-social__navigation,
+.sewera-septik .wapper-social .tabs-social__title {
+	background: #f5f5f5 !important;
+}
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+.sewera-septik .submitted__slider-post {
+	background-color: #f0f4f9;
+}
+.sewera-septik .submitted__swiper {
+	position: relative;
+	margin: 0 !important;
+}
+.sewera-septik .submitted__slide {
+	height: auto !important;
+	border: 0 !important;
+	background-color: #fff !important;
+	border-radius: 6px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+.sewera-septik .submitted__img {
+	width: 100%;
+	height: 270px;
+	position: relative;
+	margin-bottom: 20px;
+}
+.sewera-septik .submitted__img img {
+	border-radius: 6px 6px 0 0;
+	width: 100%;
+	height: inherit;
+	-o-object-position: center;
+	object-position: center;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+.sewera-septik .submitted__img-hover-container {
+	width: 100%;
+	height: 100%;
+	background: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, rgba(40, 63, 76, 0.7)),
+		to(rgba(40, 63, 76, 0.7))
+	);
+	background: linear-gradient(0deg, rgba(40, 63, 76, 0.7) 0, rgba(40, 63, 76, 0.7) 100%);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	opacity: 0;
+	z-index: 10;
+	border-radius: 6px 6px 0 0;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.sewera-septik .submitted__img-hover-item {
+	padding: 10px 14px;
+	color: #102938;
+	border-radius: 6px;
+	background-color: #f5f5f5;
+	font-size: 20px;
+	font-weight: 700;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	gap: 10px;
+}
+.sewera-septik .submitted__posts-bottom {
+	padding: 0 20px 20px;
+}
+.sewera-septik .submitted__category {
+	padding-left: 20px;
+	font-size: 14px;
+	line-height: 1.4;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-bottom: 12px;
+}
+.sewera-septik .submitted__category::before {
+	content: "";
+	-webkit-transform: translateY(-2px);
+	-ms-transform: translateY(-2px);
+	transform: translateY(-2px);
+	background: url(https://sewera.ru/srv/assets/images/septik/icons/blobIcon.svg) 0 0 no-repeat;
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+}
+.sewera-septik .submitted__magazine-bottom {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	margin: 0;
+}
+.sewera-septik .submitted__posts-content__title {
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 130%;
+	letter-spacing: 1%;
+	color: #102938;
+	margin-bottom: 15px;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 100%;
+	flex: 1 1 100%;
+	padding: 0 20px;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-align: left;
+}
+.sewera-septik .submitted__posts-content__info {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0 !important;
+}
+.sewera-septik .submitted__posts-content__info-item {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-right: 10px;
+	font-weight: 500;
+}
+.sewera-septik .submitted__posts-content__info-item svg {
+	margin-top: -1px;
+	width: 16px;
+	height: 16px;
+	margin-right: 4.5px;
+}
+.sewera-septik .submitted__posts-content__info-item span {
+	color: #405460;
+	font-size: 14px;
+	line-height: 1.4;
+}
+.sewera-septik .submitted__next,
+.sewera-septik .submitted__prev {
+	top: 53.4% !important;
+}
+.sewera-septik .submitted__prev {
+	left: -30px !important;
+}
+.sewera-septik .submitted__next {
+	right: -30px !important;
+}
+.sewera-septik .submitted__top-slider {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+	margin-bottom: 21px;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.sewera-septik .submitted__left {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-column-gap: 15px;
+	-moz-column-gap: 15px;
+	column-gap: 15px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+}
+.sewera-septik .submitted__logo {
+	border-radius: 8px;
+	background-color: #f0f4f9;
+	height: 48px;
+	width: 48px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+.sewera-septik .submitted__logo img {
+	width: 41px;
+	height: 41px;
+}
+.sewera-septik .submitted__block {
+	text-align: left;
+}
+.sewera-septik .submitted__title-logo {
+	font-size: 20px;
+	line-height: 1.3;
+	font-weight: 700;
+}
+.sewera-septik .submitted__link-top {
+	color: var(--main-blue-color);
+}
+.sewera-septik .submitted__text-top {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+}
+.sewera-septik .submitted__text-top span {
+	display: inline-block;
+	max-width: 256px;
+}
+.sewera-septik .submitted__wrapper-btn-link,
+.sewera-septik .submitted__wrapper-top-magazine-btn {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+}
+.sewera-septik .submitted__btn-link {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 220px;
+	flex: 0 1 220px;
+	background-color: #2aabee;
+	font-weight: 500;
+	color: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding: 13px;
+	border-radius: 4px;
+}
+.sewera-septik .submitted__btn-link::before {
+	content: "";
+	background: url(https://sewera.ru/srv/assets/images/septik/icons/whiteTelegramIcon.svg) 0 0/20px 18px no-repeat;
+	margin-right: 10px;
+	width: 20px;
+	height: 18px;
+}
+.sewera-septik .submitted__slider-post-magazine {
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 0 20px;
+}
+.sewera-septik .submitted__magazine-next {
+	right: -30px !important;
+}
+.sewera-septik .submitted__magazine-prev {
+	left: -30px !important;
+}
+.sewera-septik .submitted__die-yt {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center !important;
+	-ms-flex-align: center !important;
+	align-items: center !important;
+	padding: 0;
+	background-color: #f0f4f9 !important;
+	border-radius: 8px;
+	margin-bottom: 20px !important;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+}
+.sewera-septik .submitted__die-yt-logo {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-column-gap: 18px;
+	-moz-column-gap: 18px;
+	column-gap: 18px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+}
+.sewera-septik .submitted__die-yt-logo__img {
+	width: 48px;
+	height: 48px;
+	-ms-flex-item-align: start;
+	align-self: flex-start;
+}
+.sewera-septik .submitted__die-yt-logo__title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.4;
+}
+.sewera-septik .submitted__die-yt-logo__href {
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--main-blue-color);
+}
+.sewera-septik .submitted__die-description {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+	max-width: none;
+	line-height: 1.5;
+}
+.sewera-septik .submitted__die-description span {
+	display: inline-block;
+	max-width: 339px;
+}
+.sewera-septik .submitted__wrapper-top-youtube-btn {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+}
+.sewera-septik .submitted__top-youtube-btn {
+	font-weight: 500;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-column-gap: 8px;
+	-moz-column-gap: 8px;
+	column-gap: 8px;
+	background-color: #102938 !important;
+	color: #fff;
+	border-radius: 4px;
+	padding: 13px 15px;
+	cursor: pointer;
+}
+.sewera-septik .submitted span {
+	font-weight: 500;
+	line-height: 1.375;
+}
+.sewera-septik .submitted__swiper-yt {
+	margin-bottom: 0 !important;
+}
+.sewera-septik .submitted__slide-yt {
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 8px;
+	cursor: pointer;
+	height: auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.sewera-septik .submitted__slide-yt_video {
+	max-width: 100% !important;
+}
+.sewera-septik .submitted__slide-yt__img_video {
+	position: relative;
+	padding-bottom: 73.6%;
+	margin-bottom: 0 !important;
+}
+.sewera-septik .submitted__slide-yt__img_video img {
+	border-radius: 6px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: center;
+	object-position: center;
+	border-radius: 8px 8px 0 0 !important;
+}
+.sewera-septik .submitted__slide-yt__bottom {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding: 20px;
+	height: 100%;
+}
+.sewera-septik .submitted__slide-yt__title {
+	padding-left: 1px;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.3;
+	margin-bottom: 15px;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.sewera-septik .submitted__slide-yt__time {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-column-gap: 4px;
+	-moz-column-gap: 4px;
+	column-gap: 4px;
+}
+.sewera-septik .submitted__slide-yt__time span {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.7142857143;
+	color: #405460;
+}
+.sewera-septik .submitted__slide-yt__time svg {
+	margin-top: -2px;
+}
+.sewera-septik .submitted__youtube-navigation {
+	cursor: pointer;
+}
+.sewera-septik .submitted__youtube-navigation div {
+	border-radius: 50%;
+	background: #fff;
+	padding: 18px;
+	-webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.0823529412);
+	box-shadow: 0 3px 25px rgba(0, 0, 0, 0.0823529412);
+}
+.sewera-septik .submitted__youtube-prev {
+	left: -30px;
+}
+.sewera-septik .submitted__youtube-next {
+	right: -30px;
+}
+.sewera-septik .popup__content {
+	padding: 0 30px;
+	max-width: 960px;
+}
+.sewera-septik .submitted__youtube-pop-next {
+	right: 0 !important;
+	z-index: 100;
+}
+.sewera-septik .submitted__youtube-pop-prev {
+	z-index: 100;
+	left: 0 !important;
+}
+.sewera-septik .submitted__slider-navigation-next,
+.sewera-septik .submitted__slider-navigation-prev {
+	width: 60px;
+	height: 60px;
+}
+.sewera-septik .submitted__magazine {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-bottom: 20px;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	column-gap: 30px;
+}
+.sewera-septik .submitted__left-block-magazine {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+}
+.sewera-septik .submitted__magazine-logo-img {
+	padding: 11.5px;
+	border-radius: 4px;
+	background-color: #574ae9;
+	margin-right: 15px;
+}
+.sewera-septik .submitted__magazine-logo-title {
+	font-size: 20px;
+	font-weight: 700;
+}
+.sewera-septik .submitted__magazine-description {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 33.333%;
+	flex: 0 1 33.333%;
+}
+.sewera-septik .submitted__magazine-description span {
+	display: inline-block;
+	max-width: 260px;
+}
+.sewera-septik .submitted__top-magazine-btn {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 220px;
+	flex: 0 0 220px;
+	text-align: center;
+	border-radius: 4px;
+	background-color: #574ae9;
+	color: #fff !important;
+	font-weight: 500;
+	padding: 13px 15px;
+}
+.sewera-septik .submitted__top-magazine-btn img {
+	margin-right: 8px;
+}
+.sewera-septik .submitted__youtube-prev {
+	left: -30px;
+}
+.sewera-septik .submitted__youtube-next {
+	right: -30px;
+}
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+.sewera-septik .slider-navigation-next,
+.sewera-septik .slider-navigation-prev {
+	width: 24px;
+	height: 24px;
+	padding: 18px;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.0823529412);
+	box-shadow: 0 3px 25px rgba(0, 0, 0, 0.0823529412);
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	z-index: 10;
+}
+.sewera-septik .slider-navigation-prev svg path {
+	stroke: #102938;
+}
+.sewera-septik .slider-navigation-prev {
+	left: -5px;
+}
+.sewera-septik .slider-navigation-next {
+	right: -5px;
+}
+.sewera-septik .slider-navigation-next svg path {
+	stroke: #102938;
+}
+.sewera-septik .submitted__slider-navigation-next,
+.sewera-septik .submitted__slider-navigation-prev {
+	width: 60px;
+	height: 60px;
+}
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+// =====================================================================================================================================
+
+@media (max-width: 1439.98px) {
+	.sewera-septik .slider-navigation-prev {
+		left: 10px;
+	}
+	.sewera-septik .slider-navigation-next {
+		right: 10px;
+	}
+}
+
+@media (max-width: 1279.98px) {
+	.sewera-septik .submitted__die-yt-logo__title,
+	.sewera-septik .submitted__magazine-logo-title,
+	.sewera-septik .submitted__title-logo {
+		font-size: 18px;
+	}
+}
+@media (max-width: 1023.98px) {
+	.sewera-septik .slider-navigation-next,
+	.sewera-septik .slider-navigation-prev {
+		width: 18px;
+		height: 18px;
+		padding: 14px;
+		display: none;
+	}
+	.sewera-septik .slider-navigation-prev {
+		left: 15px;
+	}
+	.sewera-septik .slider-navigation-prev svg {
+		margin-top: 0;
+	}
+	.sewera-septik .slider-navigation-next {
+		right: 15px;
+	}
+	.sewera-septik .slider-navigation-next svg {
+		margin-top: 0;
+	}
+	.tabs-social__title {
+		font-size: 16px;
+		line-height: 1.5;
+	}
+	.sewera-septik .submitted__posts-content__title {
+		font-size: 18px;
+	}
+	.sewera-septik .submitted__next,
+	.sewera-septik .submitted__prev {
+		display: none;
+	}
+	.sewera-septik .submitted__top-slider {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		row-gap: 20px;
+		-webkit-box-align: flex-start;
+		-ms-flex-align: flex-start;
+		align-items: flex-start;
+	}
+	.sewera-septik .submitted__title-logo {
+		font-size: 18px;
+		line-height: 1.5;
+	}
+	.sewera-septik .submitted__text-top span {
+		max-width: 100%;
+	}
+	.sewera-septik .submitted__text-top {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	.sewera-septik .submitted__btn-link {
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-box-flex: 0;
+		-ms-flex: none;
+		flex: none;
+		padding: 13px;
+		width: 100%;
+	}
+	.sewera-septik .submitted__wrapper-btn-link {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 100%;
+		flex: 1 1 100%;
+		-ms-flex-item-align: stretch;
+		-ms-grid-row-align: stretch;
+		align-self: stretch;
+	}
+	.sewera-septik .submitted__wrapper-top-magazine-btn {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 100%;
+		flex: 1 1 100%;
+		-ms-flex-item-align: stretch;
+		-ms-grid-row-align: stretch;
+		align-self: stretch;
+	}
+	.sewera-septik .submitted__wrapper-top-youtube-btn {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 100%;
+		flex: 1 1 100%;
+		-ms-flex-item-align: stretch;
+		-ms-grid-row-align: stretch;
+		align-self: stretch;
+	}
+	.sewera-septik .submitted__die-yt {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		margin-bottom: 25px;
+		row-gap: 20px;
+		border-radius: 0 !important;
+		-webkit-box-align: start !important;
+		-ms-flex-align: start !important;
+		align-items: flex-start !important;
+		max-width: 100% !important;
+		padding: 0;
+	}
+	.sewera-septik .submitted__die-yt-logo__title {
+		font-size: 18px;
+		line-height: 1.3888888889;
+	}
+	.sewera-septik .submitted__die-yt-logo__href {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	.sewera-septik .submitted__die-description {
+		font-size: 14px;
+		line-height: 1.4;
+		max-width: 100% !important;
+	}
+	.sewera-septik .submitted__die-description span {
+		max-width: 100%;
+	}
+	.sewera-septik .submitted__top-youtube-btn {
+		width: 100%;
+		-ms-flex-item-align: stretch;
+		-ms-grid-row-align: stretch;
+		align-self: stretch;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		padding: 13px 15px;
+	}
+	.sewera-septik .submitted__slide-yt__title {
+		font-size: 18px;
+		line-height: 1.2777777778;
+	}
+	.sewera-septik .submitted__magazine {
+		-webkit-box-align: start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		row-gap: 20px;
+	}
+	.sewera-septik .submitted__magazine-logo-title {
+		font-size: 18px;
+	}
+	.sewera-septik .submitted__magazine-description span {
+		font-size: 14px;
+		line-height: 1.4;
+		max-width: 100%;
+	}
+	.sewera-septik .submitted__top-magazine-btn {
+		-webkit-box-flex: 0;
+		-ms-flex: none;
+		flex: none;
+		-ms-flex-item-align: stretch;
+		-ms-grid-row-align: stretch;
+		align-self: stretch;
+		width: 100%;
+	}
+}
+@media (max-width: 900.98px) {
+	.sewera-septik .tabs-section {
+		padding: 35px 0;
+	}
+}
+@media (max-width: 720.98px) {
+	.sewera-septik .tabs-section {
+		padding: 30px 0;
+	}
+}
+@media (max-width: 767.98px) {
+	.sewera-septik .submitted__slide-yt__bottom {
+		padding: 15px;
+	}
+	.sewera-septik .submitted__swiper {
+		margin-bottom: 20px;
+	}
+	.sewera-septik .submitted__slide {
+		width: 60%;
+	}
+	.sewera-septik .submitted__img {
+		height: 205px;
+	}
+	.sewera-septik .submitted__posts-bottom {
+		padding: 0 15px 15px;
+	}
+	.sewera-septik .submitted__posts-content__title {
+		padding: 0 15px;
+		margin-bottom: 10px;
+	}
+	.sewera-septik .submitted__link-top {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	.sewera-septik .submitted__die-yt-logo__img {
+		width: 48px;
+		height: 48px;
+	}
+	.sewera-septik .submitted__slide-yt__title {
+		font-size: 16px;
+		line-height: 1.1875;
+		margin-bottom: 10px;
+	}
+	.sewera-septik .submitted__slide-yt__time span {
+		font-size: 12px;
+		line-height: 2;
+	}
+	.sewera-septik .submitted__youtube-navigation {
+		display: none;
+	}
+	.sewera-septik .tabs-social__navigation {
+		padding: 10px;
+		-webkit-column-gap: 10px;
+		-moz-column-gap: 10px;
+		column-gap: 10px;
+	}
+	.sewera-septik .tabs-social__title {
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	.sewera-septik .tabs-social__title::before {
+		margin-right: 4px;
+	}
+	.sewera-septik .tabs-social__title:nth-child(1)::before {
+		background-size: 16px 16px;
+		width: 18px;
+		height: 16px;
+	}
+	.sewera-septik .tabs-social__title:nth-child(2)::before {
+		background-size: 24px 16px;
+		width: 24px;
+		height: 16px;
+	}
+	.sewera-septik .tabs-social__title:nth-child(3)::before {
+		background-size: 24px 16px;
+		width: 24px;
+		height: 16px;
+	}
+	.sewera-septik .tabs-social__body {
+		padding: 15px 10px;
+	}
+}
+@media (max-width: 720.98px) {
+	.sewera-septik .tabs-section {
+		padding: 30px 0;
+	}
+}
+@media (max-width: 429.98px) {
+	.sewera-septik .submitted__slide {
+		width: 80%;
+	}
+	.sewera-septik .submitted__posts-content__title {
+		font-size: 16px;
+	}
+	.sewera-septik .submitted__slide-yt__img_video {
+		margin-bottom: 15px;
+	}
+	.sewera-septik .submitted__slide-yt__title {
+		font-size: 14px;
+		line-height: 1.2;
+	}
+}
+@media (any-hover: hover) {
+	.sewera-septik .wapper-social .tabs-social__title:hover {
+		background-color: #fff !important;
+	}
+	.sewera-septik .tabs-social__title:hover {
+		background: rgba(16, 41, 56, 0.1);
+		border-radius: 4px;
+	}
+	.sewera-septik .submitted__slide {
+		color: #102938;
+	}
+	.sewera-septik .submitted__slide:hover .submitted__img-hover-container {
+		opacity: 1;
+	}
+	.sewera-septik .submitted__top-youtube-btn:hover {
+		color: #fff;
+	}
+	.sewera-septik .submitted__top-magazine-btn:hover {
+		color: #fff;
+	}
+}
