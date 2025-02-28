@@ -68,11 +68,11 @@ class InstaGallery {
     this.outsideSwiper = new Swiper(
       this.instaGallery.querySelector(".inst-gallery__slider"),
       {
-        spaceBetween: 48,
+        spaceBetween: 0,
         slidesPerView: "auto",
         breakpoints: {
           1023: {
-            spaceBetween: 48,
+            spaceBetween: 0,
           },
 
           767: {
