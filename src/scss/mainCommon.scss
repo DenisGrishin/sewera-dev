@@ -1,3 +1,7 @@
+[hidden] {
+	display: none !important;
+}
+
 .slider-navigation-next,
 .slider-navigation-prev {
 	width: 24px;
@@ -24,6 +28,7 @@
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	z-index: 10;
+	cursor: pointer;
 }
 .slider-navigation-prev svg path {
 	stroke: #102938;

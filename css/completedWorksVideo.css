@@ -301,11 +301,11 @@
   padding-bottom: 0 !important;
 }
 
-.stories__next {
+.stories__block .stories__next {
   right: -35px;
 }
 
-.stories__prev {
+.stories__block .stories__prev {
   left: -35px;
 }
 
