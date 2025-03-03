@@ -1,0 +1,17 @@
+@charset "UTF-8";
+:root {
+  --f-RF: "Roboto Flex";
+  --mainColor: #102938;
+  --textColorGray: #405460;
+  --titleOpacityColor: hsla(203, 56%, 14%, 0.8);
+  --textColorBlue: #009cd9;
+  --bgMain: #f0f4f9;
+  --c-light-green: #ecf9f2;
+  --c-light-cream: #fff7e6;
+  --с-light-beige: #fff8d8;
+  --с-light-blue: #eff9ff;
+  --c-orange: #ff6701;
+  --c-card-option-beige: #ffb3061a;
+  --c-card-option-orange: #ff670114;
+  --c-card-option-green: #0db25a14;
+}
