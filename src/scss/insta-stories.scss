@@ -492,7 +492,7 @@ body.no-scroll {
 		top: 50%;
 		border-radius: 50%;
 		transform: translate(0px, -50%);
-		transition: all 0.3s ease 0s;
+		// transition: all 0.3s ease 0s;
 		cursor: pointer;
 		&::before {
 			content: "";
@@ -511,11 +511,11 @@ body.no-scroll {
 		@media (max-width: 460px) {
 			display: none;
 		}
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: transparent;
-			}
-		}
+		// @media (any-hover: hover) {
+		// 	&:hover {
+		// 		background-color: transparent;
+		// 	}
+		// }
 	}
 	&__back {
 		left: -25%;

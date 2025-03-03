@@ -427,12 +427,14 @@ class InstaGallery {
   }
   nextStory = () => {
     this.currentSwiperSlide = Number(this.indxActvinstaGallerySwiper) + 1;
-
+    
     this.storySwiperNext.style.display = "none";
-
+    
+    
     if (this.currentSwiperSlide > this.slideGallery.length - 1) return;
-
+    
     this.updateStateStories(this.currentSwiperSlide);
+    this.updateNavigationButtons()
   };
 
   prevStory = () => {
@@ -441,7 +443,7 @@ class InstaGallery {
     if (this.currentSwiperSlide === -1) return;
 
     this.updateStateStories(this.currentSwiperSlide);
-
+    this.updateNavigationButtons()
     if (this.currentSwiperSlide == 0) {
       this.storySwiperBack.style.display = "none";
     }
@@ -466,11 +468,18 @@ class InstaGallery {
   };
 
   updateNavigationButtons = () => {
+
     if (
       this.swiperStory.activeIndex == 1 &&
       this.indxActvinstaGallerySwiper == 0
     ) {
       this.storySwiperBack.style.display = "flex";
+    }
+    if (
+      this.swiperStory.activeIndex == 0 &&
+      this.indxActvinstaGallerySwiper == 0
+    ) {
+      this.storySwiperBack.style.display = "none";
     }
 
     if (
