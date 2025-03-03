@@ -1,0 +1,79 @@
+.sewera-proekt-landshft .types-project {
+	// .types-project__tabs
+
+	&__tabs {
+	}
+
+	// .types-project__content
+
+	&__content {
+		display: flex;
+	}
+
+	// .types-project__body
+
+	&__body {
+		flex: 0 1 50%;
+		column-gap: 32px;
+	}
+}
+
+.sewera-proekt-landshft .tab-project {
+	background-color: var(--bgMain);
+	border-radius: 8px;
+	// .tab-project__img
+
+	&__img {
+		img {
+			width: 100%;
+			height: 288px;
+			border-radius: 8px;
+			object-fit: cover;
+		}
+	}
+
+	// .tab-project__wrapper
+
+	&__wrapper {
+		padding: 36px 24px;
+		display: flex;
+		flex-direction: column;
+		row-gap: 20px;
+	}
+
+	// .tab-project__content
+
+	&__content {
+	}
+
+	// .tab-project__name
+
+	&__name {
+		font-weight: 700;
+		@include mainBigFS;
+		margin-bottom: 16px;
+	}
+	&__list {
+		margin-bottom: 0;
+	}
+	// .tab-project__item
+
+	&__item {
+		list-style: disc;
+	}
+
+	// .tab-project__bottom
+
+	&__bottom {
+		margin-bottom: 12px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .tab-project__btn
+
+	&__btn {
+		width: 100%;
+		justify-content: center;
+	}
+}

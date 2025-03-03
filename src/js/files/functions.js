@@ -259,6 +259,7 @@ export function spollers() {
         });
       }
     }
+    
     function setSpollerAction(e) {
       const el = e.target;
       if (el.closest('[data-spoller]')) {
