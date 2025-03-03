@@ -98,6 +98,77 @@
 	}
 }
 
+.button_blue::after {
+	content: "";
+	display: inline-block;
+	background: url(https://sewera.ru/srv/assets/images/septik/icons/arrow-table-blue.svg) 0 0 no-repeat;
+	width: 11px;
+	height: 11px;
+	margin-left: 6px;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+
+.button_blue {
+	color: var(--textColorBlue);
+	font-weight: 700;
+}
+
+._arrow-show {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	align-items: center;
+	-webkit-column-gap: 10px;
+	-moz-column-gap: 10px;
+	column-gap: 10px;
+	opacity: 0.6;
+}
+
+._arrow-show::after {
+	content: "";
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	display: inline-block;
+	width: 13px;
+	height: 8px;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	-webkit-transform: translateY(-2px);
+	-ms-transform: translateY(-2px);
+	transform: translateY(-2px);
+}
+._arrow-show_gray::after {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+	background-image: url(https://sewera.ru/srv/assets/images/septik/icons/arrow-show.svg);
+}
+._showmore-active ._arrow-show::after {
+	-webkit-transform: rotate(-180deg);
+	-ms-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+}
+// ============================================================================================================================================================================
+//  data-showmore ============================================================================================================================================================================
+
+[data-showmore-button] span:last-child {
+	display: none;
+}
+._showmore-active [data-showmore-button] span {
+	display: none;
+}
+._showmore-active [data-showmore-button] span:last-child {
+	display: block;
+}
+
 // ============================================================================================================================================================================
 // ============================================================================================================================================================================
 // ============================================================================================================================================================================

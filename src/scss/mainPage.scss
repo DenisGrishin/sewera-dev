@@ -523,6 +523,7 @@
 
 .sewera-main-page .partners {
 	// partners__container
+	margin-bottom: 30px;
 	&__container {
 		@media (max-width: $laptop) {
 			padding: 0;
@@ -586,7 +587,7 @@
 	&__wrapper-link {
 		text-align: center;
 		a {
-			display: flex;
+			display: inline-flex;
 			justify-content: center;
 			align-items: center;
 			column-gap: 8px;
