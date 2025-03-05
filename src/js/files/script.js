@@ -87,7 +87,8 @@
   function tabs() {
     const tabs = document.querySelectorAll("[data-tabs]");
     let tabsActiveHash = [""];
-
+ 
+    
     if (tabs.length > 0) {
       const hash = "#tab-0-1";
       if (hash.startsWith("tab-")) {
@@ -106,6 +107,16 @@
 
     // Работа с контентом
     function initTabs(tabsBlock) {
+
+       const tabProject = document.querySelector('.types-project__tabs')
+if(tabProject){
+
+    if (window.innerWidth > 1023.98) {
+     return
+    }
+}
+
+
       const tabsTitles = tabsBlock.querySelectorAll("[data-tabs-titles]>*");
       const tabsContent = tabsBlock.querySelectorAll("[data-tabs-body]>*");
       const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
@@ -119,6 +130,8 @@
         tabsActiveTitle.classList.remove("_tab-active");
       }
       if (tabsContent.length > 0) {
+
+        
         tabsContent.forEach((tabsContentItem, index) => {
           tabsTitles[index].setAttribute("data-tabs-title", "");
           tabsContentItem.setAttribute("data-tabs-item", "");
@@ -294,11 +307,13 @@ data-showmore-button="скорость"
 
     if (showMoreBlocks.length) {
       // Получение обычных объектов
-      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(
-        function (item, index, self) {
-          return !item.dataset.showmoreMedia;
-        }
-      );
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.showmoreMedia;
+      });
 
       // Инициализация обычных объектов
       showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
@@ -553,13 +568,13 @@ data-showmore-button="скорость"
     var x = supportPageOffset
       ? window.pageXOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollLeft
-        : doc.body.scrollLeft;
+      ? doc.documentElement.scrollLeft
+      : doc.body.scrollLeft;
     var y = supportPageOffset
       ? window.pageYOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollTop
-        : doc.body.scrollTop;
+      ? doc.documentElement.scrollTop
+      : doc.body.scrollTop;
     return {
       x: x,
       y: y,
@@ -578,16 +593,16 @@ data-showmore-button="скорость"
           end: "pointerup",
         }
       : window.navigator.msPointerEnabled
-        ? {
-            start: "MSPointerDown",
-            move: "MSPointerMove",
-            end: "MSPointerUp",
-          }
-        : {
-            start: "mousedown touchstart",
-            move: "mousemove touchmove",
-            end: "mouseup touchend",
-          };
+      ? {
+          start: "MSPointerDown",
+          move: "MSPointerMove",
+          end: "MSPointerUp",
+        }
+      : {
+          start: "mousedown touchstart",
+          move: "mousemove touchmove",
+          end: "mouseup touchend",
+        };
   }
   // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
   // Issue #785
@@ -1380,8 +1395,8 @@ data-showmore-button="скорость"
     parsed.transformRule = noPrefix
       ? "transform"
       : msPrefix
-        ? "msTransform"
-        : "webkitTransform";
+      ? "msTransform"
+      : "webkitTransform";
     // Pips don't move, so we can place them using left/top.
     var styles = [
       ["left", "top"],
@@ -1753,8 +1768,8 @@ data-showmore-button="скорость"
             group.indexOf(i) > -1
               ? PipsType.LargeValue
               : isSteps
-                ? PipsType.SmallValue
-                : PipsType.NoValue;
+              ? PipsType.SmallValue
+              : PipsType.NoValue;
           // Enforce the 'ignoreFirst' option by overwriting the type for 0.
           if (!index && ignoreFirst && i !== high) {
             type = 0;
@@ -3013,11 +3028,13 @@ data-spollers="768,min" - спойлеры будут работать толь�
     const spollersArray = document.querySelectorAll("[data-spollers]");
     if (spollersArray.length > 0) {
       // Получение обычных слойлеров
-      const spollersRegular = Array.from(spollersArray).filter(
-        function (item, index, self) {
-          return !item.dataset.spollers.split(",")[0];
-        }
-      );
+      const spollersRegular = Array.from(spollersArray).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.spollers.split(",")[0];
+      });
       // Инициализация обычных слойлеров
       if (spollersRegular.length) {
         initSpollers(spollersRegular);
@@ -3074,7 +3091,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
             if (e.target.closest(".site-selection-accord__header")) {
               _slideToggle(spollerTitle.nextElementSibling, 0);
             } else {
-              _slideToggle(spollerTitle.nextElementSibling, 500);
+              _slideToggle(spollerTitle.nextElementSibling, 300);
             }
           }
           e.preventDefault();
@@ -3086,7 +3103,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         );
         if (spollerActiveTitle) {
           spollerActiveTitle.classList.remove("_spoller-active");
-          _slideUp(spollerActiveTitle.nextElementSibling, 500);
+          _slideUp(spollerActiveTitle.nextElementSibling, 300);
         }
       }
     }
@@ -3132,6 +3149,49 @@ data-spollers="768,min" - спойлеры будут работать толь�
   }
   function initSliders() {
     bildSliders();
+    // Реализованные проекты
+    if (document.querySelector(".completed-projects__slider")) {
+      const swiper = new Swiper(".completed-projects__slider", {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        speed: 300,
+        autoHeight: false,
+        observer: true,
+        watchSlidesProgress: true,
+        observeParents: true,
+        navigation: {
+          nextEl: ".completed-projects__next",
+          prevEl: ".completed-projects__back",
+        },
+        breakpoints: {
+          319.98: {
+            slidesPerView: 1.2,
+            spaceBetween: 15,
+          },
+          429.98: {
+            slidesPerView: 1.3,
+            spaceBetween: 15,
+          },
+          767.98: {
+            spaceBetween: 15,
+            slidesPerView: 2.3,
+          },
+          1023.98: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+     
+          },
+          1279.98: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          
+          },
+        },
+        on: {
+       
+        },
+      });
+    }
     // отзавы
     if (document.querySelector(".sw-review ")) {
       new Swiper(".sw-review ", {
@@ -5259,8 +5319,9 @@ data-spollers="768,min" - спойлеры будут работать толь�
       priceSlider.noUiSlider.on("change", function () {
         const valueRange = document.querySelector(".noUi-handle");
         const inputRange = document.querySelector(".form-qwiz__input-number");
-        if (valueRange.ariaValueText === "10+") {
+        if (valueRange.ariaValueText === "10 +") {
           inputRange.classList.add("_show");
+
           document
             .querySelector(".qwiz-section__next-btn")
             .classList.add("_disabled");
@@ -5276,7 +5337,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         const range_input = document.getElementById("range_input");
         if (range_input) {
           range_input.value = this.get();
-          if (range_input.value == "10+") range_input.value = "";
+          if (range_input.value == "10 +") range_input.value = "";
         }
       });
     }
@@ -5398,8 +5459,8 @@ data-spollers="768,min" - спойлеры будут работать толь�
           document.getElementById("filter-septik")
             ? steps.length - 3
             : document.querySelector("._additional-question")
-              ? steps.length - 2
-              : steps.length - 1
+            ? steps.length - 2
+            : steps.length - 1
         }`;
       }
 
@@ -6334,7 +6395,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
     function getQuantityUser() {
       const valueRange = document.querySelector(".noUi-handle");
 
-      return valueRange.ariaValueText === "10+"
+      return valueRange.ariaValueText === "10 +"
         ? inputRange.value
         : valueRange.ariaValueText;
     }
@@ -8008,23 +8069,4 @@ data-spollers="768,min" - спойлеры будут работать толь�
         });
     }
   }
-  // editLogoFooter();
-  // function editLogoFooter() {
-  //   const bgBlock = document.querySelector(".sewera-osveshhenie");
-  //   if (bgBlock) {
-  //     if (
-  //       bgBlock.parentElement.parentElement.classList.contains(
-  //         "page-width",
-  //         "bg-black"
-  //       )
-  //     ) {
-  //       const foooterLogoImg = document.querySelector(
-  //         ".footer__logo  .logo__img"
-  //       );
-
-  //       foooterLogoImg.src =
-  //         "/srv/assets/images/ykrashenie-doma/icon/logo-dark.svg";
-  //     }
-  //   }
-  // }
 })();

@@ -8,6 +8,7 @@
 
 	&__content {
 		display: flex;
+		column-gap: 32px;
 	}
 
 	// .types-project__body
@@ -15,35 +16,117 @@
 	&__body {
 		flex: 0 1 50%;
 		column-gap: 32px;
+		@media (max-width: $laptop) {
+			flex: 0 1 100%;
+		}
+	}
+	// .types-project__navigation
+
+	&__navigation {
+		margin-bottom: 8px;
+	}
+}
+
+.nav-project {
+	display: none;
+	padding: 8px;
+	background-color: var(--bgMain);
+	border-radius: 8px;
+	column-gap: 12px;
+	@media (max-width: $laptop) {
+		display: flex;
+	}
+	// .nav-project__btn
+
+	&__btn {
+		flex: 0 1 50%;
+		padding: 9.5px;
+		border-radius: 8px;
+		& span {
+			width: 100%;
+		}
+		&._tab-active {
+			background-color: var(--mainColor);
+			color: #fff;
+			font-weight: 700;
+		}
+		@media (max-width: $laptop) {
+			@include smallFS;
+		}
 	}
 }
 
 .sewera-proekt-landshft .tab-project {
-	background-color: var(--bgMain);
-	border-radius: 8px;
+	&__title {
+		position: absolute;
+		top: 36px;
+		left: 36px;
+		color: #fff;
+	}
+	&__wrapper {
+		height: 100%;
+		transition: all 0.3s ease 0s;
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		background-color: var(--bgMain);
+	}
 	// .tab-project__img
 
 	&__img {
+		position: relative;
+		border-radius: 12px;
+		&::before {
+			content: "";
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%),
+				linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 50.32%);
+			position: absolute;
+			width: 100%;
+			height: 288px;
+			border-radius: 12px;
+			top: 0;
+			left: 0;
+		}
 		img {
 			width: 100%;
 			height: 288px;
-			border-radius: 8px;
+			border-radius: 12px;
 			object-fit: cover;
+		}
+		@media (max-width: $laptop) {
+			display: none;
 		}
 	}
 
-	// .tab-project__wrapper
+	// .tab-project__content-wrapper
 
-	&__wrapper {
-		padding: 36px 24px;
+	&__content-wrapper {
+		border-radius: 0px 0px 12px 12px;
+
+		padding: 24px 36px;
 		display: flex;
 		flex-direction: column;
 		row-gap: 20px;
+		height: 100%;
+		@media (max-width: $laptop) {
+			padding: 16px;
+			border-radius: 12px;
+			row-gap: 16px;
+		}
 	}
 
 	// .tab-project__content
 
 	&__content {
+		display: flex;
+		flex-direction: column;
+		row-gap: 16px;
+		@media (max-width: $laptop) {
+			row-gap: 12px;
+		}
+		&:nth-child(2) {
+			flex: 1 1 100%;
+		}
 	}
 
 	// .tab-project__name
@@ -51,21 +134,15 @@
 	&__name {
 		font-weight: 700;
 		@include mainBigFS;
-		margin-bottom: 16px;
-	}
-	&__list {
-		margin-bottom: 0;
-	}
-	// .tab-project__item
-
-	&__item {
-		list-style: disc;
 	}
 
+	// .tab-project__accordions
+
+	&__accordions {
+	}
 	// .tab-project__bottom
 
 	&__bottom {
-		margin-bottom: 12px;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -75,5 +152,307 @@
 	&__btn {
 		width: 100%;
 		justify-content: center;
+	}
+
+	// .tab-project__pdf-link
+
+	&__pdf-link {
+		display: none;
+		@media (max-width: $laptop) {
+			display: block;
+		}
+	}
+}
+.sewera-proekt-landshft .list-project {
+	margin-bottom: 0;
+	&__item {
+		list-style: disc;
+		@media (max-width: $laptop) {
+			&:not(:last-child) {
+				margin-bottom: 3px;
+			}
+		}
+	}
+	@media (max-width: $laptop) {
+		@include smallFS;
+	}
+}
+
+.sewera-proekt-landshft .link-pdf {
+	position: relative;
+
+	img {
+		width: 100%;
+		height: 100px;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+}
+// .link-pdf__text
+.sewera-proekt-landshft .completed-projects__link-pdf,
+.sewera-proekt-landshft .link-pdf__text {
+	@include smallFS;
+	padding: 10px;
+	position: absolute;
+	background-color: #fff;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 8px;
+	text-wrap: nowrap;
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+	&::before {
+		content: "";
+		background: url(https://sewera.ru/srv/assets/images/blagoustroystvo/icons/pdf-icon.svg) 0 0 / 26px 16px no-repeat;
+		width: 26px;
+		height: 16px;
+		display: inline-block;
+	}
+}
+
+.sewera-proekt-landshft .project-accordion {
+	// .project-accordion__item
+
+	&__item {
+		border-top: 1px solid var(--c-gray200);
+		&:last-child {
+			border-bottom: 1px solid var(--c-gray200);
+		}
+	}
+
+	// .project-accordion__name
+
+	&__name {
+		padding: 12px;
+		font-weight: 700;
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	// .project-accordion__body
+
+	&__body {
+		padding: 0 12px 12px 12px;
+		@media (max-width: $laptop) {
+			@include smallFS;
+		}
+	}
+}
+
+.sewera-proekt-landshft .alt-project {
+	// .alt-project__title
+
+	&__title {
+	}
+
+	// .alt-project__body
+
+	&__body {
+		display: flex;
+		column-gap: 40px;
+		background-color: var(--bgMain);
+		padding: 24px;
+		border-radius: 12px;
+		@media (max-width: $laptop) {
+			flex-direction: column;
+			row-gap: 12px;
+			padding: 16px;
+		}
+	}
+
+	// .alt-project__item
+
+	&__item {
+		flex: 0 1 50%;
+	}
+
+	// .alt-project__text
+
+	&__text {
+		padding-bottom: 0;
+		margin-bottom: 28px;
+		@media (max-width: $laptop) {
+			margin-bottom: 16px;
+			@include smallFS;
+		}
+	}
+
+	// .alt-project__price
+
+	&__price {
+		@media (max-width: $laptop) {
+			display: flex;
+			justify-content: space-between;
+			span {
+				&:nth-child(2) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	// .alt-project__pdf-link
+
+	&__pdf-link {
+		display: block;
+		margin-bottom: 16px;
+		@media (max-width: $laptop) {
+			margin-bottom: 12px;
+		}
+	}
+
+	// .alt-project__btn
+
+	&__btn {
+		text-align: center;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+}
+.sewera-proekt-landshft .completed-projects {
+	& .page-bl {
+		@media (max-width: $laptop) {
+			padding-right: 0;
+		}
+	}
+	// .completed-projects__title
+
+	&__title {
+	}
+
+	// .completed-projects__slider
+	&__title,
+	&__slider {
+		@media (max-width: $laptop) {
+			padding-right: 40px;
+		}
+		@media (max-width: $tablet) {
+			padding-right: 15px;
+		}
+	}
+
+	// .completed-projects__swiper
+
+	&__swiper {
+	}
+
+	// .completed-projects__slide
+
+	&__slide {
+		position: relative;
+		height: 520px;
+		color: #fff;
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		&::before {
+			content: "";
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) -1.22%, rgba(0, 0, 0, 0) 29.14%),
+				linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
+				linear-gradient(180deg, rgba(0, 0, 0, 0) 39.64%, rgba(0, 0, 0, 0.5) 109.57%);
+			z-index: 1;
+			position: absolute;
+			width: 100%;
+			height: 520px;
+			top: 0;
+			border-radius: 12px;
+			left: 0;
+		}
+	}
+	&__img {
+		border-radius: 12px;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+	// .completed-projects__name
+
+	&__name {
+		display: flex;
+		position: relative;
+		z-index: 1;
+		@include mainBigFS;
+		font-weight: 700;
+		flex: 1 1 100%;
+	}
+
+	// .completed-projects__body
+
+	&__body {
+		position: relative;
+		z-index: 1;
+	}
+
+	// .completed-projects__list
+
+	&__list {
+		margin-left: 0;
+		margin-bottom: 24px;
+		@media (max-width: $laptop) {
+			@include smallFS;
+		}
+	}
+
+	// .completed-projects__item
+
+	&__item {
+		&:not(:last-child) {
+			margin-bottom: 4px;
+		}
+	}
+
+	// .completed-projects__bottom-slide
+	&__btn,
+	&__bottom-slide {
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+		justify-content: center;
+	}
+
+	// .completed-projects__link-pdf
+
+	&__link-pdf {
+		position: static;
+		background-color: var(--mainColor);
+		width: auto;
+		transform: translate(0px, 0px);
+	}
+
+	// .completed-projects__btn
+
+	&__btn {
+		@include smallFS;
+		font-weight: 700;
+		background-color: var(--c-orange);
+		padding: 10px;
+		border-radius: 8px;
+		width: 100%;
+	}
+	&__btn,
+	&__link-pdf {
+		@media (max-width: $laptop) {
+			padding: 12px;
+		}
+	}
+	// .completed-projects__nav
+
+	&__nav {
+	}
+
+	// .completed-projects__back
+
+	&__back {
+	}
+
+	// .completed-projects__next
+
+	&__next {
 	}
 }

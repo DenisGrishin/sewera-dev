@@ -6149,6 +6149,23 @@ sewera-septik .form-qwiz__user-contact {
 	bottom: -46px;
 	right: -14px;
 }
+.sewera-septik .form-final_proekt-landshft .form-final__wrapper {
+	background-color: #eff5ea;
+}
+.sewera-septik .form-final_proekt-landshft .form-final__img img {
+	width: 240px;
+	bottom: -77px;
+	position: absolute;
+	right: -25px;
+	height: auto;
+}
+.sewera-septik .form-final_proekt-landshft .form-final__input {
+	flex: 0 1 355px;
+	max-width: 355px !important;
+}
+.sewera-septik .form-final_proekt-landshft .form-final__btn {
+	border-radius: 12px;
+}
 .sewera-septik .form-final_otmoska img {
 	width: auto;
 	border-radius: 8px;
@@ -6915,6 +6932,7 @@ sewera-septik .form-qwiz__user-contact {
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
+
 .sewera-septik .banner-main__avtopoliv-bg,
 .sewera-septik .banner-main__beton-parkovka-na-uchastke,
 .sewera-septik .banner-main__beton-zaezd-na-uchastok,
@@ -7006,6 +7024,14 @@ sewera-septik .form-qwiz__user-contact {
 	width: 528px;
 	right: 41px;
 }
+.sewera-septik .banner-main__proekt-landshft-bg {
+	width: 598px;
+	height: auto;
+	top: auto;
+	bottom: -2px;
+	right: 0;
+}
+
 .sewera-septik .banner-main__rulon-gazon {
 	width: 526px;
 	right: 33px;
@@ -7019,6 +7045,7 @@ sewera-septik .form-qwiz__user-contact {
 	right: 9px;
 }
 .sewera-septik .banner-main__pogreba {
+	width: 589px;
 }
 .sewera-septik .banner-main__ring-vodosnabzhenie {
 	height: auto;
@@ -7200,7 +7227,7 @@ sewera-septik .form-qwiz__user-contact {
 	object-fit: contain;
 }
 .sewera-septik .banner-main__content {
-	max-width: 571px;
+	max-width: 579px;
 	z-index: 1;
 	position: relative;
 }
@@ -7232,6 +7259,12 @@ sewera-septik .form-qwiz__user-contact {
 	display: -ms-flexbox;
 	display: flex;
 	text-align: left !important;
+}
+.sewera-septik .banner-main__wrapper-bottom_proekt-landshft .banner-main__bottom {
+	max-width: 580px;
+}
+.sewera-septik .banner-main__wrapper-bottom_proekt-landshft .banner-main__item span {
+	// text-wrap: nowrap;
 }
 .sewera-septik .banner-main__bottom {
 	display: -webkit-box;
@@ -7898,6 +7931,10 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .beton.form-final_otmoska img {
 		right: 53px;
 	}
+
+	.sewera-septik .form-final_proekt-landshft .form-final__input {
+		max-width: 240px !important;
+	}
 	.sewera-septik .form-final_avtopoliv .form-final__img img {
 		width: 270px;
 		bottom: -38px;
@@ -8009,6 +8046,11 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .banner-main__posev-gazon {
 		width: 517px;
 		right: -209px;
+	}
+	.sewera-septik .banner-main__proekt-landshft-bg {
+		width: 488px;
+
+		right: -121px;
 	}
 	.sewera-septik .banner-main__posadka-derev {
 		width: 484px;
@@ -8512,6 +8554,7 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .brand-carusel__slide {
 		min-height: 460px;
 	}
+	.sewera-septik .banner-main__proekt-landshft-bg,
 	.sewera-septik .banner-main__elektromontazhnye,
 	.sewera-septik .banner-main__100m-wells-bg,
 	.sewera-septik .banner-main__adapter-wells-bg,
@@ -8612,6 +8655,7 @@ sewera-septik .form-qwiz__user-contact {
 		-ms-transform: translate(50%, 0);
 		transform: translate(50%, 0);
 	}
+
 	.sewera-septik .banner-main__kupeli,
 	.sewera-septik .banner-main__pogreba,
 	.sewera-septik .banner-main__terrasi {
@@ -8624,6 +8668,10 @@ sewera-septik .form-qwiz__user-contact {
 	}
 	.sewera-septik .banner-main__kupeli {
 		top: 52px;
+	}
+	.sewera-septik .banner-main__proekt-landshft-bg {
+		bottom: 215px;
+		width: 400px;
 	}
 	.sewera-septik .banner-main__vodosnabzhenie {
 		height: auto;
@@ -9060,6 +9108,29 @@ sewera-septik .form-qwiz__user-contact {
 	.sewera-septik .form-final_otmoska img {
 		display: none;
 	}
+	.sewera-septik .form-final_proekt-landshft .form-final__input {
+		max-width: 100% !important;
+	}
+	.sewera-septik .form-final_proekt-landshft {
+		&::before {
+			content: "";
+			background: url("https://sewera.manager3.fvds.ru/srv/assets/images/proektLandshft/mobile-bottom-from-img.png")
+				0 0 no-repeat;
+
+			width: 222px;
+			height: 141px;
+			display: block;
+			position: relative;
+			left: 50%;
+			transform: translate(-50%, 0px);
+		}
+	}
+	.sewera-septik .form-final_proekt-landshft .form-final__title {
+		text-align: center;
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
+	.sewera-septik .form-final__input,
 	.sewera-septik .form-final_elektromontazhnye .form-final__input,
 	.sewera-septik .form-finak_kupeli .form-final__input,
 	.sewera-septik .form-finak_pogreba .form-final__input,
@@ -10699,6 +10770,10 @@ sewera-septik .form-qwiz__user-contact {
 		width: 397px;
 		bottom: 369px;
 	}
+	.sewera-septik .banner-main__proekt-landshft-bg {
+		width: 300px;
+		bottom: 352px;
+	}
 	.sewera-septik .banner-main__ecoparkovka-parkovka-na-uchastke {
 		bottom: 318px;
 	}
@@ -10786,6 +10861,12 @@ sewera-septik .form-qwiz__user-contact {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 1 42%;
 		flex: 0 1 42%;
+		font-size: 12px;
+	}
+	.sewera-septik .banner-main__wrapper-bottom_proekt-landshft .banner-main__item {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 1 50%;
+		flex: 0 1 50%;
 		font-size: 12px;
 	}
 	.sewera-septik .types-wells__wrapper-slide_obustroystva {
@@ -12149,6 +12230,7 @@ sewera-septik .form-qwiz__user-contact {
 		flex: 1 1 50%;
 	}
 }
+
 @media (max-width: 431.98px) {
 	.sewera-septik .table-smeta__body {
 		width: 630px;
@@ -12166,6 +12248,9 @@ sewera-septik .form-qwiz__user-contact {
 	}
 }
 @media (max-width: 429.98px) {
+	.sewera-septik .banner-main__proekt-landshft-bg {
+		bottom: 365px;
+	}
 	.sewera-septik .banner-main__mgbu-wells-bg {
 		bottom: 95px;
 		width: 398px;

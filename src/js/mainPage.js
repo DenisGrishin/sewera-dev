@@ -1,10 +1,12 @@
 ﻿﻿let block = document.querySelector(".content-bar__container_hidden");
 let btnOpenBlock = document.querySelector(".content-bar__button");
+if(btnOpenBlock){
 
-btnOpenBlock.addEventListener("click", () => {
-  btnOpenBlock.style.display = "none";
-  block.classList.add("active");
-});
+  btnOpenBlock.addEventListener("click", () => {
+    btnOpenBlock.style.display = "none";
+    block.classList.add("active");
+  });
+}
 document.addEventListener("DOMContentLoaded", () => {});
 function bildSliders() {
   //BildSlider

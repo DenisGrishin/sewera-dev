@@ -133,9 +133,8 @@
 	-webkit-column-gap: 10px;
 	-moz-column-gap: 10px;
 	column-gap: 10px;
-	opacity: 0.6;
 }
-
+._arrow-show_gray::after,
 ._arrow-show::after {
 	content: "";
 	background-repeat: no-repeat;
@@ -146,16 +145,14 @@
 	height: 8px;
 	-webkit-transition: all 0.3s ease 0s;
 	transition: all 0.3s ease 0s;
-	-webkit-transform: translateY(-2px);
-	-ms-transform: translateY(-2px);
-	transform: translateY(-2px);
-}
-._arrow-show_gray::after {
-	-webkit-transform: translateY(0);
-	-ms-transform: translateY(0);
-	transform: translateY(0);
 	background-image: url(https://sewera.ru/srv/assets/images/septik/icons/arrow-show.svg);
 }
+
+._arrow-show_gray::after {
+	opacity: 0.6;
+}
+
+._spoller-active._arrow-show::after,
 ._showmore-active ._arrow-show::after {
 	-webkit-transform: rotate(-180deg);
 	-ms-transform: rotate(-180deg);

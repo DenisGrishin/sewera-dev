@@ -294,11 +294,13 @@ data-showmore-button="скорость"
 
     if (showMoreBlocks.length) {
       // Получение обычных объектов
-      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(
-        function (item, index, self) {
-          return !item.dataset.showmoreMedia;
-        }
-      );
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.showmoreMedia;
+      });
 
       // Инициализация обычных объектов
       showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
@@ -553,13 +555,13 @@ data-showmore-button="скорость"
     var x = supportPageOffset
       ? window.pageXOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollLeft
-        : doc.body.scrollLeft;
+      ? doc.documentElement.scrollLeft
+      : doc.body.scrollLeft;
     var y = supportPageOffset
       ? window.pageYOffset
       : isCSS1Compat
-        ? doc.documentElement.scrollTop
-        : doc.body.scrollTop;
+      ? doc.documentElement.scrollTop
+      : doc.body.scrollTop;
     return {
       x: x,
       y: y,
@@ -578,16 +580,16 @@ data-showmore-button="скорость"
           end: "pointerup",
         }
       : window.navigator.msPointerEnabled
-        ? {
-            start: "MSPointerDown",
-            move: "MSPointerMove",
-            end: "MSPointerUp",
-          }
-        : {
-            start: "mousedown touchstart",
-            move: "mousemove touchmove",
-            end: "mouseup touchend",
-          };
+      ? {
+          start: "MSPointerDown",
+          move: "MSPointerMove",
+          end: "MSPointerUp",
+        }
+      : {
+          start: "mousedown touchstart",
+          move: "mousemove touchmove",
+          end: "mouseup touchend",
+        };
   }
   // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
   // Issue #785
@@ -1380,8 +1382,8 @@ data-showmore-button="скорость"
     parsed.transformRule = noPrefix
       ? "transform"
       : msPrefix
-        ? "msTransform"
-        : "webkitTransform";
+      ? "msTransform"
+      : "webkitTransform";
     // Pips don't move, so we can place them using left/top.
     var styles = [
       ["left", "top"],
@@ -1753,8 +1755,8 @@ data-showmore-button="скорость"
             group.indexOf(i) > -1
               ? PipsType.LargeValue
               : isSteps
-                ? PipsType.SmallValue
-                : PipsType.NoValue;
+              ? PipsType.SmallValue
+              : PipsType.NoValue;
           // Enforce the 'ignoreFirst' option by overwriting the type for 0.
           if (!index && ignoreFirst && i !== high) {
             type = 0;
@@ -3013,11 +3015,13 @@ data-spollers="768,min" - спойлеры будут работать толь�
     const spollersArray = document.querySelectorAll("[data-spollers]");
     if (spollersArray.length > 0) {
       // Получение обычных слойлеров
-      const spollersRegular = Array.from(spollersArray).filter(
-        function (item, index, self) {
-          return !item.dataset.spollers.split(",")[0];
-        }
-      );
+      const spollersRegular = Array.from(spollersArray).filter(function (
+        item,
+        index,
+        self
+      ) {
+        return !item.dataset.spollers.split(",")[0];
+      });
       // Инициализация обычных слойлеров
       if (spollersRegular.length) {
         initSpollers(spollersRegular);
@@ -3074,7 +3078,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
             if (e.target.closest(".site-selection-accord__header")) {
               _slideToggle(spollerTitle.nextElementSibling, 0);
             } else {
-              _slideToggle(spollerTitle.nextElementSibling, 500);
+              _slideToggle(spollerTitle.nextElementSibling, 300);
             }
           }
           e.preventDefault();
@@ -3086,7 +3090,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         );
         if (spollerActiveTitle) {
           spollerActiveTitle.classList.remove("_spoller-active");
-          _slideUp(spollerActiveTitle.nextElementSibling, 500);
+          _slideUp(spollerActiveTitle.nextElementSibling, 300);
         }
       }
     }
@@ -3164,7 +3168,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
           1300: { slidesPerView: 2, spaceBetween: 32 },
           1024: { slidesPerView: 2, spaceBetween: 20 },
           600: { slidesPerView: 2.5, spaceBetween: 20 },
-          100: { slidesPerView: 1.5, spaceBetween: 20 },
+          100: { slidesPerView: 1.5, spaceBetween: 0 },
         },
         on: {
           slideChange: function (swiper) {
@@ -5259,8 +5263,9 @@ data-spollers="768,min" - спойлеры будут работать толь�
       priceSlider.noUiSlider.on("change", function () {
         const valueRange = document.querySelector(".noUi-handle");
         const inputRange = document.querySelector(".form-qwiz__input-number");
-        if (valueRange.ariaValueText === "10+") {
+        if (valueRange.ariaValueText === "10 +") {
           inputRange.classList.add("_show");
+
           document
             .querySelector(".qwiz-section__next-btn")
             .classList.add("_disabled");
@@ -5276,7 +5281,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
         const range_input = document.getElementById("range_input");
         if (range_input) {
           range_input.value = this.get();
-          if (range_input.value == "10+") range_input.value = "";
+          if (range_input.value == "10 +") range_input.value = "";
         }
       });
     }
@@ -5398,8 +5403,8 @@ data-spollers="768,min" - спойлеры будут работать толь�
           document.getElementById("filter-septik")
             ? steps.length - 3
             : document.querySelector("._additional-question")
-              ? steps.length - 2
-              : steps.length - 1
+            ? steps.length - 2
+            : steps.length - 1
         }`;
       }
 
@@ -6334,7 +6339,7 @@ data-spollers="768,min" - спойлеры будут работать толь�
     function getQuantityUser() {
       const valueRange = document.querySelector(".noUi-handle");
 
-      return valueRange.ariaValueText === "10+"
+      return valueRange.ariaValueText === "10 +"
         ? inputRange.value
         : valueRange.ariaValueText;
     }
@@ -7746,16 +7751,16 @@ data-spollers="768,min" - спойлеры будут работать толь�
   // }
 
   // скрипт котрый отвечает за то что убирает margin в футаре
-  function hiddenFooterMargin() {
-    const footer = document.querySelector(".footer");
-    const wrapperSite = document.querySelector("#wrapper-page");
-    if (!document.querySelector(".banner-bottom")) return;
-    if (wrapperSite.lastElementChild.classList.contains("banner-bottom")) {
-      document.querySelector(".banner-bottom").classList.remove("section");
-      footer.style.marginTop = 0;
-    }
-  }
-  hiddenFooterMargin();
+  // function hiddenFooterMargin() {
+  //   const footer = document.querySelector(".footer");
+  //   const wrapperSite = document.querySelector("#wrapper-page");
+  //   if (!document.querySelector(".banner-bottom")) return;
+  //   if (wrapperSite.lastElementChild.classList.contains("banner-bottom")) {
+  //     document.querySelector(".banner-bottom").classList.remove("section");
+  //     footer.style.marginTop = 0;
+  //   }
+  // }
+  // // hiddenFooterMargin();
   // Подключение основного файла стилей
 
   // Основные модули ========================================================================================================================================================================================================================================================
@@ -8006,25 +8011,6 @@ data-spollers="768,min" - спойлеры будут работать толь�
           alert(err.message);
           $(".load__preloader").fadeOut("slow");
         });
-    }
-  }
-  editLogoFooter();
-  function editLogoFooter() {
-    const bgBlock = document.querySelector(".sewera-osveshhenie");
-    if (bgBlock) {
-      if (
-        bgBlock.parentElement.parentElement.classList.contains(
-          "page-width",
-          "bg-black"
-        )
-      ) {
-        const foooterLogoImg = document.querySelector(
-          ".footer__logo  .logo__img"
-        );
-
-        foooterLogoImg.src =
-          "/srv/assets/images/ykrashenie-doma/icon/logo-dark.svg";
-      }
     }
   }
 })();

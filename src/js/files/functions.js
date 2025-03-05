@@ -276,7 +276,7 @@ export function spollers() {
             hideSpollersBody(spollersBlock);
           }
           spollerTitle.classList.toggle('_spoller-active');
-          _slideToggle(spollerTitle.nextElementSibling, 500);
+          _slideToggle(spollerTitle.nextElementSibling, 300);
         }
         e.preventDefault();
       }
@@ -287,7 +287,7 @@ export function spollers() {
       );
       if (spollerActiveTitle) {
         spollerActiveTitle.classList.remove('_spoller-active');
-        _slideUp(spollerActiveTitle.nextElementSibling, 500);
+        _slideUp(spollerActiveTitle.nextElementSibling, 300);
       }
     }
   }
