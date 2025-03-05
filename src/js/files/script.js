@@ -87,8 +87,7 @@
   function tabs() {
     const tabs = document.querySelectorAll("[data-tabs]");
     let tabsActiveHash = [""];
- 
-    
+
     if (tabs.length > 0) {
       const hash = "#tab-0-1";
       if (hash.startsWith("tab-")) {
@@ -107,15 +106,13 @@
 
     // Работа с контентом
     function initTabs(tabsBlock) {
+      const tabProject = document.querySelector(".types-project__tabs");
 
-       const tabProject = document.querySelector('.types-project__tabs')
-if(tabProject){
-
-    if (window.innerWidth > 1023.98) {
-     return
-    }
-}
-
+      if (tabProject === tabsBlock) {
+        if (window.innerWidth > 1023.98) {
+          return;
+        }
+      }
 
       const tabsTitles = tabsBlock.querySelectorAll("[data-tabs-titles]>*");
       const tabsContent = tabsBlock.querySelectorAll("[data-tabs-body]>*");
@@ -130,8 +127,6 @@ if(tabProject){
         tabsActiveTitle.classList.remove("_tab-active");
       }
       if (tabsContent.length > 0) {
-
-        
         tabsContent.forEach((tabsContentItem, index) => {
           tabsTitles[index].setAttribute("data-tabs-title", "");
           tabsContentItem.setAttribute("data-tabs-item", "");
@@ -307,13 +302,11 @@ data-showmore-button="скорость"
 
     if (showMoreBlocks.length) {
       // Получение обычных объектов
-      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (
-        item,
-        index,
-        self
-      ) {
-        return !item.dataset.showmoreMedia;
-      });
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(
+        function (item, index, self) {
+          return !item.dataset.showmoreMedia;
+        }
+      );
 
       // Инициализация обычных объектов
       showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
@@ -568,13 +561,13 @@ data-showmore-button="скорость"
     var x = supportPageOffset
       ? window.pageXOffset
       : isCSS1Compat
-      ? doc.documentElement.scrollLeft
-      : doc.body.scrollLeft;
+        ? doc.documentElement.scrollLeft
+        : doc.body.scrollLeft;
     var y = supportPageOffset
       ? window.pageYOffset
       : isCSS1Compat
-      ? doc.documentElement.scrollTop
-      : doc.body.scrollTop;
+        ? doc.documentElement.scrollTop
+        : doc.body.scrollTop;
     return {
       x: x,
       y: y,
@@ -593,16 +586,16 @@ data-showmore-button="скорость"
           end: "pointerup",
         }
       : window.navigator.msPointerEnabled
-      ? {
-          start: "MSPointerDown",
-          move: "MSPointerMove",
-          end: "MSPointerUp",
-        }
-      : {
-          start: "mousedown touchstart",
-          move: "mousemove touchmove",
-          end: "mouseup touchend",
-        };
+        ? {
+            start: "MSPointerDown",
+            move: "MSPointerMove",
+            end: "MSPointerUp",
+          }
+        : {
+            start: "mousedown touchstart",
+            move: "mousemove touchmove",
+            end: "mouseup touchend",
+          };
   }
   // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
   // Issue #785
@@ -1395,8 +1388,8 @@ data-showmore-button="скорость"
     parsed.transformRule = noPrefix
       ? "transform"
       : msPrefix
-      ? "msTransform"
-      : "webkitTransform";
+        ? "msTransform"
+        : "webkitTransform";
     // Pips don't move, so we can place them using left/top.
     var styles = [
       ["left", "top"],
@@ -1768,8 +1761,8 @@ data-showmore-button="скорость"
             group.indexOf(i) > -1
               ? PipsType.LargeValue
               : isSteps
-              ? PipsType.SmallValue
-              : PipsType.NoValue;
+                ? PipsType.SmallValue
+                : PipsType.NoValue;
           // Enforce the 'ignoreFirst' option by overwriting the type for 0.
           if (!index && ignoreFirst && i !== high) {
             type = 0;
@@ -3028,13 +3021,11 @@ data-spollers="768,min" - спойлеры будут работать толь�
     const spollersArray = document.querySelectorAll("[data-spollers]");
     if (spollersArray.length > 0) {
       // Получение обычных слойлеров
-      const spollersRegular = Array.from(spollersArray).filter(function (
-        item,
-        index,
-        self
-      ) {
-        return !item.dataset.spollers.split(",")[0];
-      });
+      const spollersRegular = Array.from(spollersArray).filter(
+        function (item, index, self) {
+          return !item.dataset.spollers.split(",")[0];
+        }
+      );
       // Инициализация обычных слойлеров
       if (spollersRegular.length) {
         initSpollers(spollersRegular);
@@ -3179,17 +3170,13 @@ data-spollers="768,min" - спойлеры будут работать толь�
           1023.98: {
             slidesPerView: 3,
             spaceBetween: 20,
-     
           },
           1279.98: {
             slidesPerView: 4,
             spaceBetween: 20,
-          
           },
         },
-        on: {
-       
-        },
+        on: {},
       });
     }
     // отзавы
@@ -5459,8 +5446,8 @@ data-spollers="768,min" - спойлеры будут работать толь�
           document.getElementById("filter-septik")
             ? steps.length - 3
             : document.querySelector("._additional-question")
-            ? steps.length - 2
-            : steps.length - 1
+              ? steps.length - 2
+              : steps.length - 1
         }`;
       }
 
